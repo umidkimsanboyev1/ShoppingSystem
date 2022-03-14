@@ -1,4 +1,4 @@
-package uz.master.warehouse.entity.base;
+package uz.master.warehouse.enums;
 
 import lombok.Getter;
 

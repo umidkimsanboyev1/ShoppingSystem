@@ -3,7 +3,7 @@ package uz.master.warehouse.entity;
 import lombok.Getter;
 import lombok.Setter;
 import uz.master.warehouse.entity.base.Auditable;
-import uz.master.warehouse.entity.base.Role;
+import uz.master.warehouse.enums.Role;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -21,6 +21,8 @@ public class AuthUser extends Auditable {
     private String fullName;
 
     private String username;
+
+    private String phoneNumber;
 
     private String password;
 
