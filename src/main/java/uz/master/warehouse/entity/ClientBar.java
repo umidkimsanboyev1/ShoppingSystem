@@ -3,10 +3,7 @@ package uz.master.warehouse.entity;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
@@ -16,11 +13,15 @@ public class ClientBar {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(nullable = false)
     private String clientName;
 
+    @Column(nullable = false)
     private Double payment;
 
-    private boolean paid;
+    @Column(nullable = false)
+    private boolean paid = false;
 
-    private boolean taken;
+    @Column(nullable = false)
+    private boolean taken = false;
 }

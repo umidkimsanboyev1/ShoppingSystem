@@ -1,19 +1,11 @@
-package uz.master.warehouse.entity;
+package uz.master.warehouse.dto.auth;
 
-import lombok.Getter;
-import lombok.Setter;
-import uz.master.warehouse.entity.base.Auditable;
+import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.enums.Role;
 
-import javax.persistence.*;
+import javax.persistence.Column;
 
-@Getter
-@Setter
-@Entity
-public class AuthUser extends Auditable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class AuthDto implements BaseDto {
 
     @Column(nullable = false)
     private String fullName;
@@ -34,4 +26,5 @@ public class AuthUser extends Auditable {
 
     @Column(nullable = false)
     private Role role;
+
 }
