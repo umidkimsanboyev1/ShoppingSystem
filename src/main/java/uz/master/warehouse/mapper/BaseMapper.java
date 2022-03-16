@@ -1,4 +1,6 @@
 package uz.master.warehouse.mapper;
 
-public interface Mapper {
+public interface BaseMapper{
+
+
 }

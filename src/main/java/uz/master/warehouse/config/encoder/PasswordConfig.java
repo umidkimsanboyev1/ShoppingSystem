@@ -1,4 +1,4 @@
-package uz.master.warehouse.config;
+package uz.master.warehouse.config.encoder;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;

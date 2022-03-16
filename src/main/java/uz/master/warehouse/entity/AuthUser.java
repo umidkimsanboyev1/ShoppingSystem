@@ -5,18 +5,12 @@ import lombok.Setter;
 import uz.master.warehouse.entity.base.Auditable;
 import uz.master.warehouse.enums.Role;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @Getter
 @Setter
 @Entity
 public class AuthUser extends Auditable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
     private String fullName;
 
@@ -28,7 +22,9 @@ public class AuthUser extends Auditable {
 
     private String picturePath;
 
-    private Long orgId;
+    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Organization.class)
+    private Organization orgId;
 
+    @Enumerated(EnumType.STRING)
     private Role role;
 }

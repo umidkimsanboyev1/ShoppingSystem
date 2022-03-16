@@ -13,10 +13,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 public class Comment extends Auditable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    private Long barId;
+    private Long ClientBarId;
     private Long authorId;
     private String text;
 }

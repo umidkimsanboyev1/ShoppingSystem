@@ -2,14 +2,14 @@ package uz.master.warehouse.services;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import uz.master.warehouse.Validator.BaseValidator;
-import uz.master.warehouse.mapper.Mapper;
+import uz.master.warehouse.mapper.BaseMapper;
 
 /**
  * @param <R> Repository
  * @param <M> Mapper
  * @param <V> Validator
  */
-public abstract class AbstractService<R extends JpaRepository, M extends Mapper, V extends BaseValidator> {
+public abstract class AbstractService<R extends JpaRepository, M extends BaseMapper, V extends BaseValidator> {
 
     protected R repository;
     protected M mapper;

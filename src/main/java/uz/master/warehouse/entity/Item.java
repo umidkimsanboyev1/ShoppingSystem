@@ -4,23 +4,21 @@ import lombok.Getter;
 import lombok.Setter;
 import uz.master.warehouse.entity.base.Auditable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.FetchType;
+import javax.persistence.OneToOne;
 
 @Getter
 @Setter
 @Entity
-public class ItemOrder extends Auditable {
+public class Item extends Auditable {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
     private String name;
     private String model;
     private String color;
-    private Long barId;
 
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private Company company;
 
 }
