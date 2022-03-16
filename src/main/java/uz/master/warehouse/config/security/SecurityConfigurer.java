@@ -1,4 +1,4 @@
-package uz.master.warehouse.config;
+package uz.master.warehouse.config.security;
 
 /*
  * @author johnl
@@ -15,9 +15,9 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import uz.elmurodov.meal.service.AuthUserService;
-import uz.master.warehouse.config.filters.CustomAuthenticationFilter;
-import uz.master.warehouse.config.filters.CustomAuthorizationFilter;
+import uz.master.warehouse.config.security.filters.CustomAuthenticationFilter;
+import uz.master.warehouse.config.security.filters.CustomAuthorizationFilter;
+import uz.master.warehouse.services.auth.AuthUserService;
 
 @EnableWebSecurity
 @RequiredArgsConstructor
@@ -27,7 +27,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
             "/api/v1/refresh-token",
             "/api/v1/auth/token",
             "/swagger-ui/**",
-            "/api-docs/**",
+            "/api/docs/**",
 
     };
     private final AuthUserService userService;

@@ -1,18 +1,45 @@
+
+server:
+  port: 9090
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    url: jdbc:postgresql://localhost:5432/ware_house
+    password: postgres
     username: postgres
-    password: umidmaster98
+    url: jdbc:postgresql://localhost:5432/postgres
   jpa:
-    show-sql: true
     hibernate:
       ddl-auto: update
+    show-sql: true
     properties:
       hibernate:
         format_sql: true
-    open-in-view: false
-  messages:
-    always-use-message-format: true
-server:
-  port: 8080
+    database-platform: org.hibernate.dialect.PostgreSQL10Dialect
+
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+    enabled: true
+  api-docs:
+    path: /api/docs
+api:
+  info:
+    title: Review Service API
+    description: API to fetch review details for product
+    version: 1.0.0
+    terms-of-service: http://boom.com/terms/
+    contact:
+      name: Review Service API Team
+      email: apiteam@example.com
+      url: http://boom.com/team
+    license:
+      name: Apache 2.0
+      url: http://www.apache.org/licenses/LICENSE-2.0.html
+
+service:
+  prop:
+    protocol: http
+    ip: localhost
+    port: 9090
+    url: boom.uz

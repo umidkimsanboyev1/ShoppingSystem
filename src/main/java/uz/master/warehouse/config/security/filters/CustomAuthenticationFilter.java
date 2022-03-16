@@ -1,6 +1,7 @@
-package uz.master.warehouse.config.filters;
+package uz.master.warehouse.config.security.filters;
 
 
+import com.auth0.jwt.JWT;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -12,7 +13,11 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
-import uz.master.warehouse.config.JwtUtils;
+import uz.master.warehouse.dto.auth.AuthUserDto;
+import uz.master.warehouse.dto.auth.SessionDto;
+import uz.master.warehouse.dto.responce.AppErrorDto;
+import uz.master.warehouse.dto.responce.DataDto;
+import uz.master.warehouse.utils.JwtUtils;
 
 import javax.servlet.FilterChain;
 import javax.servlet.ServletException;
@@ -35,9 +40,9 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             AuthUserDto loginDto = new ObjectMapper().readValue(request.getReader(), AuthUserDto.class);
-            log.info("Username is: {}", loginDto.getUserName());
+            log.info("Username is: {}", loginDto.getUsername());
             UsernamePasswordAuthenticationToken authenticationToken =
-                    new UsernamePasswordAuthenticationToken(loginDto.getUserName(), loginDto.getPassword());
+                    new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
             return authenticationManager.authenticate(authenticationToken);
         } catch (IOException e) {
             log.error(e.getMessage(), e);
@@ -48,8 +53,8 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException, ServletException, IOException {
         User user = (User) authentication.getPrincipal();
-        Date expiryForAccessToken = JwtUtils.getExpiry();
-        Date expiryForRefreshToken = JwtUtils.getExpiryForRefreshToken();
+        Date expiryForAccessToken = JwtUtils.getExpireDate();
+        Date expiryForRefreshToken = JwtUtils.getExpireDateForRefreshToken();
         String accessToken = JWT.create()
                 .withSubject(user.getUsername())
                 .withExpiresAt(expiryForAccessToken)
@@ -65,9 +70,9 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
         SessionDto sessionDto = SessionDto.builder()
                 .accessToken(accessToken)
-                .accessTokenExpiry(expiryForAccessToken.getTime())
+                .expiresIn(expiryForAccessToken.getTime())
                 .refreshToken(refreshToken)
-                .refreshTokenExpiry(expiryForRefreshToken.getTime())
+                .refreshTokenExpire(expiryForRefreshToken.getTime())
                 .issuedAt(System.currentTimeMillis())
                 .build();
 
@@ -78,13 +83,7 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
 
     @Override
     protected void unsuccessfulAuthentication(HttpServletRequest request, HttpServletResponse response, AuthenticationException failed) throws IOException, ServletException {
-        DataDto<AppErrorDto> resp = new DataDto<>(
-                AppErrorDto.builder()
-                        .message(failed.getMessage())
-                        .path(request.getRequestURL().toString())
-                        .status(HttpStatus.INTERNAL_SERVER_ERROR)
-                        .build()
-        );
-        new ObjectMapper().writeValue(response.getOutputStream(), resp);
+        AppErrorDto appError = new AppErrorDto(HttpStatus.BAD_REQUEST,"Bad Request",request.getRequestURL().toString());
+        new ObjectMapper().writeValue(response.getOutputStream(), appError);
     }
 }

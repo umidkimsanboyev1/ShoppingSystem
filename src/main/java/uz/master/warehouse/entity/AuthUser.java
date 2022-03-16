@@ -11,27 +11,20 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class AuthUser extends Auditable {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
 
-    @Column(nullable = false)
     private String fullName;
 
-    @Column(unique = true, nullable = false)
     private String username;
 
-    @Column(nullable = false)
     private String phoneNumber;
 
-    @Column(nullable = false)
     private String password;
 
     private String picturePath;
 
-    @Column(nullable = false)
-    private Long orgId;
+    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Organization.class)
+    private Organization orgId;
 
-    @Column(nullable = false)
+    @Enumerated(EnumType.STRING)
     private Role role;
 }

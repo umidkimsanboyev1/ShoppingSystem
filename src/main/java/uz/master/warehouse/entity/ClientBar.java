@@ -2,26 +2,23 @@ package uz.master.warehouse.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import uz.master.warehouse.entity.base.Auditable;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
 @Getter
 @Setter
 @Entity
-public class ClientBar {
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+public class ClientBar extends Auditable {
 
-    @Column(nullable = false)
+    private Long itemId;
     private String clientName;
-
-    @Column(nullable = false)
+    private Double price;
+    private Integer count;
     private Double payment;
-
-    @Column(nullable = false)
-    private boolean paid = false;
-
-    @Column(nullable = false)
-    private boolean taken = false;
+    private boolean paid;
+    private boolean taken;
 }
