@@ -5,7 +5,7 @@ import uz.master.warehouse.enums.Role;
 
 import javax.persistence.Column;
 
-public class AuthCreateDto implements GenericDto {
+public class AuthCreateDto extends GenericDto {
 
     @Column(nullable = false)
     private String fullName;

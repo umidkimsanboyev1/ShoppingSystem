@@ -7,5 +7,5 @@ public enum Role {
     ADMIN,
     CASHIER,
     WAREHOUSEMAN,
-    SELLER;
+    SElLER;
 }

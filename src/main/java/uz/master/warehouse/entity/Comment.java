@@ -5,9 +5,6 @@ import lombok.Setter;
 import uz.master.warehouse.entity.base.Auditable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
 
 @Entity
 @Getter

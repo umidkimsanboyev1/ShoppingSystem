@@ -12,8 +12,6 @@ import java.util.Date;
 @Setter
 @Entity
 public class WareHouse extends Auditable {
-
-
     private Long marketId;
     private String name;
 
