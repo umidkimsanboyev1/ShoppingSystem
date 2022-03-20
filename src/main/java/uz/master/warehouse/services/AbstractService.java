@@ -1,7 +1,7 @@
 package uz.master.warehouse.services;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import uz.master.warehouse.Validator.BaseValidator;
+import uz.master.warehouse.validator.BaseValidator;
 import uz.master.warehouse.mapper.BaseMapper;
 
 /**

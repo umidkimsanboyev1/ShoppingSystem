@@ -2,7 +2,7 @@ package uz.master.warehouse.services.clientBar;
 
 
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.Validator.ClientBarValidator;
+import uz.master.warehouse.validator.ClientBarValidator;
 import uz.master.warehouse.dto.clientBar.ClientBarCreateDto;
 import uz.master.warehouse.dto.clientBar.ClientBarDto;
 import uz.master.warehouse.dto.clientBar.ClientBarUpdateDto;

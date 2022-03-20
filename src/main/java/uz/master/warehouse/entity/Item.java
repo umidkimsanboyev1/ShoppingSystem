@@ -1,16 +1,15 @@
 package uz.master.warehouse.entity;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uz.master.warehouse.entity.base.Auditable;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToOne;
+import javax.persistence.*;
 
 @Getter
 @Setter
+@NoArgsConstructor
 @Entity
 public class Item extends Auditable {
 
@@ -18,7 +17,10 @@ public class Item extends Auditable {
     private String model;
     private String color;
 
-    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+//    @ManyToOne
+//    @JoinColumn(name = "company_id")
+//    private Company company;
+//
+    @ManyToOne(fetch = FetchType.LAZY)
     private Company company;
-
 }

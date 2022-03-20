@@ -4,8 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import uz.master.warehouse.entity.base.Auditable;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
+import javax.persistence.*;
+import java.util.List;
 
 @Entity
 @Getter
@@ -16,4 +16,7 @@ public class Company extends Auditable {
     private String name;
 
     private Long registrationNumber;
+
+    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
+    private List<Item> items;
 }

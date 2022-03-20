@@ -1,6 +1,7 @@
 package uz.master.warehouse.services.organization;
 
-import uz.master.warehouse.Validator.OrganizationValidator;
+import org.springframework.stereotype.Service;
+import uz.master.warehouse.validator.OrganizationValidator;
 import uz.master.warehouse.dto.organization.OrganizationCreateDto;
 import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.organization.OrganizationUpdateDto;
@@ -12,6 +13,7 @@ import uz.master.warehouse.services.GenericCrudService;
 
 import java.util.List;
 
+@Service
 public class OrganizationService extends AbstractService<OrganizationRepository, OrganizationMapper, OrganizationValidator> implements GenericCrudService<Organization, OrganizationDto, OrganizationCreateDto, OrganizationUpdateDto, Long> {
     public OrganizationService(OrganizationRepository repository, OrganizationMapper mapper, OrganizationValidator validator) {
         super(repository, mapper, validator);

@@ -1,6 +1,7 @@
 package uz.master.warehouse.services.company;
 
-import uz.master.warehouse.Validator.CompanyValidator;
+import org.springframework.stereotype.Service;
+import uz.master.warehouse.validator.CompanyValidator;
 import uz.master.warehouse.dto.company.CompanyCreateDto;
 import uz.master.warehouse.dto.company.CompanyDto;
 import uz.master.warehouse.dto.company.CompanyUpdateDto;
@@ -12,6 +13,7 @@ import uz.master.warehouse.services.GenericCrudService;
 
 import java.util.List;
 
+@Service
 public class CompanyService extends AbstractService<
         CompanyRepository,
         CompanyMapper,
