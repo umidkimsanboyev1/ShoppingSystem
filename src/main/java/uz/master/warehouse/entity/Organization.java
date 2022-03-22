@@ -14,8 +14,6 @@ import javax.persistence.Id;
 @Setter
 @Entity
 public class Organization extends Auditable {
-
     private String name;
-
     private Long ownerId;
 }

@@ -23,7 +23,7 @@ public class AuthUser extends Auditable {
     private String picturePath;
 
     @ManyToOne(fetch = FetchType.LAZY,targetEntity = Organization.class)
-    private Organization orgId;
+    private Organization organization;
 
     @Enumerated(EnumType.STRING)
     private Role role;

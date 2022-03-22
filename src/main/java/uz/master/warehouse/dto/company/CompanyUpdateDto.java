@@ -4,5 +4,4 @@ import uz.master.warehouse.dto.GenericDto;
 
 public class CompanyUpdateDto extends GenericDto {
     private String name;
-    private Long registrationNumber;
 }

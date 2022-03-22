@@ -1,6 +1,7 @@
 package uz.master.warehouse.services.item;
 
 
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.validator.ItemValidator;
 import uz.master.warehouse.dto.item.ItemCreateDto;
@@ -33,6 +34,9 @@ public class ItemService extends AbstractService<
 
     @Override
     public Long create(ItemCreateDto createDto) {
+        Item item = mapper.fromDto(createDto);
+        //todo logics
+        repository.save(item);
         return null;
     }
 
@@ -43,16 +47,20 @@ public class ItemService extends AbstractService<
 
     @Override
     public Void update(ItemUpdateDto updateDto) {
+
         return null;
     }
 
     @Override
     public List<ItemDto> getAll() {
-        return null;
+        return mapper.toDto(repository.findAllByDeletedFalse());
     }
 
     @Override
     public ItemDto get(Long id) {
-        return null;
+        Item item = repository.findById(id).orElseThrow(() -> {
+            throw new UsernameNotFoundException("USER_NOT_FOUND");
+        });
+        return mapper.toDto(item);
     }
 }
