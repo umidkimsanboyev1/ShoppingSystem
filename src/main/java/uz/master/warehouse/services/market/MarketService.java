@@ -29,7 +29,6 @@ public class MarketService extends AbstractService<
         Long
         > {
 
-    private AuthUser session = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
     private final OrganizationRepository organizationRepository;
     public MarketService(MarketRepository repository, MarketMapper mapper, MarketValidator validator, OrganizationRepository organizationRepository) {
         super(repository, mapper, validator);
@@ -38,6 +37,7 @@ public class MarketService extends AbstractService<
 
     @Override
     public Long create(MarketCreateDto createDto) {
+        AuthUser session = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Market market = mapper.fromCreateDto(createDto);
         market.setOrganization(organizationRepository.findById(session.getOrganization().getId()).get());
         market.setOwnerId(session.getId());
@@ -53,6 +53,7 @@ public class MarketService extends AbstractService<
 
     @Override
     public Void update(MarketUpdateDto updateDto) {
+        AuthUser session = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Market market = mapper.fromUpdateDto(updateDto);
         market.setOrganization(organizationRepository.findById(session.getOrganization().getId()).get());
         market.setOwnerId(session.getId());
