@@ -5,6 +5,6 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public abstract class GenericDto {
+public abstract class GenericDto implements BaseDto {
     private Long id;
 }

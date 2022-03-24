@@ -10,15 +10,9 @@ import javax.persistence.*;
 @Setter
 @Entity
 public class Market extends Auditable {
-
     private String name;
-
     private Long ownerId;
-
-    @ManyToOne(targetEntity = Organization.class,fetch = FetchType.LAZY)
-    private Organization organization;
-
+    private Long organizationId;
     private String location;
-
     private String description;
 }

@@ -10,7 +10,7 @@ import javax.persistence.Entity;
 @Getter
 @Setter
 public class Comment extends Auditable {
-    private Long ClientBarId;
+    private Long clientBarId;
     private Long authorId;
     private String text;
 }

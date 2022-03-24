@@ -28,6 +28,7 @@ import uz.master.warehouse.repository.AuthUserRepository;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 
+
 @Service
 @RequiredArgsConstructor
 public class AuthUserService implements UserDetailsService {

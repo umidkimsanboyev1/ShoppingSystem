@@ -1,4 +1,4 @@
-package uz.master.warehouse.services.company;
+package uz.master.warehouse.services.organization;
 
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.repository.CompanyRepository;

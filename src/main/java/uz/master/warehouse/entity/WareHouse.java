@@ -16,12 +16,8 @@ public class WareHouse extends Auditable {
     private Long marketId;
 
     private String name;
-
     @Column(nullable = false, unique = true)
     private String location;
-
     private Date paidFor;
-
-    @ManyToOne(targetEntity = Organization.class, fetch = FetchType.LAZY)
-    private Organization organization;
+    private Long organizationId;
 }

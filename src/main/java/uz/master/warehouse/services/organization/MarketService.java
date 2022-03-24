@@ -1,4 +1,4 @@
-package uz.master.warehouse.services.market;
+package uz.master.warehouse.services.organization;
 
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
@@ -35,31 +35,6 @@ public class MarketService extends AbstractService<
         this.organizationRepository = organizationRepository;
     }
 
-    @Override
-    public Long create(MarketCreateDto createDto) {
-        AuthUser session = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Market market = mapper.fromCreateDto(createDto);
-        market.setOrganization(organizationRepository.findById(session.getOrganization().getId()).get());
-        market.setOwnerId(session.getId());
-        repository.save(market);
-        return null;
-    }
-
-    @Override
-    public Void delete(Long id) {
-        repository.deleteMarket(id);
-        return null;
-    }
-
-    @Override
-    public Void update(MarketUpdateDto updateDto) {
-        AuthUser session = (AuthUser) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Market market = mapper.fromUpdateDto(updateDto);
-        market.setOrganization(organizationRepository.findById(session.getOrganization().getId()).get());
-        market.setOwnerId(session.getId());
-        repository.save(market);
-        return null;
-    }
 
     @Override
     public List<MarketDto> getAll() {
@@ -69,5 +44,20 @@ public class MarketService extends AbstractService<
     @Override
     public MarketDto get(Long id) {
         return mapper.toDto(repository.findByIdAndDeletedFalse(id));
+    }
+
+    @Override
+    public Long create(MarketCreateDto createDto) {
+        return null;
+    }
+
+    @Override
+    public Void delete(Long id) {
+        return null;
+    }
+
+    @Override
+    public Void update(MarketUpdateDto updateDto) {
+        return null;
     }
 }

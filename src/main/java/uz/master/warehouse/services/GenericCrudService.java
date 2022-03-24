@@ -16,8 +16,8 @@ import java.io.Serializable;
  */
 public interface GenericCrudService<
         E extends BaseEntity,
-        D extends BaseDto,
-        CD extends GenericDto,
+        D extends GenericDto,
+        CD extends BaseDto,
         UD extends GenericDto,
         K extends Serializable
         > extends GenericService<D, K> {

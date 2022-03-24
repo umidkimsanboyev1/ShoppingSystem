@@ -2,6 +2,7 @@ package uz.master.warehouse.entity;
 
 import lombok.Getter;
 import lombok.Setter;
+import uz.master.warehouse.entity.Firm;
 import uz.master.warehouse.entity.base.Auditable;
 import uz.master.warehouse.enums.Location;
 

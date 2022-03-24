@@ -22,8 +22,8 @@ public class AuthUser extends Auditable {
 
     private String picturePath;
 
-    @ManyToOne(fetch = FetchType.LAZY,targetEntity = Organization.class)
-    private Organization organization;
+
+    private Long organizationId;
 
     @Enumerated(EnumType.STRING)
     private Role role;

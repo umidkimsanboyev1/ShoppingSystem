@@ -5,8 +5,7 @@ import uz.master.warehouse.dto.GenericDto;
 
 import java.util.List;
 
-public class CompanyDto extends GenericDto implements BaseDto {
+public class CompanyDto extends GenericDto {
     private String name;
     private Long registrationNumber;
-    private List<Item> items;
 }

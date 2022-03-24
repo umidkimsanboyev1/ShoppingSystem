@@ -22,21 +22,14 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
         super(repository, mapper, validator);
     }
 
+
     @Override
     public Long create(ClientBarCreateDto createDto) {
-        List<Product> products = createDto.getProducts();
-        double overAllPrice = products.stream().mapToDouble(Product::getPrice).sum();
-        ClientBar bar = mapper.fromDto(createDto);
-        bar.setOverAllPrice(overAllPrice);
-        repository.save(bar);
         return null;
     }
 
     @Override
     public Void delete(Long id) {
-        ClientBar byIdAndTakenFalse = repository.findByIdAndTakenFalse(id);
-        byIdAndTakenFalse.setTaken(true);
-        repository.save(byIdAndTakenFalse);
         return null;
     }
 

@@ -16,6 +16,5 @@ public class Firm extends Auditable {
 
     private String name;
 
-    @ManyToOne
-    private Company company;
+    private Long companyId;
 }

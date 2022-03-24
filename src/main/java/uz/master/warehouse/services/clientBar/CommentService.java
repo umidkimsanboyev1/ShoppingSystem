@@ -1,4 +1,4 @@
-package uz.master.warehouse.services.comment;
+package uz.master.warehouse.services.clientBar;
 
 import uz.master.warehouse.validator.CommentValidator;
 import uz.master.warehouse.dto.comment.CommentCreateDto;
