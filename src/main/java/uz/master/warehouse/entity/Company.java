@@ -17,6 +17,4 @@ public class Company extends Auditable {
 
     private Long registrationNumber;
 
-    @OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.REMOVE)
-    private List<Item> items;
 }

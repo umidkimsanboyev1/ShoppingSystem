@@ -6,16 +6,16 @@ import lombok.Setter;
 import uz.master.warehouse.entity.base.Auditable;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 
+@Entity
 @Getter
 @Setter
-@Entity
-public class Organization extends Auditable {
+public class Firm extends Auditable {
 
     private String name;
 
-    private Long ownerId;
+    @ManyToOne
+    private Company company;
 }

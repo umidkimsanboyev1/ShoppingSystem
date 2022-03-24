@@ -12,11 +12,15 @@ import java.util.List;
 @Setter
 @Entity
 public class ClientBar extends Auditable {
-    @ManyToMany(fetch = FetchType.LAZY)
-    private List<Product> products;
+
     private String clientName;
+
     private Double overAllPrice;
-    private Integer productCount;
+
+//    @OneToMany(fetch = FetchType.LAZY)
+//    private List<OutComeProducts> products;
+
     private boolean paid;
-    private boolean taken;
+
+
 }

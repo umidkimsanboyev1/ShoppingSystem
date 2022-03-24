@@ -2,7 +2,6 @@ package uz.master.warehouse.dto.company;
 
 import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.dto.GenericDto;
-import uz.master.warehouse.entity.Item;
 
 import java.util.List;
 

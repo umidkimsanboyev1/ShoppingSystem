@@ -4,7 +4,6 @@ import org.mapstruct.Mapper;
 import org.springframework.stereotype.Component;
 import uz.master.warehouse.dto.item.ItemCreateDto;
 import uz.master.warehouse.dto.item.ItemDto;
-import uz.master.warehouse.entity.Item;
 
 import java.util.List;
 

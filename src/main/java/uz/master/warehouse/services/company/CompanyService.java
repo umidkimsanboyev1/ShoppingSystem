@@ -29,7 +29,6 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
     @Override
     public Long create(CompanyCreateDto createDto) {
         Company company = mapper.fromCreateDto(createDto);
-        company.setItems(new ArrayList<>());
         repository.save(company);
         return null;
     }

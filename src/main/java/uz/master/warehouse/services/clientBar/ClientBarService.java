@@ -25,13 +25,9 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
     @Override
     public Long create(ClientBarCreateDto createDto) {
         List<Product> products = createDto.getProducts();
-        Double overAllPrice = 0D;
-        for (Product product : products) {
-            overAllPrice += product.getPrice();
-        }
+        double overAllPrice = products.stream().mapToDouble(Product::getPrice).sum();
         ClientBar bar = mapper.fromDto(createDto);
         bar.setOverAllPrice(overAllPrice);
-        bar.setProductCount(products.size());
         repository.save(bar);
         return null;
     }

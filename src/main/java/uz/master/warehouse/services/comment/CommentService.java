@@ -5,7 +5,6 @@ import uz.master.warehouse.dto.comment.CommentCreateDto;
 import uz.master.warehouse.dto.comment.CommentDto;
 import uz.master.warehouse.dto.comment.CommentUpdateDto;
 import uz.master.warehouse.entity.Comment;
-import uz.master.warehouse.entity.Item;
 import uz.master.warehouse.mapper.CommentMapper;
 import uz.master.warehouse.repository.CommentRepository;
 import uz.master.warehouse.services.AbstractService;
@@ -20,7 +19,6 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
 
     @Override
     public Long create(CommentCreateDto createDto) {
-        Item item=new Item();
         return null;
 
     }
