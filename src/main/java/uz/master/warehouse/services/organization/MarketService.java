@@ -1,16 +1,14 @@
 package uz.master.warehouse.services.organization;
 
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.entity.AuthUser;
-import uz.master.warehouse.repository.OrganizationRepository;
+import uz.master.warehouse.entity.organization.Market;
+import uz.master.warehouse.repository.organization.OrganizationRepository;
 import uz.master.warehouse.validator.MarketValidator;
 import uz.master.warehouse.dto.market.MarketCreateDto;
 import uz.master.warehouse.dto.market.MarketDto;
 import uz.master.warehouse.dto.market.MarketUpdateDto;
-import uz.master.warehouse.entity.Market;
-import uz.master.warehouse.mapper.MarketMapper;
-import uz.master.warehouse.repository.MarketRepository;
+import uz.master.warehouse.mapper.organization.MarketMapper;
+import uz.master.warehouse.repository.organization.MarketRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 

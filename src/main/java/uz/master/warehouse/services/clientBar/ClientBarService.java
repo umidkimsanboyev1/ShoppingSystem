@@ -6,10 +6,9 @@ import uz.master.warehouse.validator.ClientBarValidator;
 import uz.master.warehouse.dto.clientBar.ClientBarCreateDto;
 import uz.master.warehouse.dto.clientBar.ClientBarDto;
 import uz.master.warehouse.dto.clientBar.ClientBarUpdateDto;
-import uz.master.warehouse.entity.ClientBar;
-import uz.master.warehouse.entity.Product;
-import uz.master.warehouse.mapper.ClientBarMapper;
-import uz.master.warehouse.repository.ClientBarRepository;
+import uz.master.warehouse.entity.clientBar.ClientBar;
+import uz.master.warehouse.mapper.clientBar.ClientBarMapper;
+import uz.master.warehouse.repository.clientBar.ClientBarRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 

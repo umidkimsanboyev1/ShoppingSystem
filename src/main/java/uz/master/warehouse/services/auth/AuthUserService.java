@@ -21,9 +21,9 @@ import uz.master.warehouse.dto.auth.AuthUserDto;
 import uz.master.warehouse.dto.auth.SessionDto;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
-import uz.master.warehouse.entity.AuthUser;
+import uz.master.warehouse.entity.auth.AuthUser;
 import uz.master.warehouse.properties.ServerProperties;
-import uz.master.warehouse.repository.AuthUserRepository;
+import uz.master.warehouse.repository.auth.AuthUserRepository;
 
 import java.io.ByteArrayInputStream;
 import java.io.IOException;

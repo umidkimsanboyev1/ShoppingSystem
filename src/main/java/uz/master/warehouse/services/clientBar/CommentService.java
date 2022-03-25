@@ -4,9 +4,9 @@ import uz.master.warehouse.validator.CommentValidator;
 import uz.master.warehouse.dto.comment.CommentCreateDto;
 import uz.master.warehouse.dto.comment.CommentDto;
 import uz.master.warehouse.dto.comment.CommentUpdateDto;
-import uz.master.warehouse.entity.Comment;
-import uz.master.warehouse.mapper.CommentMapper;
-import uz.master.warehouse.repository.CommentRepository;
+import uz.master.warehouse.entity.clientBar.Comment;
+import uz.master.warehouse.mapper.clientBar.CommentMapper;
+import uz.master.warehouse.repository.clientBar.CommentRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 

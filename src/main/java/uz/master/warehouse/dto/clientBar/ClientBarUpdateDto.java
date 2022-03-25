@@ -3,7 +3,7 @@ package uz.master.warehouse.dto.clientBar;
 import lombok.Getter;
 import lombok.Setter;
 import uz.master.warehouse.dto.GenericDto;
-import uz.master.warehouse.entity.Product;
+import uz.master.warehouse.entity.product.Product;
 
 import java.util.List;
 

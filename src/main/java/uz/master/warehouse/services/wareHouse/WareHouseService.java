@@ -5,9 +5,9 @@ import uz.master.warehouse.validator.WareHouseValidator;
 import uz.master.warehouse.dto.wareHouse.WareHouseCreateDto;
 import uz.master.warehouse.dto.wareHouse.WareHouseDto;
 import uz.master.warehouse.dto.wareHouse.WareHouseUpdateDto;
-import uz.master.warehouse.entity.WareHouse;
-import uz.master.warehouse.mapper.WareHouseMapper;
-import uz.master.warehouse.repository.WareHouseRepository;
+import uz.master.warehouse.entity.wareHouse.WareHouse;
+import uz.master.warehouse.mapper.wareHouse.WareHouseMapper;
+import uz.master.warehouse.repository.wareHouse.WareHouseRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 

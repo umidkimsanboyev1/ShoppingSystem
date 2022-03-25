@@ -2,15 +2,15 @@ package uz.master.warehouse.services.organization;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.entity.AuthUser;
-import uz.master.warehouse.repository.AuthUserRepository;
+import uz.master.warehouse.entity.auth.AuthUser;
+import uz.master.warehouse.entity.organization.Organization;
+import uz.master.warehouse.repository.auth.AuthUserRepository;
 import uz.master.warehouse.validator.OrganizationValidator;
 import uz.master.warehouse.dto.organization.OrganizationCreateDto;
 import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.organization.OrganizationUpdateDto;
-import uz.master.warehouse.entity.Organization;
-import uz.master.warehouse.mapper.OrganizationMapper;
-import uz.master.warehouse.repository.OrganizationRepository;
+import uz.master.warehouse.mapper.organization.OrganizationMapper;
+import uz.master.warehouse.repository.organization.OrganizationRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 

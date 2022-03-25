@@ -4,7 +4,7 @@ import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsCreateDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsUpdateDto;
-import uz.master.warehouse.entity.WareHouseProducts;
+import uz.master.warehouse.entity.products.WareHouseProducts;
 import uz.master.warehouse.mapper.products.WareHouseProductsMapper;
 import uz.master.warehouse.repository.products.WareHouseProductsRepository;
 import uz.master.warehouse.services.AbstractService;
