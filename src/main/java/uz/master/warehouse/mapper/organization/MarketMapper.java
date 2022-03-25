@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @Mapper(componentModel = "spring")
-public interface MarketMapper extends BaseMapper {
+public interface MarketMapper extends BaseMapper<Market,MarketDto,MarketCreateDto,MarketUpdateDto> {
     Market fromCreateDto(MarketCreateDto createDto);
 
     Market fromUpdateDto(MarketUpdateDto updateDto);
@@ -20,4 +20,5 @@ public interface MarketMapper extends BaseMapper {
     List<MarketDto> toDto(List<Market> all);
 
     MarketDto toDto(Market market);
+
 }

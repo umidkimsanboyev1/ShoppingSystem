@@ -12,8 +12,7 @@ import java.util.List;
 
 @Component
 @Mapper(componentModel = "spring")
-public interface CompanyMapper extends BaseMapper {
-
+public interface CompanyMapper extends BaseMapper<Company,CompanyDto,CompanyCreateDto,CompanyUpdateDto> {
 
     Company fromCreateDto(CompanyCreateDto createDto);
 

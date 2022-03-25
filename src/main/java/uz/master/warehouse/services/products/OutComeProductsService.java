@@ -14,7 +14,7 @@ import uz.master.warehouse.validator.products.OutComeProductsValidator;
 import java.util.List;
 
 @Service
-public class OutComeProductsService   extends AbstractService<OutComeProductsRepository, OutComeProductsMapper, OutComeProductsValidator>
+public class OutComeProductsService extends AbstractService<OutComeProductsRepository, OutComeProductsMapper, OutComeProductsValidator>
         implements GenericCrudService<OutComeProducts, OutComeProductsDto, OutComeProductsCreateDto, OutComeProductsUpdateDto, Long> {
 
     public OutComeProductsService(OutComeProductsRepository repository, OutComeProductsMapper mapper, OutComeProductsValidator validator) {
@@ -23,6 +23,7 @@ public class OutComeProductsService   extends AbstractService<OutComeProductsRep
 
     @Override
     public Long create(OutComeProductsCreateDto createDto) {
+//        repository.save(mapper.fromCreateDto(createDto));
         return null;
     }
 

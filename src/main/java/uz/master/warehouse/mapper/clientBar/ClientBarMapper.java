@@ -12,7 +12,7 @@ import java.util.List;
 
 @Component
 @Mapper(componentModel = "spring")
-public interface ClientBarMapper extends BaseMapper {
+public interface ClientBarMapper extends BaseMapper<ClientBar,ClientBarDto,ClientBarCreateDto,ClientBarUpdateDto> {
     ClientBar fromDto(ClientBarCreateDto createDto);
 
     ClientBar fromUpdateDto(ClientBarUpdateDto updateDto);

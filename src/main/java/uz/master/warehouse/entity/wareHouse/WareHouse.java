@@ -16,8 +16,12 @@ public class WareHouse extends Auditable {
     private Long marketId;
 
     private String name;
+
     @Column(nullable = false, unique = true)
     private String location;
+
     private Date paidFor;
+
     private Long organizationId;
+
 }
