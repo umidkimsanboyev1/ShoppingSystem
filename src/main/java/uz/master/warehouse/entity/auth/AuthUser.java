@@ -14,6 +14,7 @@ public class AuthUser extends Auditable {
 
     private String fullName;
 
+
     private String username;
 
     private String phoneNumber;
