@@ -57,10 +57,8 @@ public class AuthUserService implements UserDetailsService {
             JsonNode json_auth = objectMapper.readTree(EntityUtils.toString(response.getEntity()));
 
             if (!json_auth.has("error")) {
-                SessionDto sessionDto = SessionDto.builder()
-                        .accessToken(json_auth.get("access_token").asText())
-                        .refreshToken(json_auth.get("refresh_token").asText())
-                        .build();
+                JsonNode node = json_auth.get("data");
+                SessionDto sessionDto = objectMapper.readValue(node.toString(), SessionDto.class);
                 return new ResponseEntity<>(new DataDto<>(sessionDto), HttpStatus.OK);
             }
             return new ResponseEntity<>(new DataDto<>(new AppErrorDto("bad Request"," ",HttpStatus.BAD_REQUEST)),HttpStatus.OK);
