@@ -41,11 +41,11 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
 
     @Override
     public List<ClientBarDto> getAll() {
-        return mapper.toDto(repository.findAllByTakenFalse());
+        return null;/*mapper.toDto(repository.findAllByTakenFalse());*/
     }
 
     @Override
     public ClientBarDto get(Long id) {
-        return mapper.toDto(repository.findByIdAndTakenFalse(id));
+        return  null ;/*mapper.toDto(repository.findByIdAndTakenFalse(id))*/
     }
 }

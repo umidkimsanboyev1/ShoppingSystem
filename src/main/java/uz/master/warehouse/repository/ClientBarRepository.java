@@ -7,6 +7,6 @@ import java.util.List;
 
 public interface ClientBarRepository extends JpaRepository<ClientBar, Long> {
 
-    List<ClientBar> findAllByTakenFalse();
-    ClientBar findByIdAndTakenFalse(Long id);
+//    List<ClientBar> findAllByTakenFalse();
+//    ClientBar findByIdAndTakenFalse(Long id);
 }
