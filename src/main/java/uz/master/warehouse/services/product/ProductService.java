@@ -9,7 +9,7 @@ import uz.master.warehouse.mapper.product.ProductMapper;
 import uz.master.warehouse.repository.product.ProductRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.ProductValidator;
+import uz.master.warehouse.validator.project.ProductValidator;
 
 import java.util.List;
 

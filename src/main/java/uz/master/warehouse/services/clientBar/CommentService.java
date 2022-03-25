@@ -1,6 +1,6 @@
 package uz.master.warehouse.services.clientBar;
 
-import uz.master.warehouse.validator.CommentValidator;
+import uz.master.warehouse.validator.clientBar.CommentValidator;
 import uz.master.warehouse.dto.comment.CommentCreateDto;
 import uz.master.warehouse.dto.comment.CommentDto;
 import uz.master.warehouse.dto.comment.CommentUpdateDto;

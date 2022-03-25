@@ -1,7 +1,7 @@
 package uz.master.warehouse.services.wareHouse;
 
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.validator.WareHouseValidator;
+import uz.master.warehouse.validator.warehouse.WareHouseValidator;
 import uz.master.warehouse.dto.wareHouse.WareHouseCreateDto;
 import uz.master.warehouse.dto.wareHouse.WareHouseDto;
 import uz.master.warehouse.dto.wareHouse.WareHouseUpdateDto;

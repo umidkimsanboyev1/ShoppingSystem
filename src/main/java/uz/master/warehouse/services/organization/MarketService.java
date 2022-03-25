@@ -3,7 +3,7 @@ package uz.master.warehouse.services.organization;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.entity.organization.Market;
 import uz.master.warehouse.repository.organization.OrganizationRepository;
-import uz.master.warehouse.validator.MarketValidator;
+import uz.master.warehouse.validator.organization.MarketValidator;
 import uz.master.warehouse.dto.market.MarketCreateDto;
 import uz.master.warehouse.dto.market.MarketDto;
 import uz.master.warehouse.dto.market.MarketUpdateDto;

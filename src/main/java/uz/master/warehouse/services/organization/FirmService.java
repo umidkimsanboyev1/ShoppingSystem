@@ -8,7 +8,7 @@ import uz.master.warehouse.mapper.organization.FirmMapper;
 import uz.master.warehouse.repository.organization.FirmRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.FirmValidator;
+import uz.master.warehouse.validator.organization.FirmValidator;
 
 import java.util.List;
 

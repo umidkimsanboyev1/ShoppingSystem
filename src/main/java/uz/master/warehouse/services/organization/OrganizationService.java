@@ -5,7 +5,7 @@ import org.springframework.stereotype.Service;
 import uz.master.warehouse.entity.auth.AuthUser;
 import uz.master.warehouse.entity.organization.Organization;
 import uz.master.warehouse.repository.auth.AuthUserRepository;
-import uz.master.warehouse.validator.OrganizationValidator;
+import uz.master.warehouse.validator.organization.OrganizationValidator;
 import uz.master.warehouse.dto.organization.OrganizationCreateDto;
 import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.organization.OrganizationUpdateDto;

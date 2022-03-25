@@ -3,7 +3,7 @@ package uz.master.warehouse.services.organization;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.entity.organization.Company;
 import uz.master.warehouse.repository.organization.CompanyRepository;
-import uz.master.warehouse.validator.CompanyValidator;
+import uz.master.warehouse.validator.organization.CompanyValidator;
 import uz.master.warehouse.dto.company.CompanyCreateDto;
 import uz.master.warehouse.dto.company.CompanyDto;
 import uz.master.warehouse.dto.company.CompanyUpdateDto;
