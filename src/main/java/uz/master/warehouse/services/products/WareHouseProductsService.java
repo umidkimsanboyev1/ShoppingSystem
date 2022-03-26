@@ -47,4 +47,8 @@ public class WareHouseProductsService    extends AbstractService<WareHouseProduc
     public DataDto<WareHouseProductsDto> get(Long id) {
         return null;
     }
+
+    public void checkCount(Long productId, int count) {
+        repository.get(productId,count).orElseThrow(()->{throw new RuntimeException("uzr");});
+    }
 }
