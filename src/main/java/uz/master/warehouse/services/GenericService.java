@@ -2,6 +2,7 @@ package uz.master.warehouse.services;
 
 import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.dto.GenericDto;
+import uz.master.warehouse.dto.responce.DataDto;
 
 import java.io.Serializable;
 import java.util.List;
@@ -17,7 +18,7 @@ public interface GenericService<
         > extends BaseService {
 
 
-    List<D> getAll();
+    DataDto<List<?>> getAll();
 
-    D get(K id);
+    DataDto<?> get(K id);
 }

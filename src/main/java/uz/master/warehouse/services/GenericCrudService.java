@@ -2,6 +2,7 @@ package uz.master.warehouse.services;
 
 import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.dto.GenericDto;
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.base.BaseEntity;
 
 import java.io.Serializable;
@@ -22,10 +23,10 @@ public interface GenericCrudService<
         K extends Serializable
         > extends GenericService<D, K> {
 
-    K create(CD createDto);
+    DataDto<?> create(CD createDto);
 
-    Void delete(K id);
+    DataDto<?> delete(K id);
 
-    Void update(UD updateDto);
+    DataDto<?> update(UD updateDto);
 
 }
