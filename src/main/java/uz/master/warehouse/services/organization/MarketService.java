@@ -34,7 +34,7 @@ public class MarketService extends AbstractService<
         > {
 
 
-    public MarketService(MarketRepository repository, @Qualifier("marketMapper") MarketMapper mapper, MarketValidator validator) {
+    public MarketService(MarketRepository repository,  MarketMapper mapper, MarketValidator validator) {
         super(repository, mapper, validator);
     }
 
@@ -58,7 +58,7 @@ public class MarketService extends AbstractService<
     @Override
     public DataDto<Void> delete(Long id) {
         repository.deleteMarket(id);
-        return null;
+        return new DataDto<>();
     }
 
     @Override

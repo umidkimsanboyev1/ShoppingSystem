@@ -28,7 +28,7 @@ public class OrganizationService extends AbstractService<OrganizationRepository,
         OrganizationUpdateDto,
         Long> {
 
-    public OrganizationService(OrganizationRepository repository, @Qualifier("organizationMapper") OrganizationMapper mapper, OrganizationValidator validator) {
+    public OrganizationService(OrganizationRepository repository,  OrganizationMapper mapper, OrganizationValidator validator) {
         super(repository, mapper, validator);
     }
 
