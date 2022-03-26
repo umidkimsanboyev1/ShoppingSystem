@@ -20,7 +20,6 @@ public interface GroupProductsRepository extends JpaRepository<GroupProducts, Lo
 
     GroupProducts findByIdAndDeletedFalse(Long id);
 
-    GroupProducts findByNameAndDeletedFalse(String name);
 
     List<GroupProducts> findAllByDeletedFalse();
 

@@ -24,7 +24,9 @@ public class GroupProductsService extends AbstractService<GroupProductsRepositor
         GroupProductsUpdateDto,
         Long> {
 
-    public GroupProductsService(GroupProductsRepository repository, GroupProductsMapper mapper, GroupProductsValidator validator) {
+    public GroupProductsService(GroupProductsRepository repository,
+                                GroupProductsMapper mapper,
+                                GroupProductsValidator validator) {
         super(repository, mapper, validator);
     }
 
@@ -38,8 +40,9 @@ public class GroupProductsService extends AbstractService<GroupProductsRepositor
     }
 
     @Override
-    public void delete(Long id) {
-        repository.deleteById(id);
+    public DataDto<Void> delete(Long id) {
+        repository.deleteGroupProducts(id);
+        return new DataDto<>();
     }
 
     @Override
