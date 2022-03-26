@@ -1,19 +1,23 @@
 package uz.master.warehouse.services.organization;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.dto.responce.DataDto;
-import uz.master.warehouse.entity.organization.Market;
-import uz.master.warehouse.repository.organization.OrganizationRepository;
-import uz.master.warehouse.validator.organization.MarketValidator;
 import uz.master.warehouse.dto.market.MarketCreateDto;
 import uz.master.warehouse.dto.market.MarketDto;
 import uz.master.warehouse.dto.market.MarketUpdateDto;
+import uz.master.warehouse.dto.responce.AppErrorDto;
+import uz.master.warehouse.dto.responce.DataDto;
+import uz.master.warehouse.entity.organization.Market;
+import uz.master.warehouse.entity.organization.Organization;
 import uz.master.warehouse.mapper.organization.MarketMapper;
 import uz.master.warehouse.repository.organization.MarketRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
+import uz.master.warehouse.validator.organization.MarketValidator;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class MarketService extends AbstractService<
@@ -28,35 +32,54 @@ public class MarketService extends AbstractService<
         Long
         > {
 
-    private final OrganizationRepository organizationRepository;
-    public MarketService(MarketRepository repository, MarketMapper mapper, MarketValidator validator, OrganizationRepository organizationRepository) {
+
+    public MarketService(MarketRepository repository, MarketMapper mapper, MarketValidator validator) {
         super(repository, mapper, validator);
-        this.organizationRepository = organizationRepository;
     }
 
 
     @Override
     public DataDto<Long> create(MarketCreateDto createDto) {
-        return null;
+        Market market = mapper.fromCreateDto(createDto);
+        Organization organization = repository.findByOrgId(createDto.getOrganizationId());
+        if (Objects.isNull(organization)) {
+            return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Organization not found", "organization/get"));
+        }
+        market.setOrganizationId(organization.getId());
+        market.setOwnerId(organization.getOwnerId());
+        market.setName(createDto.getName());
+        market.setDescription(createDto.getDescription());
+        market.setLocation(createDto.getLocation());
+        Market save = repository.save(market);
+        return new DataDto<>(save.getId());
     }
 
     @Override
     public void delete(Long id) {
-
+        repository.deleteById(id);
     }
 
     @Override
     public DataDto<Long> update(MarketUpdateDto updateDto) {
-        return null;
+        Market market = mapper.fromUpdateDto(updateDto);
+        market.setName(updateDto.getName());
+        market.setDescription(updateDto.getDescription());
+        market.setLocation(updateDto.getLocation());
+          repository.update(market.getId(), market.getName(), market.getLocation(), market.getDescription());
+        return new DataDto<>(updateDto.getId());
     }
 
     @Override
     public DataDto<List<MarketDto>> getAll() {
-        return null;
+        List<Market> all = repository.findAll();
+        return new DataDto<>(mapper.toDto(all));
     }
 
     @Override
     public DataDto<MarketDto> get(Long id) {
-        return null;
+        Market market = repository.findById(id).orElseThrow(() -> {
+            throw new UsernameNotFoundException("Not found");
+        });
+        return new DataDto<>(mapper.toDto(market));
     }
 }
