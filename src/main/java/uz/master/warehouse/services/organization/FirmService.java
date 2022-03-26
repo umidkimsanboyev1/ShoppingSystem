@@ -27,8 +27,9 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper, Fir
     }
 
     @Override
-    public void delete(Long id) {
+    public DataDto<Void> delete(Long id) {
         repository.deleteFirm(id);
+        return new DataDto<>();
     }
 
     @Override

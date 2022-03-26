@@ -29,8 +29,9 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
     }
 
     @Override
-    public void delete(Long id) {
+    public DataDto<Void> delete(Long id) {
         repository.deleteClientBar(id);
+        return new DataDto<>();
     }
 
     @Override

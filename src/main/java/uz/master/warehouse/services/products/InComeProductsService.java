@@ -43,8 +43,6 @@ public class InComeProductsService extends AbstractService<InComeProductsReposit
 
     @Override
     public DataDto<Void> delete(Long id) {
-
-
         repository.deleteById( id );
         return new DataDto<>();
     }
