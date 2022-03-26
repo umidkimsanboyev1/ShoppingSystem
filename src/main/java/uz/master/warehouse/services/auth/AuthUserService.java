@@ -50,7 +50,7 @@ public class AuthUserService implements UserDetailsService {
         return User.builder().username(user.getUsername()).password(user.getPassword()).authorities(new SimpleGrantedAuthority(user.getRole().name())).build();
     }
 
-    public ResponseEntity<DataDto<SessionDto>> login(AuthUserDto dto) {
+    public DataDto<SessionDto> login(AuthUserDto dto) {
         try {
             HttpClient httpclient = HttpClientBuilder.create().build();
             HttpPost httppost = new HttpPost(serverProperties.getServerUrl() + "/api/login");
@@ -66,12 +66,12 @@ public class AuthUserService implements UserDetailsService {
             if (!json_auth.has("error")) {
                 JsonNode node = json_auth.get("data");
                 SessionDto sessionDto = objectMapper.readValue(node.toString(), SessionDto.class);
-                return new ResponseEntity<>(new DataDto<>(sessionDto), HttpStatus.OK);
+                return new DataDto<>(sessionDto);
             }
-            return new ResponseEntity<>(new DataDto<>(new AppErrorDto("bad Request", " ", HttpStatus.BAD_REQUEST)), HttpStatus.OK);
+            return new DataDto<>(new AppErrorDto("bad Request", " ", HttpStatus.BAD_REQUEST));
 
         } catch (IOException e) {
-            return new ResponseEntity<>(new DataDto<>(new AppErrorDto("bad request", "", HttpStatus.INTERNAL_SERVER_ERROR)), HttpStatus.OK);
+            return new DataDto<>(new AppErrorDto("bad request", "", HttpStatus.INTERNAL_SERVER_ERROR));
         }
     }
 

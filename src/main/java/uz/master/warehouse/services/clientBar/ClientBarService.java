@@ -2,6 +2,7 @@ package uz.master.warehouse.services.clientBar;
 
 
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.validator.clientBar.ClientBarValidator;
 import uz.master.warehouse.dto.clientBar.ClientBarCreateDto;
 import uz.master.warehouse.dto.clientBar.ClientBarDto;
@@ -23,28 +24,27 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
 
 
     @Override
-    public Long create(ClientBarCreateDto createDto) {
+    public DataDto<?> create(ClientBarCreateDto createDto) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
+    public DataDto<?> delete(Long id) {
         return null;
     }
 
     @Override
-    public Void update(ClientBarUpdateDto updateDto) {
-        repository.save(mapper.fromUpdateDto(updateDto));
+    public DataDto<?> update(ClientBarUpdateDto updateDto) {
         return null;
     }
 
     @Override
-    public List<ClientBarDto> getAll() {
-        return null;/*mapper.toDto(repository.findAllByTakenFalse());*/
+    public DataDto<List<?>> getAll() {
+        return null;
     }
 
     @Override
-    public ClientBarDto get(Long id) {
-        return  null ;/*mapper.toDto(repository.findByIdAndTakenFalse(id))*/
+    public DataDto<?> get(Long id) {
+        return null;
     }
 }

@@ -19,13 +19,6 @@ public class ClientBarController {
 
     private final ClientBarService service;
 
-    @RequestMapping(value = "create",method = RequestMethod.POST)
-    public ResponseEntity<DataDto<Long>> create(@RequestBody ClientBarCreateDto dto){
-        return new ResponseEntity<>(new DataDto<>(service.create(dto)), HttpStatus.OK);
-    }
-    @RequestMapping(value = "real",method = RequestMethod.POST)
-    public ResponseEntity<DataDto<Long>> creates(@RequestBody ClientBarCreateDto dto){
-        return new ResponseEntity<>(new DataDto<>(service.create(dto)), HttpStatus.OK);
-    }
+
 
 }

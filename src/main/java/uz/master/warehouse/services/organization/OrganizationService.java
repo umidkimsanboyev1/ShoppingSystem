@@ -2,6 +2,7 @@ package uz.master.warehouse.services.organization;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.auth.AuthUser;
 import uz.master.warehouse.entity.organization.Organization;
 import uz.master.warehouse.repository.auth.AuthUserRepository;
@@ -34,51 +35,28 @@ public class OrganizationService extends AbstractService<OrganizationRepository,
     }
 
 
-
     @Override
-    public Long create(OrganizationCreateDto createDto) {
-        Optional<AuthUser> byId = userRepository.findById(createDto.getOwnerId());
-        if (byId.isEmpty()){
-            throw new UsernameNotFoundException("USER_NOT_FOUND");
-        }
-        Organization organization = new Organization();
-        organization.setName(createDto.getName());
-        organization.setOwnerId(byId.get().getId());
-        repository.save(organization);
+    public DataDto<Long> create(OrganizationCreateDto createDto) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
-        repository.deleteOrganization(id);
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public DataDto<Long> update(OrganizationUpdateDto updateDto) {
         return null;
     }
 
     @Override
-    public Void update(OrganizationUpdateDto updateDto) {
-        Optional<Organization> byId = repository.findById(updateDto.getId());
-        if(byId.isEmpty()){
-            throw new RuntimeException("ORGANIZATION_NOT_FOUND");
-        }
-        Organization organization = byId.get();
-        organization.setName(updateDto.getName());
-        repository.save(organization);
+    public DataDto<List<OrganizationDto>> getAll() {
         return null;
     }
 
     @Override
-    public List<OrganizationDto> getAll() {
-        List<Organization> all = repository.findAllByDeletedFalse();
-        return mapper.toDto(all);
-    }
-
-    @Override
-    public OrganizationDto get(Long id) {
-        Optional<Organization> byId = repository.findById(id);
-        if(byId.isEmpty()){
-            throw new RuntimeException("ORGANIZATION_NOT_FOUND");
-        }
-        Organization organization = byId.get();
-        return mapper.toDto(organization);
+    public DataDto<OrganizationDto> get(Long id) {
+        return null;
     }
 }

@@ -23,10 +23,10 @@ public interface GenericCrudService<
         K extends Serializable
         > extends GenericService<D, K> {
 
-    DataDto<?> create(CD createDto);
+    DataDto<K> create(CD createDto);
 
-    DataDto<?> delete(K id);
+    void delete(K id);
 
-    DataDto<?> update(UD updateDto);
+    DataDto<K> update(UD updateDto);
 
 }

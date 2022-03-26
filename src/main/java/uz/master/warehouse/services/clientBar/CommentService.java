@@ -1,5 +1,6 @@
 package uz.master.warehouse.services.clientBar;
 
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.validator.clientBar.CommentValidator;
 import uz.master.warehouse.dto.comment.CommentCreateDto;
 import uz.master.warehouse.dto.comment.CommentDto;
@@ -17,29 +18,29 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
         super(repository, mapper, validator);
     }
 
-    @Override
-    public Long create(CommentCreateDto createDto) {
-        return null;
-
-    }
 
     @Override
-    public Void delete(Long id) {
+    public DataDto<Long> create(CommentCreateDto createDto) {
         return null;
     }
 
     @Override
-    public Void update(CommentUpdateDto updateDto) {
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public DataDto<Long> update(CommentUpdateDto updateDto) {
         return null;
     }
 
     @Override
-    public List<CommentDto> getAll() {
+    public DataDto<List<?>> getAll() {
         return null;
     }
 
     @Override
-    public CommentDto get(Long id) {
+    public DataDto<?> get(Long id) {
         return null;
     }
 }

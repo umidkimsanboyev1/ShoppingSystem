@@ -18,7 +18,7 @@ public interface GenericService<
         > extends BaseService {
 
 
-    DataDto<List<?>> getAll();
+    DataDto<List<D>> getAll();
 
-    DataDto<?> get(K id);
+    DataDto<D> get(K id);
 }

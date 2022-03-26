@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsCreateDto;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsDto;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsUpdateDto;
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.products.InComeProducts;
 import uz.master.warehouse.mapper.products.InComeProductsMapper;
 import uz.master.warehouse.repository.products.InComeProductsRepository;
@@ -22,27 +23,27 @@ public class InComeProductsService extends AbstractService<InComeProductsReposit
     }
 
     @Override
-    public Long create(InComeProductsCreateDto createDto) {
+    public DataDto<Long> create(InComeProductsCreateDto createDto) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public DataDto<Long> update(InComeProductsUpdateDto updateDto) {
         return null;
     }
 
     @Override
-    public Void update(InComeProductsUpdateDto updateDto) {
+    public DataDto<List<InComeProductsDto>> getAll() {
         return null;
     }
 
     @Override
-    public List<InComeProductsDto> getAll() {
-        return null;
-    }
-
-    @Override
-    public InComeProductsDto get(Long id) {
+    public DataDto<InComeProductsDto> get(Long id) {
         return null;
     }
 }

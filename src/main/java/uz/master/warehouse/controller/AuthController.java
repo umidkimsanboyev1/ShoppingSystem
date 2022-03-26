@@ -19,7 +19,7 @@ public class AuthController extends AbstractController{
 
     @PostMapping(PATH + "/auth/login")
     public ResponseEntity<DataDto<SessionDto>> login(@RequestBody AuthUserDto loginDto) {
-        return authUserService.login(loginDto);
+        return new ResponseEntity<>(authUserService.login(loginDto),HttpStatus.OK);
     }
 
     @PostMapping(PATH+"/auth/create")

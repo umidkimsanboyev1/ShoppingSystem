@@ -1,6 +1,7 @@
 package uz.master.warehouse.services.products;
 
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsCreateDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsUpdateDto;
@@ -21,28 +22,29 @@ public class WareHouseProductsService    extends AbstractService<WareHouseProduc
         super(repository, mapper, validator);
     }
 
+
     @Override
-    public Long create(WareHouseProductsCreateDto createDto) {
+    public DataDto<Long> create(WareHouseProductsCreateDto createDto) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public DataDto<Long> update(WareHouseProductsUpdateDto updateDto) {
         return null;
     }
 
     @Override
-    public Void update(WareHouseProductsUpdateDto updateDto) {
+    public DataDto<List<WareHouseProductsDto>> getAll() {
         return null;
     }
 
     @Override
-    public List<WareHouseProductsDto> getAll() {
-        return null;
-    }
-
-    @Override
-    public WareHouseProductsDto get(Long id) {
+    public DataDto<WareHouseProductsDto> get(Long id) {
         return null;
     }
 }

@@ -3,6 +3,7 @@ package uz.master.warehouse.services.organization;
 import uz.master.warehouse.dto.firm.FirmCreateDto;
 import uz.master.warehouse.dto.firm.FirmDto;
 import uz.master.warehouse.dto.firm.FirmUpdateDto;
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.organization.Firm;
 import uz.master.warehouse.mapper.organization.FirmMapper;
 import uz.master.warehouse.repository.organization.FirmRepository;
@@ -17,28 +18,29 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper, Fir
         super(repository, mapper, validator);
     }
 
+
     @Override
-    public Long create(FirmCreateDto createDto) {
+    public DataDto<Long> create(FirmCreateDto createDto) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public DataDto<Long> update(FirmUpdateDto updateDto) {
         return null;
     }
 
     @Override
-    public Void update(FirmUpdateDto updateDto) {
+    public DataDto<List<FirmDto>> getAll() {
         return null;
     }
 
     @Override
-    public List<FirmDto> getAll() {
-        return null;
-    }
-
-    @Override
-    public FirmDto get(Long id) {
+    public DataDto<FirmDto> get(Long id) {
         return null;
     }
 }

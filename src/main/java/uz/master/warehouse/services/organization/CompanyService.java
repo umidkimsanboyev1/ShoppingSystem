@@ -1,6 +1,7 @@
 package uz.master.warehouse.services.organization;
 
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.organization.Company;
 import uz.master.warehouse.repository.organization.CompanyRepository;
 import uz.master.warehouse.validator.organization.CompanyValidator;
@@ -25,33 +26,29 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
         super(repository, mapper, validator);
     }
 
+
     @Override
-    public Long create(CompanyCreateDto createDto) {
-        Company company = mapper.fromCreateDto(createDto);
-        repository.save(company);
+    public DataDto<Long> create(CompanyCreateDto createDto) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
-        repository.deleteCompany(id);
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public DataDto<Long> update(CompanyUpdateDto updateDto) {
         return null;
     }
 
     @Override
-    public Void update(CompanyUpdateDto updateDto) {
-        Company company = mapper.fromUpdateDto(updateDto);
-        repository.save(company);
+    public DataDto<List<CompanyDto>> getAll() {
         return null;
     }
 
     @Override
-    public List<CompanyDto> getAll() {
-        return mapper.toDto(repository.findAllByDeletedFalse());
-    }
-
-    @Override
-    public CompanyDto get(Long id) {
-        return mapper.toDto(repository.findByIdAndDeletedFalse(id));
+    public DataDto<CompanyDto> get(Long id) {
+        return null;
     }
 }
