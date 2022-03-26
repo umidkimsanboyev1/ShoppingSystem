@@ -1,24 +1,20 @@
 package uz.master.warehouse.dto.auth;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
-import lombok.NoArgsConstructor;
 import lombok.Setter;
-import uz.master.warehouse.dto.BaseDto;
+import org.springframework.lang.NonNull;
+import org.springframework.lang.Nullable;
 import uz.master.warehouse.dto.GenericDto;
 import uz.master.warehouse.enums.Role;
 
-import javax.persistence.Column;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.validation.constraints.NotBlank;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
-public class AuthCreateDto implements BaseDto {
 
-    @NotBlank
-    private Long organizationId;
+public class AuthUpdateDto extends GenericDto {
 
     @NotBlank
     private String fullName;
@@ -29,10 +25,6 @@ public class AuthCreateDto implements BaseDto {
     @NotBlank
     private String phoneNumber;
 
-    @NotBlank
-    private String password;
 
-    @NotBlank
     private Role role;
-
 }

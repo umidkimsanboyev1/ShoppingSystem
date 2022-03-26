@@ -2,11 +2,11 @@ package uz.master.warehouse.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+import uz.master.warehouse.dto.auth.AuthCreateDto;
+import uz.master.warehouse.dto.auth.AuthUpdateDto;
 import uz.master.warehouse.dto.auth.AuthUserDto;
 import uz.master.warehouse.dto.auth.SessionDto;
 import uz.master.warehouse.dto.responce.DataDto;
@@ -20,5 +20,20 @@ public class AuthController extends AbstractController{
     @PostMapping(PATH + "/auth/login")
     public ResponseEntity<DataDto<SessionDto>> login(@RequestBody AuthUserDto loginDto) {
         return authUserService.login(loginDto);
+    }
+
+    @PostMapping(PATH+"/auth/create")
+    public ResponseEntity<DataDto<Long>>create(@RequestBody AuthCreateDto dto){
+        return new ResponseEntity<>(authUserService.createUser(dto), HttpStatus.OK);
+    }
+
+    @PatchMapping(PATH+"/auth/update")
+    public  ResponseEntity<DataDto<Long>>update(@RequestBody AuthUpdateDto dto){
+        return new ResponseEntity<>(authUserService.update(dto),HttpStatus.OK);
+    }
+
+    @DeleteMapping(PATH+"/auth/delete")
+    public void delete(@RequestParam Long id,@RequestParam Long adminId){
+        authUserService.delete(id,adminId);
     }
 }

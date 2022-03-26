@@ -17,11 +17,15 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.dto.auth.AuthCreateDto;
+import uz.master.warehouse.dto.auth.AuthUpdateDto;
 import uz.master.warehouse.dto.auth.AuthUserDto;
 import uz.master.warehouse.dto.auth.SessionDto;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.auth.AuthUser;
+import uz.master.warehouse.enums.Role;
+import uz.master.warehouse.mapper.auth.AuthUserMapper;
 import uz.master.warehouse.properties.ServerProperties;
 import uz.master.warehouse.repository.auth.AuthUserRepository;
 
@@ -33,9 +37,11 @@ import java.io.IOException;
 @RequiredArgsConstructor
 public class AuthUserService implements UserDetailsService {
 
+    private final AuthUserMapper mapper;
     private final AuthUserRepository repository;
-  private  final ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
     private final ServerProperties serverProperties;
+
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         AuthUser user = repository.findByUsername(username).orElseThrow(() -> {
@@ -43,6 +49,7 @@ public class AuthUserService implements UserDetailsService {
         });
         return User.builder().username(user.getUsername()).password(user.getPassword()).authorities(new SimpleGrantedAuthority(user.getRole().name())).build();
     }
+
     public ResponseEntity<DataDto<SessionDto>> login(AuthUserDto dto) {
         try {
             HttpClient httpclient = HttpClientBuilder.create().build();
@@ -61,11 +68,46 @@ public class AuthUserService implements UserDetailsService {
                 SessionDto sessionDto = objectMapper.readValue(node.toString(), SessionDto.class);
                 return new ResponseEntity<>(new DataDto<>(sessionDto), HttpStatus.OK);
             }
-            return new ResponseEntity<>(new DataDto<>(new AppErrorDto("bad Request"," ",HttpStatus.BAD_REQUEST)),HttpStatus.OK);
+            return new ResponseEntity<>(new DataDto<>(new AppErrorDto("bad Request", " ", HttpStatus.BAD_REQUEST)), HttpStatus.OK);
 
         } catch (IOException e) {
-            return new ResponseEntity<>(new DataDto<>(new AppErrorDto(  "bad request","",HttpStatus.INTERNAL_SERVER_ERROR)),HttpStatus.OK);
+            return new ResponseEntity<>(new DataDto<>(new AppErrorDto("bad request", "", HttpStatus.INTERNAL_SERVER_ERROR)), HttpStatus.OK);
         }
+    }
+
+    public DataDto<Long> createUser(AuthCreateDto dto) {
+
+        AuthUser authUser = mapper.fromCreateDto(dto);
+        authUser.setBlocked(false);
+        authUser.setDeleted(false);
+        try {
+            return new DataDto<>(repository.save(authUser).getId());
+
+        } catch (Exception e) {
+            return new DataDto<>(new AppErrorDto(HttpStatus.IM_USED, "already Taken", "auth/user/create"));
+        }
+
+
+    }
+
+    public void delete(Long id, Long adminId) {
+        if(repository.findById(adminId).orElseThrow().getRole().equals(Role.ADMIN)){
+            repository.delete(id);
+        }
+    }
+
+    public DataDto<Long> update(AuthUpdateDto dto) {
+        AuthUser user = repository.findById(dto.getId()).orElseThrow(() -> {
+            throw new UsernameNotFoundException("user not found");
+        });
+
+        user.setFullName(dto.getFullName());
+        user.setUsername(dto.getUsername());
+        user.setPhoneNumber(dto.getPhoneNumber());
+        user.setRole(dto.getRole());
+        repository.save(user);
+        return new DataDto<>(dto.getId());
+
     }
 
 }
