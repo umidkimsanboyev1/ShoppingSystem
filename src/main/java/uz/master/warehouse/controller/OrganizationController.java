@@ -18,7 +18,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/organization/*")
 @RequiredArgsConstructor
-public class OrganizationController extends AbstractController {
+public class OrganizationController  {
 
     private final OrganizationService service;
 
