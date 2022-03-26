@@ -25,7 +25,7 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
 
     @Override
     public DataDto<Long> create(ClientBarCreateDto createDto) {
-        return null;
+        return new DataDto<>(repository.save(mapper.fromCreateDto(createDto)).getId());
     }
 
     @Override
@@ -36,8 +36,8 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
     @Override
     public DataDto<Long> update(ClientBarUpdateDto updateDto) {
         ClientBar clientBar = mapper.fromUpdateDto(updateDto);
-        repository.save(clientBar);
-        return null;
+        Long id = repository.save(clientBar).getId();
+        return new DataDto<>(id);
     }
 
     @Override
