@@ -4,5 +4,5 @@ import org.springframework.stereotype.Component;
 import uz.master.warehouse.validator.BaseValidator;
 
 @Component
-public class GroupProjectsValidator implements BaseValidator {
+public class GroupProductsValidator implements BaseValidator {
 }
