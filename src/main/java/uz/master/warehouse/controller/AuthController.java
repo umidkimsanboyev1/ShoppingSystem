@@ -5,6 +5,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import uz.master.warehouse.controller.base.AbstractController;
 import uz.master.warehouse.dto.auth.AuthCreateDto;
 import uz.master.warehouse.dto.auth.AuthUpdateDto;
 import uz.master.warehouse.dto.auth.AuthUserDto;
@@ -14,7 +15,7 @@ import uz.master.warehouse.services.auth.AuthUserService;
 
 @RestController
 @RequiredArgsConstructor
-public class AuthController extends AbstractController{
+public class AuthController extends AbstractController {
     private final AuthUserService authUserService;
 
     @PostMapping(PATH + "/auth/login")
