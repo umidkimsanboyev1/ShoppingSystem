@@ -83,7 +83,9 @@ public class AuthUserService implements UserDetailsService {
         try {
             return new DataDto<>(repository.save(authUser).getId());
 
-        } catch (Exception e) {
+        }
+
+        catch (Exception e) {
             return new DataDto<>(new AppErrorDto(HttpStatus.IM_USED, "already Taken", "auth/user/create"));
         }
 

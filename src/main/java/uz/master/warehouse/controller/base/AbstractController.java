@@ -1,4 +1,4 @@
-package uz.master.warehouse.controller;
+package uz.master.warehouse.controller.base;
 
 public abstract class AbstractController {
     protected final static String API = "/api";
