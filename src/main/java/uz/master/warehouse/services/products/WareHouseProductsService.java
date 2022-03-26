@@ -35,7 +35,7 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
     public DataDto<Long> create(WareHouseProductsCreateDto createDto) {
         Optional<Product> product = productRepository.findByIdAndDeletedFalse(createDto.getProductId());
         if (product.isEmpty()) {
-            return new DataDto<>(new AppErrorDto(HttpStatus.OK, "Product not found", "product"));
+            return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Product not found", "product"));
         }
         WareHouseProducts warehouseProducts = mapper.fromCreateDto(createDto);
         return new DataDto<>(repository.save(warehouseProducts).getId());
