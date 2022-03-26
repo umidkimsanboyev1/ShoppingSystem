@@ -4,6 +4,7 @@ import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsDto;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsUpdateDto;
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.products.OutComeProducts;
 import uz.master.warehouse.mapper.products.OutComeProductsMapper;
 import uz.master.warehouse.repository.products.OutComeProductsRepository;
@@ -21,29 +22,29 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
         super(repository, mapper, validator);
     }
 
+
     @Override
-    public Long create(OutComeProductsCreateDto createDto) {
-//        repository.save(mapper.fromCreateDto(createDto));
+    public DataDto<Long> create(OutComeProductsCreateDto createDto) {
         return null;
     }
 
     @Override
-    public Void delete(Long id) {
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public DataDto<Long> update(OutComeProductsUpdateDto updateDto) {
         return null;
     }
 
     @Override
-    public Void update(OutComeProductsUpdateDto updateDto) {
+    public DataDto<List<OutComeProductsDto>> getAll() {
         return null;
     }
 
     @Override
-    public List<OutComeProductsDto> getAll() {
-        return null;
-    }
-
-    @Override
-    public OutComeProductsDto get(Long id) {
+    public DataDto<OutComeProductsDto> get(Long id) {
         return null;
     }
 }

@@ -44,7 +44,7 @@ public class AuthUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AuthUser user = repository.findByUsername(username).orElseThrow(() -> {
+        AuthUser user = repository.findByUsernameDAndDeletedFalse(username).orElseThrow(() -> {
             throw new RuntimeException("user not found");
         });
         return User.builder().username(user.getUsername()).password(user.getPassword()).authorities(new SimpleGrantedAuthority(user.getRole().name())).build();

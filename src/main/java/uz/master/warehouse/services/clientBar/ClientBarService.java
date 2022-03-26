@@ -24,27 +24,27 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
 
 
     @Override
-    public DataDto<?> create(ClientBarCreateDto createDto) {
+    public DataDto<Long> create(ClientBarCreateDto createDto) {
         return null;
     }
 
     @Override
-    public DataDto<?> delete(Long id) {
+    public void delete(Long id) {
+
+    }
+
+    @Override
+    public DataDto<Long> update(ClientBarUpdateDto updateDto) {
         return null;
     }
 
     @Override
-    public DataDto<?> update(ClientBarUpdateDto updateDto) {
+    public DataDto<List<ClientBarDto>> getAll() {
         return null;
     }
 
     @Override
-    public DataDto<List<?>> getAll() {
-        return null;
-    }
-
-    @Override
-    public DataDto<?> get(Long id) {
+    public DataDto<ClientBarDto> get(Long id) {
         return null;
     }
 }
