@@ -33,8 +33,9 @@ public class GroupProductsController {
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<DataDto> delete(@PathVariable Long id) {
         service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 

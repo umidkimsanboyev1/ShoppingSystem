@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 
 @Getter
 @Setter
-@Builder
+//@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AppErrorDto implements BaseDto {
 

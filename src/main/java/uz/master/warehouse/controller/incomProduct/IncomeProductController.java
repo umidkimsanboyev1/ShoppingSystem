@@ -31,14 +31,13 @@ public class IncomeProductController extends AbstractController {
         return new ResponseEntity<>( inComeProductsService.getAll(), HttpStatus.OK );
     }
 
-    @GetMapping(PATH + "get/{id)")
+    @GetMapping(PATH + "get/{id}")
     public ResponseEntity<DataDto<InComeProductsDto>> get(@PathVariable Long id) {
         return new ResponseEntity<>( inComeProductsService.get( id ), HttpStatus.OK );
 
     }
 
     @DeleteMapping(PATH + "delete/{id}")
-
     public ResponseEntity<DataDto> delete(@PathVariable Long id) {
         inComeProductsService.delete( id );
         return new ResponseEntity<>( HttpStatus.NO_CONTENT );
