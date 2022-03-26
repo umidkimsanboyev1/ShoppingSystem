@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public enum Role {
-    SUPERADMIN,
+    SUPER_ADMIN,
     ADMIN,
     CASHIER,
     WAREHOUSEMAN,
