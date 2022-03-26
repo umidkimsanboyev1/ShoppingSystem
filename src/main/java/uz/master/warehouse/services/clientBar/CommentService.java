@@ -1,5 +1,6 @@
 package uz.master.warehouse.services.clientBar;
 
+import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.validator.clientBar.CommentValidator;
 import uz.master.warehouse.dto.comment.CommentCreateDto;
@@ -13,6 +14,7 @@ import uz.master.warehouse.services.GenericCrudService;
 
 import java.util.List;
 
+@Service
 public class CommentService extends AbstractService<CommentRepository, CommentMapper, CommentValidator> implements GenericCrudService<Comment, CommentDto, CommentCreateDto, CommentUpdateDto, Long> {
     public CommentService(CommentRepository repository, CommentMapper mapper, CommentValidator validator) {
         super(repository, mapper, validator);
@@ -34,13 +36,14 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
         return null;
     }
 
+
     @Override
-    public DataDto<List<?>> getAll() {
+    public DataDto<List<CommentDto>> getAll() {
         return null;
     }
 
     @Override
-    public DataDto<?> get(Long id) {
+    public DataDto<CommentDto> get(Long id) {
         return null;
     }
 }
