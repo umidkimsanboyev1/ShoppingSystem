@@ -13,9 +13,6 @@ import javax.persistence.OneToOne;
 @Setter
 public class Product extends Auditable {
 
-//    private Double price;
-
-    private Integer count;
 
     private Integer item_count;
 
@@ -23,8 +20,7 @@ public class Product extends Auditable {
 
     private String color;
 
-    @OneToOne
-    private Firm firm;
+    private Long firmId;
 
     private Double default_price;
 

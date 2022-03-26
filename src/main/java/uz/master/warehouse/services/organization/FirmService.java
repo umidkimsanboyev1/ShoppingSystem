@@ -21,26 +21,30 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper, Fir
 
     @Override
     public DataDto<Long> create(FirmCreateDto createDto) {
-        return null;
+        Firm firm = mapper.fromCreateDto(createDto);
+        Long id = repository.save(firm).getId();
+        return new DataDto<>(id);
     }
 
     @Override
     public void delete(Long id) {
-
+        repository.deleteFirm(id);
     }
 
     @Override
     public DataDto<Long> update(FirmUpdateDto updateDto) {
-        return null;
+        Firm firm = mapper.fromUpdateDto(updateDto);
+        Long id = repository.save(firm).getId();
+        return new DataDto<>(id);
     }
 
     @Override
     public DataDto<List<FirmDto>> getAll() {
-        return null;
+        return new DataDto<>(mapper.toDto(repository.findAllByDeletedFalse()));
     }
 
     @Override
     public DataDto<FirmDto> get(Long id) {
-        return null;
+        return new DataDto<>(mapper.toDto(repository.findByIdAndDeletedFalse(id)));
     }
 }
