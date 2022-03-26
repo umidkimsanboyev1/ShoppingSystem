@@ -13,7 +13,7 @@ import uz.master.warehouse.validator.organization.FirmValidator;
 
 import java.util.List;
 
-public class FirmService extends AbstractService<FirmRepository, FirmMapper, FirmValidator>  implements GenericCrudService<Firm, FirmDto, FirmCreateDto, FirmUpdateDto,Long> {
+public class FirmService extends AbstractService<FirmRepository, FirmMapper, FirmValidator> implements GenericCrudService<Firm, FirmDto, FirmCreateDto, FirmUpdateDto, Long> {
     public FirmService(FirmRepository repository, FirmMapper mapper, FirmValidator validator) {
         super(repository, mapper, validator);
     }
@@ -22,20 +22,21 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper, Fir
     @Override
     public DataDto<Long> create(FirmCreateDto createDto) {
         Firm firm = mapper.fromCreateDto(createDto);
-        repository.save(firm);
-        return new DataDto<>();
+        Long id = repository.save(firm).getId();
+        return new DataDto<>(id);
     }
 
     @Override
-    public void delete(Long id) {
+    public DataDto<Void> delete(Long id) {
         repository.deleteFirm(id);
+        return new DataDto<>();
     }
 
     @Override
     public DataDto<Long> update(FirmUpdateDto updateDto) {
         Firm firm = mapper.fromUpdateDto(updateDto);
-        repository.save(firm);
-        return new DataDto<>(firm.getId());
+        Long id = repository.save(firm).getId();
+        return new DataDto<>(id);
     }
 
     @Override

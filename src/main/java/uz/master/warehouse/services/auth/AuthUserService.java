@@ -44,7 +44,7 @@ public class AuthUserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        AuthUser user = repository.findByUsernameDAndDeletedFalse(username).orElseThrow(() -> {
+        AuthUser user = repository.findByUsernameAndDeletedFalse(username).orElseThrow(() -> {
             throw new RuntimeException("user not found");
         });
         return User.builder().username(user.getUsername()).password(user.getPassword()).authorities(new SimpleGrantedAuthority(user.getRole().name())).build();
@@ -83,7 +83,9 @@ public class AuthUserService implements UserDetailsService {
         try {
             return new DataDto<>(repository.save(authUser).getId());
 
-        } catch (Exception e) {
+        }
+
+        catch (Exception e) {
             return new DataDto<>(new AppErrorDto(HttpStatus.IM_USED, "already Taken", "auth/user/create"));
         }
 

@@ -27,8 +27,8 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
     }
 
     @Override
-    public void delete(Long id) {
-
+    public DataDto<Void> delete(Long id) {
+        return null;
     }
 
     @Override

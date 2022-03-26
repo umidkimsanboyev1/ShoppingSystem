@@ -15,9 +15,14 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
     @Query(value = "update Organization o set o.deleted = true where o.id = :orgId")
     void deleteOrganization(@Param("orgId") Long id);
 
+    @Transactional
+    @Modifying
+    @Query(value = "update Organization set name=:name   where id=:id")
+    void update(@Param(value = "id") Long id, @Param(value = "name") String name);
+
+
     Organization findByIdAndDeletedFalse(Long id);
 
-    Organization findByNameAndDeletedFalse (String name);
 
     List<Organization> findAllByDeletedFalse();
 

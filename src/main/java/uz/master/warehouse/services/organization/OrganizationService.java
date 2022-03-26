@@ -1,10 +1,13 @@
 package uz.master.warehouse.services.organization;
 
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
+
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.organization.OrganizationCreateDto;
 import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.organization.OrganizationUpdateDto;
+import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.organization.Organization;
 import uz.master.warehouse.mapper.organization.OrganizationMapper;
@@ -14,6 +17,7 @@ import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.validator.organization.OrganizationValidator;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class OrganizationService extends AbstractService<OrganizationRepository, OrganizationMapper, OrganizationValidator>
@@ -24,7 +28,7 @@ public class OrganizationService extends AbstractService<OrganizationRepository,
         OrganizationUpdateDto,
         Long> {
 
-    public OrganizationService(OrganizationRepository repository, OrganizationMapper mapper, OrganizationValidator validator) {
+    public OrganizationService(OrganizationRepository repository, @Qualifier("organizationMapper") OrganizationMapper mapper, OrganizationValidator validator) {
         super(repository, mapper, validator);
     }
 
@@ -39,29 +43,32 @@ public class OrganizationService extends AbstractService<OrganizationRepository,
     }
 
     @Override
-    public void delete(Long id) {
-        repository.deleteById(id);
+    public DataDto<Void> delete(Long id) {
+        repository.deleteOrganization(id);
+        return new DataDto<>();
     }
 
     @Override
     public DataDto<Long> update(OrganizationUpdateDto updateDto) {
         Organization organization = mapper.fromUpdateDto(updateDto);
         organization.setName(updateDto.getName());
-        Organization save = repository.save(organization);
-        return new DataDto<>(save.getId());
+        repository.update(organization.getId(),organization.getName());
+        return new DataDto<>(organization.getId());
     }
 
     @Override
     public DataDto<List<OrganizationDto>> getAll() {
-        List<Organization> list = repository.findAll();
+        List<Organization> list = repository.findAllByDeletedFalse();
         return new DataDto<>(mapper.toDto(list));
     }
 
     @Override
     public DataDto<OrganizationDto> get(Long id) {
-        Organization organization = repository.findById(id).orElseThrow(() -> {
-            throw new UsernameNotFoundException("Not found");
-        });
+        Organization organization = repository.findByIdAndDeletedFalse(id);
+        if (Objects.isNull(organization)){
+            return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Organization not found", "organization/get"));
+
+        }
         return new DataDto<>(mapper.toDto(organization));
     }
 }
