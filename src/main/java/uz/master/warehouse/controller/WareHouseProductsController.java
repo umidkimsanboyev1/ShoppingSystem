@@ -22,30 +22,30 @@ public class WareHouseProductsController extends AbstractController {
 
     private final WareHouseProductsService inComeProductsService;
 
-    @PostMapping(PATH + "create")
+    @PostMapping(PATH + "/create")
     public ResponseEntity<DataDto<Long>> create(@RequestBody WareHouseProductsCreateDto dto) {
         return new ResponseEntity<>( inComeProductsService.create( dto ), HttpStatus.OK );
     }
 
-    @GetMapping(PATH + "get-all")
+    @GetMapping(PATH + "/get-all")
     public ResponseEntity<DataDto<List<WareHouseProductsDto>>> getAll() {
         return new ResponseEntity<>( inComeProductsService.getAll(), HttpStatus.OK );
     }
 
-    @GetMapping(PATH + "get/{id}")
+    @GetMapping(PATH + "/get/{id}")
     public ResponseEntity<DataDto<WareHouseProductsDto>> get(@PathVariable Long id) {
         return new ResponseEntity<>( inComeProductsService.get( id ), HttpStatus.OK );
 
     }
 
-    @DeleteMapping(PATH + "delete/{id}")
+    @DeleteMapping(PATH + "/delete/{id}")
     public ResponseEntity<DataDto> delete(@PathVariable Long id) {
         inComeProductsService.delete( id );
         return new ResponseEntity<>( HttpStatus.NO_CONTENT );
 
     }
 
-    @PutMapping(PATH + "create")
+    @PutMapping(PATH + "/update")
     public ResponseEntity<DataDto<Long>> update(@RequestBody WareHouseProductsUpdateDto dto) {
         return new ResponseEntity<>( inComeProductsService.update( dto ), HttpStatus.OK );
     }
