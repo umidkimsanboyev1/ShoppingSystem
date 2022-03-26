@@ -1,4 +1,4 @@
-package uz.master.warehouse.services.groupProducts;
+package uz.master.warehouse.services.product;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -8,15 +8,15 @@ import uz.master.warehouse.dto.groupProducts.GroupProductsUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.product.GroupProducts;
 import uz.master.warehouse.mapper.groupProducts.GroupProductsMapper;
-import uz.master.warehouse.repository.groupProducts.GroupProductsRepository;
+import uz.master.warehouse.repository.product.GroupProductsRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.project.GroupProductsValidator;
+import uz.master.warehouse.validator.product.GroupProductsValidator;
 
 import java.util.List;
 
 @Service
-public class GroupProductsService extends AbstractService<GroupProductsRepository, GroupProductsMapper, GroupProductsValidator>
+public  class GroupProductsService extends AbstractService<GroupProductsRepository, GroupProductsMapper, GroupProductsValidator>
         implements GenericCrudService<
         GroupProducts,
         GroupProductsDto,
