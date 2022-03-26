@@ -13,6 +13,7 @@ import uz.master.warehouse.repository.clientBar.ClientBarRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @Service
@@ -29,8 +30,9 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
     }
 
     @Override
-    public void delete(Long id) {
+    public DataDto<Void> delete(Long id) {
         repository.deleteClientBar(id);
+        return new DataDto<>();
     }
 
     @Override

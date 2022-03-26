@@ -55,8 +55,9 @@ public class MarketService extends AbstractService<
     }
 
     @Override
-    public void delete(Long id) {
+    public DataDto<Void> delete(Long id) {
         repository.deleteById(id);
+        return new DataDto<>();
     }
 
     @Override

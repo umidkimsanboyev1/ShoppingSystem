@@ -39,8 +39,9 @@ public class OrganizationService extends AbstractService<OrganizationRepository,
     }
 
     @Override
-    public void delete(Long id) {
+    public DataDto<Void> delete(Long id) {
         repository.deleteById(id);
+        return new DataDto<>();
     }
 
     @Override

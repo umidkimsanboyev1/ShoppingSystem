@@ -37,8 +37,8 @@ public class WareHouseService extends AbstractService<
     }
 
     @Override
-    public void delete(Long id) {
-
+    public DataDto<Void> delete(Long id) {
+        return new DataDto<>();
     }
 
     @Override
