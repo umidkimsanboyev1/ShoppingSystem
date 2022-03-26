@@ -11,6 +11,7 @@ import uz.master.warehouse.dto.product.ProductUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.product.ProductService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class ProductController {
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PostMapping("/create")
-    public ResponseEntity<DataDto<Long>> create(@RequestBody ProductCreateDto dto) {
+    public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody ProductCreateDto dto) {
         return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
     }
 

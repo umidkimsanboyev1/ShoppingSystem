@@ -9,6 +9,7 @@ import uz.master.warehouse.dto.groupProducts.GroupProductsCreateDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
+import uz.master.warehouse.services.product.GroupProductsService;
 import uz.master.warehouse.services.product.ProductService;
 
 import java.util.List;
@@ -21,7 +22,7 @@ import java.util.List;
 @RequestMapping("/groupproducts/*")
 @RequiredArgsConstructor
 public class GroupProductsController {
-    private final ProductService.GroupProductsService service;
+    private final GroupProductsService service;
 
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
