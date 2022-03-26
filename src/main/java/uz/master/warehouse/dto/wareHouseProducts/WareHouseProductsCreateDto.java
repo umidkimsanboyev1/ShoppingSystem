@@ -7,4 +7,9 @@ import uz.master.warehouse.dto.BaseDto;
 @Getter
 @Setter
 public class WareHouseProductsCreateDto implements BaseDto {
+
+    private int count;
+
+    private Long productId;
+
 }

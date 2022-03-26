@@ -6,4 +6,9 @@ import uz.master.warehouse.dto.GenericDto;
 @Getter
 @Setter
 public class WareHouseProductsDto extends GenericDto {
+
+    private int count;
+
+    private Long productId;
+
 }

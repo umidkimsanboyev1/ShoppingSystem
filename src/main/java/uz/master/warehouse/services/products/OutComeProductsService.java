@@ -22,7 +22,6 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
         super(repository, mapper, validator);
     }
 
-
     @Override
     public DataDto<Long> create(OutComeProductsCreateDto createDto) {
         return null;
