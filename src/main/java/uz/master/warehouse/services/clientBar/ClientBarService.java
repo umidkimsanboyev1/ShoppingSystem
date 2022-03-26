@@ -30,21 +30,23 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
 
     @Override
     public void delete(Long id) {
-
+        repository.deleteClientBar(id);
     }
 
     @Override
     public DataDto<Long> update(ClientBarUpdateDto updateDto) {
+        ClientBar clientBar = mapper.fromUpdateDto(updateDto);
+        repository.save(clientBar);
         return null;
     }
 
     @Override
     public DataDto<List<ClientBarDto>> getAll() {
-        return null;
+        return new DataDto<>(mapper.toDto(repository.findAllByDeletedFalse()));
     }
 
     @Override
     public DataDto<ClientBarDto> get(Long id) {
-        return null;
+        return new DataDto<>(mapper.toDto(repository.findByIdAndDeletedFalse(id)));
     }
 }

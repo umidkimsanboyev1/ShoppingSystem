@@ -10,10 +10,7 @@ import java.util.List;
 @Getter
 @Setter
 public class ClientBarUpdateDto extends GenericDto {
-    private List<Product> products;
     private String clientName;
     private Double overAllPrice;
-    private Integer productCount;
     private boolean paid;
-    private boolean taken;
 }
