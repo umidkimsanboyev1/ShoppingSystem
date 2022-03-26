@@ -1,5 +1,6 @@
 package uz.master.warehouse.services.organization;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -33,7 +34,7 @@ public class MarketService extends AbstractService<
         > {
 
 
-    public MarketService(MarketRepository repository, MarketMapper mapper, MarketValidator validator) {
+    public MarketService(MarketRepository repository,  MarketMapper mapper, MarketValidator validator) {
         super(repository, mapper, validator);
     }
 
@@ -55,8 +56,9 @@ public class MarketService extends AbstractService<
     }
 
     @Override
-    public void delete(Long id) {
-        repository.deleteById(id);
+    public DataDto<Void> delete(Long id) {
+        repository.deleteMarket(id);
+        return new DataDto<>();
     }
 
     @Override
@@ -66,20 +68,22 @@ public class MarketService extends AbstractService<
         market.setDescription(updateDto.getDescription());
         market.setLocation(updateDto.getLocation());
           repository.update(market.getId(), market.getName(), market.getLocation(), market.getDescription());
-        return new DataDto<>(updateDto.getId());
+        return new DataDto<>(market.getId());
     }
 
     @Override
     public DataDto<List<MarketDto>> getAll() {
-        List<Market> all = repository.findAll();
+        List<Market> all = repository.findAllByDeletedFalse();
         return new DataDto<>(mapper.toDto(all));
     }
 
     @Override
     public DataDto<MarketDto> get(Long id) {
-        Market market = repository.findById(id).orElseThrow(() -> {
-            throw new UsernameNotFoundException("Not found");
-        });
+        Market market = repository.findByIdAndDeletedFalse(id);
+        if (Objects.isNull(market)){
+            return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Market not found", "market/get"));
+
+        }
         return new DataDto<>(mapper.toDto(market));
     }
 }

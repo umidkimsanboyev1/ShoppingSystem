@@ -16,7 +16,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/market/*")
 @RequiredArgsConstructor
-public class MarketController extends AbstractController {
+public class MarketController {
 
     private final MarketService service;
 

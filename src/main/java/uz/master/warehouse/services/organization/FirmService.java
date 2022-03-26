@@ -13,7 +13,7 @@ import uz.master.warehouse.validator.organization.FirmValidator;
 
 import java.util.List;
 
-public class FirmService extends AbstractService<FirmRepository, FirmMapper, FirmValidator>  implements GenericCrudService<Firm, FirmDto, FirmCreateDto, FirmUpdateDto,Long> {
+public class FirmService extends AbstractService<FirmRepository, FirmMapper, FirmValidator> implements GenericCrudService<Firm, FirmDto, FirmCreateDto, FirmUpdateDto, Long> {
     public FirmService(FirmRepository repository, FirmMapper mapper, FirmValidator validator) {
         super(repository, mapper, validator);
     }

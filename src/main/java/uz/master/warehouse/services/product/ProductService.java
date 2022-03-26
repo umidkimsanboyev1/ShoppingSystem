@@ -36,8 +36,9 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
     }
 
     @Override
-    public void delete(Long id) {
+    public DataDto<Void> delete(Long id) {
         repository.deleteProduct(id);
+        return new DataDto<>();
     }
 
     @Override

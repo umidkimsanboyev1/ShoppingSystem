@@ -33,8 +33,8 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
     }
 
     @Override
-    public void delete(Long id) {
-
+    public DataDto<Void> delete(Long id) {
+        return new DataDto<>();
     }
 
     @Override

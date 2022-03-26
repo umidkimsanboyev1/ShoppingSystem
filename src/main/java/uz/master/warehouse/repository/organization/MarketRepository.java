@@ -12,14 +12,14 @@ import java.util.List;
 
 public interface MarketRepository extends JpaRepository<Market, Long> {
 
-//    List<Market> findAllByDeletedFalse();
-//
-//    @Transactional
-//    @Modifying
-//    @Query(value = "update Market m set m.deleted = true where m.id = :marketId")
-//    void deleteMarket(@Param("marketId") Long id);
-//
-//    Market findByIdAndDeletedFalse(Long id);
+    List<Market> findAllByDeletedFalse();
+
+    @Transactional
+    @Modifying
+    @Query(value = "update Market m set m.deleted = true where m.id = :marketId")
+    void deleteMarket(@Param("marketId") Long id);
+
+    Market findByIdAndDeletedFalse(Long id);
 
     @Query(value = "select org from Organization org where org.id=:id")
     Organization findByOrgId(Long id);

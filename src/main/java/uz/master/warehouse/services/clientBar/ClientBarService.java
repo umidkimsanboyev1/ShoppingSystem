@@ -13,6 +13,7 @@ import uz.master.warehouse.repository.clientBar.ClientBarRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 
+import javax.xml.crypto.Data;
 import java.util.List;
 
 @Service
