@@ -12,6 +12,5 @@ import java.util.List;
 @Getter
 @Setter
 public class ClientBarCreateDto implements BaseDto {
-    private List<ProductCreateDto> products;
     private String clientName;
 }

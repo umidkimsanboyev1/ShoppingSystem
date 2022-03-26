@@ -13,8 +13,6 @@ import javax.persistence.OneToOne;
 @Getter
 @Setter
 public class Firm extends Auditable {
-
     private String name;
-
     private Long companyId;
 }
