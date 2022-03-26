@@ -52,8 +52,8 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
     public DataDto<Long> update(CompanyUpdateDto updateDto) {
       Company company = mapper.fromUpdateDto(updateDto);
       company.setName(updateDto.getName());
-      Company save = repository.save(company);
-        return new DataDto<>(save.getId());
+        repository.update(company.getId(),company.getName());
+        return new DataDto<>(company.getId());
     }
 
     @Override
