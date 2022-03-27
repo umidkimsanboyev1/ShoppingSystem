@@ -22,4 +22,8 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     List<Product> findAllByDeletedFalse();
 
+    List<Product> findAllByModelAndDeletedFalse(String model);
+
+    Product findByModelAndColorAndDeletedFalse(String model, String color);
+
 }

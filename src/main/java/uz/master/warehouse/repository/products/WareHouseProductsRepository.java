@@ -10,6 +10,7 @@ import uz.master.warehouse.entity.product.Product;
 import uz.master.warehouse.entity.products.WareHouseProducts;
 
 import javax.transaction.Transactional;
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
 
@@ -24,5 +25,14 @@ public interface WareHouseProductsRepository extends JpaRepository<WareHouseProd
     Optional<WareHouseProducts> findByIdAndDeletedFalse(Long id);
 
     List<WareHouseProducts> findAllByDeletedFalse();
+
+
+//    @Query( "select o from WareHouseProducts o where o.productId in :ids" )
+    List<WareHouseProducts> findByProductIdIn(/*@Param("ids") */List<Long> productId);
+
+
+    WareHouseProducts findByProductId(Long productId);
+
+
 
 }

@@ -15,8 +15,8 @@ public class ProductValidator implements GenericValidator<ProductCreateDto, Prod
     @Override
     public boolean validForCreate(ProductCreateDto createDto) {
         return (Objects.nonNull(createDto.getFirmId())
-                || Objects.nonNull(createDto.getModel())
-                || Objects.nonNull(createDto.getItem_count()));
+                && Objects.nonNull(createDto.getModel())
+                && Objects.nonNull(createDto.getItem_count()));
 
     }
 
