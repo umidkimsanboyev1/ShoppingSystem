@@ -13,23 +13,32 @@ import uz.master.warehouse.mapper.product.ProductMapper;
 import uz.master.warehouse.repository.product.ProductRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
+import uz.master.warehouse.services.organization.FirmService;
 import uz.master.warehouse.validator.product.ProductValidator;
 
 import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProductService extends AbstractService<ProductRepository, ProductMapper, ProductValidator> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, Long> {
+
+    private final FirmService firmService;
+
     public ProductService(ProductRepository repository,
                           ProductMapper mapper,
-                          ProductValidator validator) {
+                          ProductValidator validator, FirmService firmService) {
         super(repository, mapper, validator);
+        this.firmService = firmService;
     }
 
     @Override
     public DataDto<Long> create(@Valid ProductCreateDto createDto) {
         if (!validator.validForCreate(createDto)) {
             return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
+        if (Objects.isNull(firmService.get(createDto.getFirmId()))) {
+            return new DataDto<>(new AppErrorDto("Firm Not Found", HttpStatus.NOT_FOUND));
         }
         Product product = mapper.fromCreateDto(createDto);
         product.setColor(createDto.getColor());
@@ -61,8 +70,7 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
     @Override
     public DataDto<List<ProductDto>> getAll() {
         List<Product> list = repository.findAllByDeletedFalse();
-        List<ProductDto> dtos = mapper.toDto(list);
-        return new DataDto<>(dtos);
+        return new DataDto<>(mapper.toDto(list));
     }
 
     @Override

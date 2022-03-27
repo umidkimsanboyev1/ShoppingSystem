@@ -13,6 +13,7 @@ import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.validator.products.OutComeProductsValidator;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -20,18 +21,18 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
         implements GenericCrudService<OutComeProducts, OutComeProductsDto, OutComeProductsCreateDto, OutComeProductsUpdateDto, Long> {
 
     private final WareHouseProductsService service;
+
     public OutComeProductsService(OutComeProductsRepository repository, OutComeProductsMapper mapper, OutComeProductsValidator validator, WareHouseProductsService service) {
         super(repository, mapper, validator);
         this.service = service;
     }
 
 
-
     @Override
     public DataDto<Long> create(OutComeProductsCreateDto createDto) {
         OutComeProducts outComeProducts = mapper.fromCreateDto(createDto);
-        service.checkCount(outComeProducts.getProductId(),createDto.getCount());
-        return new DataDto<>(repository.saveOutCome(createDto.getClientBarId(),createDto.getCount(),createDto.getProductId(),createDto.getProductPrice()));
+        service.checkCount(outComeProducts.getProductId(), createDto.getCount());
+        return new DataDto<>(repository.saveOutCome(createDto.getClientBarId(), createDto.getCount(), createDto.getProductId(), createDto.getProductPrice()));
     }
 
     @Override
@@ -43,8 +44,7 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
     @Override
     public DataDto<Long> update(OutComeProductsUpdateDto updateDto) {
         OutComeProducts products = repository.findById(updateDto.getId()).orElseThrow();
-        mapper.updateModel(updateDto,products);
-
+        mapper.updateModel(updateDto, products);
         return new DataDto<>(repository.save(products).getId());
     }
 
@@ -52,21 +52,23 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
     public DataDto<List<OutComeProductsDto>> getAll() {
         return null;
     }
+
     public DataDto<List<OutComeProductsDto>> getAll(Long clientId) {
-        List<OutComeProducts> products=repository.findAllByClientBarId(clientId);
-        List<OutComeProductsDto> dtos= mapper.toDto(products);
+        List<OutComeProducts> products = repository.findAllByClientBarId(clientId);
+        List<OutComeProductsDto> dtos = mapper.toDto(products);
         return new DataDto<>(dtos);
     }
 
 
     @Override
     public DataDto<OutComeProductsDto> get(Long id) {
-        return new DataDto<>(mapper.toDto(repository.findById(id).orElseThrow(()->{throw new RuntimeException("not found");})));
+        return new DataDto<>(mapper.toDto(repository.findById(id).orElseThrow(() -> {
+            throw new RuntimeException("Not found");
+        })));
     }
 
 
-
-    public DataDto<Boolean>updateSale(Long id){
+    public DataDto<Boolean> updateSale(Long id) {
         OutComeProducts found = repository.findById(id).orElseThrow(() -> {
             throw new RuntimeException("not Found");
         });
@@ -74,4 +76,6 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
         repository.save(found);
         return new DataDto<>(Boolean.TRUE);
     }
+
+//    public DataDto<List<OutComeProducts>> getByDate(LocalDateTime dateTime)
 }
