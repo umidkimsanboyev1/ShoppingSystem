@@ -5,26 +5,33 @@ import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsDto;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsUpdateDto;
+import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.products.OutComeProducts;
 import uz.master.warehouse.mapper.products.OutComeProductsMapper;
 import uz.master.warehouse.repository.products.OutComeProductsRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
+import uz.master.warehouse.services.organization.CompanyService;
 import uz.master.warehouse.validator.products.OutComeProductsValidator;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 @Service
 public class OutComeProductsService extends AbstractService<OutComeProductsRepository, OutComeProductsMapper, OutComeProductsValidator>
         implements GenericCrudService<OutComeProducts, OutComeProductsDto, OutComeProductsCreateDto, OutComeProductsUpdateDto, Long> {
 
     private final WareHouseProductsService service;
+    private final CompanyService companyService;
 
-    public OutComeProductsService(OutComeProductsRepository repository, OutComeProductsMapper mapper, OutComeProductsValidator validator, WareHouseProductsService service) {
+    public OutComeProductsService(OutComeProductsRepository repository, OutComeProductsMapper mapper, OutComeProductsValidator validator, WareHouseProductsService service, CompanyService companyService) {
         super(repository, mapper, validator);
         this.service = service;
+        this.companyService = companyService;
     }
 
 
@@ -77,5 +84,14 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
         return new DataDto<>(Boolean.TRUE);
     }
 
-//    public DataDto<List<OutComeProducts>> getByDate(LocalDateTime dateTime)
+    public DataDto<List<OutComeProductsDto>> getByDate(String date) {
+        try {
+            LocalDate localDate = LocalDate.parse(date);
+            List<OutComeProducts> allByCreatedAt_date = repository.findAllByCreatedAt_Date(localDate);
+            return new DataDto<>(mapper.toDto(allByCreatedAt_date));
+        } catch (DateTimeParseException e) {
+            return new DataDto<>(new AppErrorDto("UnValid Date format", HttpStatus.BAD_REQUEST));
+        }
+
+    }
 }

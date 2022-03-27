@@ -37,7 +37,7 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
         if (!validator.validForCreate(createDto)) {
             return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
         }
-        if (Objects.isNull(firmService.get(createDto.getFirmId()))) {
+        if (Objects.isNull(firmService.get(createDto.getFirmId()).getData())) {
             return new DataDto<>(new AppErrorDto("Firm Not Found", HttpStatus.NOT_FOUND));
         }
         Product product = mapper.fromCreateDto(createDto);
