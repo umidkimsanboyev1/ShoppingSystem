@@ -16,37 +16,37 @@ import java.util.List;
 @RestController
 @RequestMapping("/market/*")
 @RequiredArgsConstructor
-public class MarketController {
+public class MarketController extends AbstractController {
 
     private final MarketService service;
 
 
-    @PostMapping("/create")
+    @PostMapping(PATH+"/create")
     public ResponseEntity<DataDto<Long>> create(@RequestBody MarketCreateDto dto) {
         return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
     }
 
 
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(PATH+"/delete/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 
 
-    @PutMapping("/update")
+    @PutMapping(PATH+"/update")
     public void update(@RequestBody MarketUpdateDto dto) {
         service.update(dto);
     }
 
 
-    @GetMapping("/list")
+    @GetMapping(PATH+"/list")
     public ResponseEntity<DataDto<List<MarketDto>>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 
     }
 
 
-    @GetMapping("/get/{id}")
+    @GetMapping(PATH+"/get/{id}")
     public ResponseEntity<DataDto<MarketDto>> get(@PathVariable Long id) {
         return new ResponseEntity<>(service.get(id), HttpStatus.OK);
     }

@@ -1,10 +1,14 @@
 package uz.master.warehouse.dto.product;
 
+import lombok.Getter;
+import lombok.Setter;
 import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.dto.GenericDto;
 
 import java.security.GeneralSecurityException;
 
+@Getter
+@Setter
 public class ProductDto extends GenericDto {
 
     private Integer item_count;
