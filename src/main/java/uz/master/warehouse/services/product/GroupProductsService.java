@@ -64,7 +64,7 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
     @Override
     public DataDto<Long> update(GroupProductsUpdateDto updateDto) {
         if (!validator.validForUpdate(updateDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
         }
         GroupProducts groupProducts = mapper.fromUpdateDto(updateDto);
         groupProducts.setCompanyId(updateDto.getCompanyId());
