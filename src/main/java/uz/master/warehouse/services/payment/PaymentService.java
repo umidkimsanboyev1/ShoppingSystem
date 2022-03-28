@@ -14,6 +14,8 @@ import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.validator.payment.PaymentValidator;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -73,5 +75,12 @@ public class PaymentService extends AbstractService<
 
         }
         return new DataDto<>(mapper.toDto(payment));
+    }
+
+    public DataDto<List<PaymentDto>> getByTime(String fromDate, String toDate) {
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        List<Payment> allByDateTimeDateBetween = repository.findAllByDateTimeDateBetween(from, to);
+        return new DataDto<>(mapper.toDto(allByDateTimeDateBetween));
     }
 }

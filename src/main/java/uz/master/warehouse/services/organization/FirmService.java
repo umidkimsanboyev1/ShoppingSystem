@@ -1,5 +1,6 @@
 package uz.master.warehouse.services.organization;
 
+import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.firm.FirmCreateDto;
 import uz.master.warehouse.dto.firm.FirmDto;
 import uz.master.warehouse.dto.firm.FirmUpdateDto;
@@ -13,6 +14,7 @@ import uz.master.warehouse.validator.organization.FirmValidator;
 
 import java.util.List;
 
+@Service
 public class FirmService extends AbstractService<FirmRepository, FirmMapper, FirmValidator> implements GenericCrudService<Firm, FirmDto, FirmCreateDto, FirmUpdateDto, Long> {
     public FirmService(FirmRepository repository, FirmMapper mapper, FirmValidator validator) {
         super(repository, mapper, validator);

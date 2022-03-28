@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
 import uz.master.warehouse.entity.products.OutComeProducts;
 
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Repository
@@ -17,4 +19,7 @@ public interface OutComeProductsRepository extends JpaRepository<OutComeProducts
     List<OutComeProducts> findAllByClientBarId(Long clientId);
 
     void deleteAllByClientBarId(Long id);
+
+    @Query(value = "SELECT e.* FROM out_come_products e WHERE DATE(e.created_at) =:createdAt_date", nativeQuery = true)
+    List<OutComeProducts> findAllByCreatedAt_Date(LocalDate createdAt_date);
 }
