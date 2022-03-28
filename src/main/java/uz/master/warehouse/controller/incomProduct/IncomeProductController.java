@@ -9,10 +9,10 @@ import uz.master.warehouse.dto.InComeProducts.InComeProductsCreateDto;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsDto;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
-import uz.master.warehouse.entity.products.InComeProducts;
 import uz.master.warehouse.services.products.InComeProductsService;
 
 import java.util.List;
+
 
 @RestController
 @RequestMapping("income/*")
