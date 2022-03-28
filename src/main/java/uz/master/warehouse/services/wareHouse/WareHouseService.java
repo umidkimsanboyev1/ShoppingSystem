@@ -1,5 +1,6 @@
 package uz.master.warehouse.services.wareHouse;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.validator.warehouse.WareHouseValidator;
@@ -26,33 +27,43 @@ public class WareHouseService extends AbstractService<
         WareHouseUpdateDto,
         Long
         > {
-    public WareHouseService(WareHouseRepository repository, WareHouseMapper mapper, WareHouseValidator validator) {
+    public WareHouseService(WareHouseRepository repository, @Qualifier("wareHouseMapperImpl") WareHouseMapper mapper, WareHouseValidator validator) {
         super(repository, mapper, validator);
     }
 
 
     @Override
     public DataDto<Long> create(WareHouseCreateDto createDto) {
-        return null;
+        WareHouse wareHouse = mapper.fromCreateDto(createDto);
+        Long id = repository.save(wareHouse).getId();
+        return new DataDto<>(id);
     }
 
     @Override
     public DataDto<Void> delete(Long id) {
+        repository.deleteId(id);
         return new DataDto<>();
     }
 
     @Override
     public DataDto<Long> update(WareHouseUpdateDto updateDto) {
-        return null;
+        validator.check(updateDto.getId());
+        repository.update(updateDto.getName(),updateDto.getLocation(),updateDto.getId());
+        return new DataDto<>(updateDto.getId());
     }
 
     @Override
     public DataDto<List<WareHouseDto>> getAll() {
-        return null;
+        List<WareHouse> allByDeletedFalse = repository.findAllByDeletedFalse();
+        List<WareHouseDto> wareHouse = mapper.toDto(allByDeletedFalse);
+        return new DataDto<>(wareHouse);
     }
 
     @Override
     public DataDto<WareHouseDto> get(Long id) {
-        return null;
+        WareHouse found = repository.findById(id).orElseThrow(() -> {
+            throw new RuntimeException("not found");
+        });
+        return new DataDto<>(mapper.toDto(found));
     }
 }

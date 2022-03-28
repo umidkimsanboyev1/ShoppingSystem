@@ -20,7 +20,7 @@ public class WareHouse extends Auditable {
     @Column(nullable = false, unique = true)
     private String location;
 
-    private Date paidFor;
+    private Date paidDate;
 
     private Long organizationId;
 
