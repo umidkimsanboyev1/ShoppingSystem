@@ -9,6 +9,8 @@ import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsUpdateDto;
 import uz.master.warehouse.entity.base.Auditable;
 import uz.master.warehouse.entity.product.Product;
+import uz.master.warehouse.entity.products.InComeProducts;
+import uz.master.warehouse.entity.products.OutComeProducts;
 import uz.master.warehouse.entity.products.WareHouseProducts;
 import uz.master.warehouse.mapper.products.WareHouseProductsMapper;
 import uz.master.warehouse.repository.product.ProductRepository;
@@ -89,6 +91,10 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
         return new DataDto<>(warehouseProductsDto);
     }
 
+    public WareHouseProducts getByProductId(Long id) {
+        return repository.findByProductIdAndDeletedFalse(id);
+    }
+
     public DataDto<List<WareHouseProductsDto>> getByModel(String model) {
         List<Product> products = productRepository.findAllByModelAndDeletedFalse(model);
         if (products.isEmpty()) {
@@ -104,12 +110,39 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
         if (Objects.isNull(product)) {
             return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
         }
-        WareHouseProducts wareHouseProduct = repository.findByProductId(product.getId());
+        WareHouseProducts wareHouseProduct = this.getByProductId(product.getId());
         return new DataDto<>(mapper.toDto(wareHouseProduct));
     }
 
 
     public void checkCount(Long productId, int count) {
-        repository.get(productId,count).orElseThrow(()->{throw new RuntimeException("uzr");});
+        repository.get(productId, count).orElseThrow(() -> {
+            throw new RuntimeException("uzr");
+        });
+    }
+
+    public void incomeProducts(List<InComeProducts> list) {
+        for (InComeProducts inComeProducts : list) {
+            WareHouseProducts wareHouseProducts = this.getByProductId(inComeProducts.getProductId());
+            if (Objects.isNull(wareHouseProducts)) {
+                this.create(new WareHouseProductsCreateDto(inComeProducts.getCount(), inComeProducts.getProductId()));
+            } else
+                this.update(new WareHouseProductsUpdateDto(wareHouseProducts.getCount() + inComeProducts.getCount(), inComeProducts.getProductId()));
+        }
+
+    }
+
+    public boolean outcomeProducts(OutComeProducts outComeProducts) {
+        WareHouseProducts wareHouseProducts = this.getByProductId(outComeProducts.getProductId());
+        if (Objects.nonNull(wareHouseProducts)) {
+            if (wareHouseProducts.getCount() > outComeProducts.getCount()) {
+                this.update(new WareHouseProductsUpdateDto(wareHouseProducts.getCount() - outComeProducts.getCount(), outComeProducts.getProductId()));
+                return true;
+            } else if (wareHouseProducts.getCount() == outComeProducts.getCount()) {
+                this.delete(wareHouseProducts.getId());
+                return true;
+            } else
+                return false;
+        } else return false;
     }
 }

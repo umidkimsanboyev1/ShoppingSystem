@@ -44,8 +44,7 @@ public interface WareHouseProductsRepository extends JpaRepository<WareHouseProd
     List<WareHouseProducts> findByProductIdIn(/*@Param("ids") */List<Long> productId);
 
 
-    WareHouseProducts findByProductId(Long productId);
-
+    WareHouseProducts findByProductIdAndDeletedFalse(Long productId);
 
 
 }

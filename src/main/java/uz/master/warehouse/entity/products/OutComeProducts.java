@@ -26,6 +26,4 @@ public class OutComeProducts extends Auditable {
     private boolean taken;
 
 
-    @Column(columnDefinition = "boolean default true")
-    private boolean sell;
 }

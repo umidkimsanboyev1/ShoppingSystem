@@ -12,26 +12,23 @@ import uz.master.warehouse.mapper.products.OutComeProductsMapper;
 import uz.master.warehouse.repository.products.OutComeProductsRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.services.organization.CompanyService;
 import uz.master.warehouse.validator.products.OutComeProductsValidator;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeParseException;
-import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 @Service
 public class OutComeProductsService extends AbstractService<OutComeProductsRepository, OutComeProductsMapper, OutComeProductsValidator>
         implements GenericCrudService<OutComeProducts, OutComeProductsDto, OutComeProductsCreateDto, OutComeProductsUpdateDto, Long> {
 
     private final WareHouseProductsService service;
-    private final CompanyService companyService;
+    private final WareHouseProductsService wareHouseProductsService;
 
-    public OutComeProductsService(OutComeProductsRepository repository, OutComeProductsMapper mapper, OutComeProductsValidator validator, WareHouseProductsService service, CompanyService companyService) {
+    public OutComeProductsService(OutComeProductsRepository repository, OutComeProductsMapper mapper, OutComeProductsValidator validator, WareHouseProductsService service, WareHouseProductsService wareHouseProductsService) {
         super(repository, mapper, validator);
         this.service = service;
-        this.companyService = companyService;
+        this.wareHouseProductsService = wareHouseProductsService;
     }
 
 
@@ -75,10 +72,12 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
     }
 
 
-    public DataDto<Boolean> updateSale(Long id) {
+    public DataDto<Boolean> updateTaken(Long id) {
         OutComeProducts found = repository.findById(id).orElseThrow(() -> {
             throw new RuntimeException("not Found");
         });
+        boolean res = wareHouseProductsService.outcomeProducts(found);
+        if (!res) return new DataDto<>(Boolean.FALSE);
         found.setTaken(true);
         repository.save(found);
         return new DataDto<>(Boolean.TRUE);
@@ -92,6 +91,5 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
         } catch (DateTimeParseException e) {
             return new DataDto<>(new AppErrorDto("UnValid Date format", HttpStatus.BAD_REQUEST));
         }
-
     }
 }
