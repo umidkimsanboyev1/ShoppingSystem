@@ -1,6 +1,7 @@
 package uz.master.warehouse.mapper.clientBar;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.springframework.stereotype.Component;
 import uz.master.warehouse.dto.comment.CommentCreateDto;
 import uz.master.warehouse.dto.comment.CommentDto;
@@ -24,4 +25,6 @@ public interface CommentMapper extends BaseMapper<Comment, CommentDto, CommentCr
 
     @Override
     Comment fromUpdateDto(CommentUpdateDto commentUpdateDto);
+
+    Comment fromUpdateDto(CommentUpdateDto commentUpdateDto , @MappingTarget Comment comment);
 }
