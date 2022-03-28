@@ -1,5 +1,6 @@
 package uz.master.warehouse.services.payment;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.payment.PaymentCreateDto;
@@ -39,6 +40,9 @@ public class PaymentService extends AbstractService<
 
     @Override
     public DataDto<Long> create(PaymentCreateDto createDto) {
+        if (!validator.validForCreate(createDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
         Payment payment = mapper.fromCreateDto(createDto);
         payment.setOrganizationId(createDto.getOrganizationId());
         payment.setCompanyId(createDto.getCompanyId());
@@ -55,9 +59,12 @@ public class PaymentService extends AbstractService<
 
     @Override
     public DataDto<Long> update(PaymentUpdateDto updateDto) {
+        if (!validator.validForUpdate(updateDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
+        }
         Payment payment = mapper.fromUpdateDto(updateDto);
         payment.setSum(updateDto.getSum());
-//        repository.updatePayment(payment.getId(), payment.getSum());
+        repository.updatePayment(payment.getId(), payment.getSum());
         return new DataDto<>(payment.getId());
     }
 

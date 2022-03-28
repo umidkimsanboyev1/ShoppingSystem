@@ -1,7 +1,6 @@
 package uz.master.warehouse.services.organization;
 
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.organization.OrganizationCreateDto;
@@ -20,7 +19,10 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class OrganizationService extends AbstractService<OrganizationRepository, OrganizationMapper, OrganizationValidator>
+public class OrganizationService extends AbstractService<
+        OrganizationRepository,
+        OrganizationMapper,
+        OrganizationValidator>
         implements GenericCrudService<
         Organization,
         OrganizationDto,
@@ -35,6 +37,9 @@ public class OrganizationService extends AbstractService<OrganizationRepository,
 
     @Override
     public DataDto<Long> create(OrganizationCreateDto createDto) {
+        if (!validator.validForCreate(createDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
         Organization organization = mapper.fromCreateDto(createDto);
         organization.setName(createDto.getName());
         organization.setOwnerId(createDto.getOwnerId());
@@ -50,9 +55,12 @@ public class OrganizationService extends AbstractService<OrganizationRepository,
 
     @Override
     public DataDto<Long> update(OrganizationUpdateDto updateDto) {
+        if (!validator.validForUpdate(updateDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
+        }
         Organization organization = mapper.fromUpdateDto(updateDto);
         organization.setName(updateDto.getName());
-        repository.update(organization.getId(),organization.getName());
+        repository.updateOrg(organization.getId(),organization.getName());
         return new DataDto<>(organization.getId());
     }
 
