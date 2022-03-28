@@ -2,7 +2,6 @@ package uz.master.warehouse.dto.responce;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 
-import lombok.Builder;
 import lombok.Getter;
 import lombok.Setter;
 import org.springframework.http.HttpStatus;
@@ -10,12 +9,11 @@ import org.springframework.web.context.request.ServletWebRequest;
 import org.springframework.web.context.request.WebRequest;
 import uz.master.warehouse.dto.BaseDto;
 
-import java.sql.Timestamp;
 import java.time.LocalDateTime;
+import java.sql.Timestamp;
 
 @Getter
 @Setter
-//@Builder
 @JsonInclude(JsonInclude.Include.NON_NULL)
 public class AppErrorDto implements BaseDto {
 

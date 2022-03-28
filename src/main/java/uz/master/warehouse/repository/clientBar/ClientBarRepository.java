@@ -21,6 +21,8 @@ public interface ClientBarRepository extends JpaRepository<ClientBar, Long> {
 
     ClientBar findByIdAndDeletedFalse(Long id);
 
+    boolean existsByIdAndDeletedFalse(Long clientBarId);
+
 //    List<ClientBar> findAllByTakenFalse();
 //    ClientBar findByIdAndTakenFalse(Long id);
 }
