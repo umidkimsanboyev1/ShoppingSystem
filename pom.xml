@@ -51,33 +51,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
-            <optional>truPdfWriter writer = new PdfWriter("src/main/resources/file.pdf");
-
-        PdfDocument pdfDocument = new PdfDocument(writer);
-
-        PdfPage page = pdfDocument.addNewPage();
-
-        Document document = new Document(pdfDocument);
-
-
-        Paragraph paragraph = new Paragraph("New Pdf File");
-
-        document.add(paragraph);
-
-        float[] columns = {30f, 50, 100f};
-        Table table = new Table(columns);
-        table.addCell("Id");
-        table.addCell("Title");
-        table.addCell("Description");
-        for (int i = 0; i < 100; i++) {
-            table.addCell(i+"");
-            table.addCell("Title - "+i);
-            table.addCell("Description - "+i);
-        }
-        document.add(table);
-
-        document.close();
-e</optional>
+            <optional>true</optional>
         </dependency>
         <dependency>
             <groupId>org.postgresql</groupId>
