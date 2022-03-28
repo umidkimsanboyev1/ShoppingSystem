@@ -9,7 +9,7 @@ import uz.master.warehouse.entity.payment.Payment;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
+
 import java.util.List;
 
 @Repository
@@ -20,11 +20,11 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
     @Query(value = "update Payment  set deleted=true where id=:payId")
     void deletePayment(@Param("payId") Long payId);
 
-//    @Transactional
-//    @Modifying
-//    @Query(value = "update Payment set sum=:sum  where id=:id")
-//    void updatePayment(@Param(value = "id") Long id, @Param(value = "sum") Long sum);
 
+    @Transactional
+    @Modifying
+    @Query(value = "update Payment p set p.sum=:sum   where p.id=:payId")
+    void updatePayment(@Param(value = "payId") Long id, @Param(value = "sum") Long sum);
 
     Payment findByIdAndDeletedFalse(Long id);
 
@@ -33,4 +33,8 @@ public interface PaymentRepository extends JpaRepository<Payment, Long> {
 
     @Query(value = "SELECT e.* FROM payment e WHERE DATE(e.date_time) >=?1 and DATE(e.date_time) <=?2", nativeQuery = true)
     List<Payment> findAllByDateTimeDateBetween(LocalDate from, LocalDate to);
+
+//    @Query(value = "SELECT e FROM payment e WHERE DATE(e.date_time) >=?1 and DATE(e.date_time) <=?2")
+//    List<Payment> findAllByDateTimeDateBetween(LocalDate from, LocalDate to);
+
 }
