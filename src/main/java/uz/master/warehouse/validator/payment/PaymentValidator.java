@@ -1,8 +1,8 @@
-package uz.master.warehouse.validator.project;
+package uz.master.warehouse.validator.payment;
 
 import org.springframework.stereotype.Component;
 import uz.master.warehouse.validator.BaseValidator;
 
 @Component
-public class ProductValidator implements BaseValidator {
+public class PaymentValidator implements BaseValidator {
 }

@@ -18,39 +18,39 @@ import java.util.List;
 @RestController
 @RequestMapping("/organization/*")
 @RequiredArgsConstructor
-public class OrganizationController  {
+public class OrganizationController extends AbstractController {
 
     private final OrganizationService service;
 
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    @PostMapping("/create")
+    @PostMapping(PATH+"/create")
     public ResponseEntity<DataDto<Long>> create(@RequestBody OrganizationCreateDto dto) {
         return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(PATH+"/delete/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    @PutMapping("/update")
+    @PutMapping(PATH+"/update")
     public void update(@RequestBody OrganizationUpdateDto dto) {
         service.update(dto);
     }
 
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    @GetMapping("/list")
+    @GetMapping(PATH+"/list")
     public ResponseEntity<DataDto<List<OrganizationDto>>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
 
     }
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    @GetMapping("/get/{id}")
+    @GetMapping(PATH+"/get/{id}")
     public ResponseEntity<DataDto<OrganizationDto>> get(@PathVariable Long id) {
         return new ResponseEntity<>(service.get(id), HttpStatus.OK);
 

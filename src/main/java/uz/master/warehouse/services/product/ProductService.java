@@ -1,30 +1,45 @@
 package uz.master.warehouse.services.product;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.product.ProductCreateDto;
 import uz.master.warehouse.dto.product.ProductDto;
 import uz.master.warehouse.dto.product.ProductUpdateDto;
+import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.product.Product;
 import uz.master.warehouse.mapper.product.ProductMapper;
 import uz.master.warehouse.repository.product.ProductRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.project.ProductValidator;
+import uz.master.warehouse.services.organization.FirmService;
+import uz.master.warehouse.validator.product.ProductValidator;
 
+import javax.validation.Valid;
 import java.util.List;
+import java.util.Objects;
 
 @Service
 public class ProductService extends AbstractService<ProductRepository, ProductMapper, ProductValidator> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, Long> {
+
+    private final FirmService firmService;
+
     public ProductService(ProductRepository repository,
                           ProductMapper mapper,
-                          ProductValidator validator) {
+                          ProductValidator validator, FirmService firmService) {
         super(repository, mapper, validator);
+        this.firmService = firmService;
     }
 
     @Override
-    public DataDto<Long> create(ProductCreateDto createDto) {
+    public DataDto<Long> create(@Valid ProductCreateDto createDto) {
+        if (!validator.validForCreate(createDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
+        if (Objects.isNull(firmService.get(createDto.getFirmId()).getData())) {
+            return new DataDto<>(new AppErrorDto("Firm Not Found", HttpStatus.NOT_FOUND));
+        }
         Product product = mapper.fromCreateDto(createDto);
         product.setColor(createDto.getColor());
         product.setDefault_price(createDto.getDefault_price());
@@ -43,6 +58,9 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
 
     @Override
     public DataDto<Long> update(ProductUpdateDto updateDto) {
+        if (!validator.validForUpdate(updateDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
         Product product = mapper.fromUpdateDto(updateDto);
         product.setDefault_price(updateDto.getDefault_price());
         Product save = repository.save(product);
@@ -62,4 +80,5 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
         });
         return new DataDto<>(mapper.toDto(product));
     }
+
 }

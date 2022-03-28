@@ -2,6 +2,7 @@ package uz.master.warehouse.mapper.products;
 
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.springframework.stereotype.Component;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsCreateDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsDto;
@@ -26,4 +27,7 @@ public interface WareHouseProductsMapper extends BaseMapper<WareHouseProducts, W
 
     @Override
     WareHouseProducts fromUpdateDto(WareHouseProductsUpdateDto wareHouseProductsUpdateDto);
+
+    WareHouseProducts fromUpdateDto(WareHouseProductsUpdateDto wareHouseProductsUpdateDto, @MappingTarget WareHouseProducts wareHouseProducts);
+
 }

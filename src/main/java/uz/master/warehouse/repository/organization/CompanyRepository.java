@@ -17,6 +17,12 @@ public interface CompanyRepository extends JpaRepository<Company,Long>{
     @Query(value = "update Company c set c.deleted = true where c.id = :companyId")
     void deleteCompany(@Param("companyId") Long id);
 
+
+    @Transactional
+    @Modifying
+    @Query(value = "update Company set name=:name   where id=:id")
+    void update(@Param(value = "id") Long id, @Param(value = "name") String name);
+
     List<Company> findAllByDeletedFalse();
 
     Company findByIdAndDeletedFalse(Long id);

@@ -9,5 +9,5 @@ import uz.master.warehouse.dto.GenericDto;
 @Setter
 public class CompanyCreateDto implements BaseDto {
     private String name;
-    private String registerNumber;
+    private Long registerNumber;
 }

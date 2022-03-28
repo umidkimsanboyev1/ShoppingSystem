@@ -8,12 +8,15 @@ import uz.master.warehouse.dto.InComeProducts.InComeProductsUpdateDto;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.products.InComeProducts;
+import uz.master.warehouse.entity.products.OutComeProducts;
 import uz.master.warehouse.mapper.products.InComeProductsMapper;
 import uz.master.warehouse.repository.products.InComeProductsRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.validator.products.InComeProductsValidator;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,45 +25,47 @@ public class InComeProductsService extends AbstractService<InComeProductsReposit
         implements GenericCrudService<InComeProducts, InComeProductsDto, InComeProductsCreateDto, InComeProductsUpdateDto, Long> {
 
     public InComeProductsService(InComeProductsRepository repository, InComeProductsMapper mapper, InComeProductsValidator validator) {
-        super( repository, mapper, validator );
+        super(repository, mapper, validator);
     }
 
     @Override
     public DataDto<Long> create(InComeProductsCreateDto createDto) {
-        int existsProduct = repository.existsByProduct( createDto.getProductId() );
+        int existsProduct = repository.existsByProduct(createDto.getProductId());
         if (existsProduct < 1) {
-            return new DataDto<>( new AppErrorDto( HttpStatus.OK, "product not found", "product" ) );
+            return new DataDto<>(new AppErrorDto(HttpStatus.OK, "product not found", "product"));
         }
-        int existsGroupProduct = repository.existsGroupProduct( createDto.getProductId() );
+        int existsGroupProduct = repository.existsGroupProduct(createDto.getProductId());
         if (existsGroupProduct < 1) {
-            return new DataDto<>( new AppErrorDto( HttpStatus.OK, "Group Product not found", "product" ) );
+            return new DataDto<>(new AppErrorDto(HttpStatus.OK, "Group Product not found", "product"));
         }
-        InComeProducts inComeProducts = mapper.fromCreateDto( createDto );
+        InComeProducts inComeProducts = mapper.fromCreateDto(createDto);
 
-        return new DataDto<>( repository.save( inComeProducts ).getId() );
+        return new DataDto<>(repository.save(inComeProducts).getId());
 
     }
 
     @Override
     public DataDto<Void> delete(Long id) {
-        repository.deleteById( id );
+
+
+        repository.deleteById(id);
         return new DataDto<>();
     }
 
     @Override
     public DataDto<Long> update(InComeProductsUpdateDto updateDto) {
-        Optional<InComeProducts> optional = repository.findById( updateDto.getId() );
+        Optional<InComeProducts> optional = repository.findById(updateDto.getId());
         if (optional.isEmpty()) {
 
-            return new DataDto<>( new AppErrorDto( HttpStatus.OK, "Income Product not found", "product" ) );
+            return new DataDto<>(new AppErrorDto(HttpStatus.OK, "Income Product not found", "product"));
         }
-        InComeProducts income = mapper.fromUpdateDto( updateDto );
+        InComeProducts income = mapper.fromUpdateDto(updateDto);
         try {
 
-            InComeProducts save = repository.save( income );
-            return new DataDto<>( save.getId() );
+            InComeProducts save = repository.save(income);
+            return new DataDto<>(save.getId());
         } catch (Exception e) {
-            return new DataDto<>( new AppErrorDto( HttpStatus.OK, "Bad credentional", "product" ) );
+            return new DataDto<>(new AppErrorDto(HttpStatus.OK, "Bad credentional", "product"));
 
         }
     }
@@ -68,17 +73,32 @@ public class InComeProductsService extends AbstractService<InComeProductsReposit
     @Override
     public DataDto<List<InComeProductsDto>> getAll() {
         List<InComeProducts> inComeProductsList = repository.findAll();
-        List<InComeProductsDto> inComeProductsDto = mapper.toDto( inComeProductsList );
-        return new DataDto<>( inComeProductsDto );
+        List<InComeProductsDto> inComeProductsDto = mapper.toDto(inComeProductsList);
+        return new DataDto<>(inComeProductsDto);
     }
 
     @Override
     public DataDto<InComeProductsDto> get(Long id) {
-        Optional<InComeProducts> optional = repository.findById( id );
+        Optional<InComeProducts> optional = repository.findById(id);
         if (optional.isEmpty()) {
-            return new DataDto<>( new AppErrorDto( HttpStatus.OK, "Income Product not found", "product" ) );
+            return new DataDto<>(new AppErrorDto(HttpStatus.OK, "Income Product not found", "product"));
         }
-        InComeProductsDto inComeProductsDto = mapper.toDto( optional.get() );
-        return new DataDto<>( inComeProductsDto );
+        InComeProductsDto inComeProductsDto = mapper.toDto(optional.get());
+        return new DataDto<>(inComeProductsDto);
+    }
+
+    public DataDto<List<InComeProductsDto>> getByTime(String from, String to) {
+        try {
+            LocalDate fromDate = LocalDate.parse(from);
+            LocalDate toDate = LocalDate.parse(to);
+            List<InComeProducts> allByCreatedAt_date = repository.findAllByDateTimeDateBetween(fromDate, toDate);
+            return new DataDto<>(mapper.toDto(allByCreatedAt_date));
+        } catch (DateTimeParseException e) {
+            return new DataDto<>(new AppErrorDto("UnValid Date format", HttpStatus.BAD_REQUEST));
+        }
+    }
+
+    public List<InComeProducts> getByGroupProductsId(Long id) {
+        return repository.findAllByGroupProductsId(id);
     }
 }

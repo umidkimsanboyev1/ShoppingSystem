@@ -23,34 +23,37 @@ public class IncomeProductController extends AbstractController {
 
     @PostMapping(PATH + "create")
     public ResponseEntity<DataDto<Long>> create(@RequestBody InComeProductsCreateDto dto) {
-        return new ResponseEntity<>( inComeProductsService.create( dto ), HttpStatus.OK );
+        return new ResponseEntity<>(inComeProductsService.create(dto), HttpStatus.OK);
     }
 
     @GetMapping(PATH + "get-all")
     public ResponseEntity<DataDto<List<InComeProductsDto>>> getAll() {
-        return new ResponseEntity<>( inComeProductsService.getAll(), HttpStatus.OK );
+        return new ResponseEntity<>(inComeProductsService.getAll(), HttpStatus.OK);
     }
 
-    @GetMapping(PATH + "get/{id)")
+    @GetMapping(PATH + "get/{id}")
     public ResponseEntity<DataDto<InComeProductsDto>> get(@PathVariable Long id) {
-        return new ResponseEntity<>( inComeProductsService.get( id ), HttpStatus.OK );
+        return new ResponseEntity<>(inComeProductsService.get(id), HttpStatus.OK);
 
     }
 
     @DeleteMapping(PATH + "delete/{id}")
-
     public ResponseEntity<DataDto> delete(@PathVariable Long id) {
-        inComeProductsService.delete( id );
-        return new ResponseEntity<>( HttpStatus.NO_CONTENT );
+        inComeProductsService.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
 
     }
 
     @PutMapping(PATH + "create")
     public ResponseEntity<DataDto<Long>> update(@RequestBody InComeProductsUpdateDto dto) {
 
-        return new ResponseEntity<>( inComeProductsService.update( dto ), HttpStatus.OK );
+        return new ResponseEntity<>(inComeProductsService.update(dto), HttpStatus.OK);
     }
 
+    @GetMapping(PATH + "/getBYTime")
+    public ResponseEntity<DataDto<List<InComeProductsDto>>> getByTime(String from, String to) {
+        return new ResponseEntity<>(inComeProductsService.getByTime(from, to),HttpStatus.OK);
+    }
 
 
 }

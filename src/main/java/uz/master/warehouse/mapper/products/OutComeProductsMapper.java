@@ -1,6 +1,8 @@
 package uz.master.warehouse.mapper.products;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
+import org.mapstruct.MappingTarget;
 import org.springframework.stereotype.Component;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsDto;
@@ -24,4 +26,7 @@ public interface OutComeProductsMapper extends BaseMapper<OutComeProducts, OutCo
 
     @Override
     OutComeProducts fromUpdateDto(OutComeProductsUpdateDto inComeProductsUpdateDto);
+
+
+    void updateModel(OutComeProductsUpdateDto dto, @MappingTarget OutComeProducts products);
 }
