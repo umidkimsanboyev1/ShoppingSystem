@@ -16,6 +16,7 @@ import uz.master.warehouse.mapper.organization.CompanyMapper;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -33,7 +34,11 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
 
 
     @Override
-    public DataDto<Long> create(CompanyCreateDto createDto) {
+    public DataDto<Long> create(@Valid CompanyCreateDto createDto) {
+        if (!validator.validForCreate(createDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
+
        Company company = mapper.fromCreateDto(createDto);
        company.setName(createDto.getName());
        company.setRegistrationNumber(createDto.getRegisterNumber());
@@ -50,7 +55,10 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
 
     @Override
     public DataDto<Long> update(CompanyUpdateDto updateDto) {
-      Company company = mapper.fromUpdateDto(updateDto);
+        if (!validator.validForUpdate(updateDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
+        Company company = mapper.fromUpdateDto(updateDto);
       company.setName(updateDto.getName());
         repository.update(company.getId(),company.getName());
         return new DataDto<>(company.getId());
