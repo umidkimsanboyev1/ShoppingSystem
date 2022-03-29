@@ -20,8 +20,8 @@ import java.util.List;
 @RequestMapping("/company/*")
 @RequiredArgsConstructor
 public class CompanyController {
-    private final CompanyService service;
 
+    private final CompanyService service;
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PostMapping("/create")
@@ -31,16 +31,17 @@ public class CompanyController {
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<DataDto> delete(@PathVariable Long id) {
         service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PutMapping("/update")
-    public void update(@RequestBody CompanyUpdateDto dto) {
-        service.update(dto);
+    public ResponseEntity<DataDto<Long>> update(@RequestBody CompanyUpdateDto dto) {
+        return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
     }
-
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @GetMapping("/list")

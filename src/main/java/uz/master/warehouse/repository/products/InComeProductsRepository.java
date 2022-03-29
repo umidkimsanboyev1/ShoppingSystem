@@ -12,10 +12,12 @@ import java.util.List;
 @Repository
 public interface InComeProductsRepository extends JpaRepository<InComeProducts, Long> {
 
+    @Query(value = "select  count(*) from product where id=?1", nativeQuery = true)
+    int existsByProduct(Long productId);
 
 
-
-
+    @Query(value = "select  count(*) from group_products where id=?1", nativeQuery = true)
+    int existsGroupProduct(Long productId);
 
     @Query(value = "SELECT e.* FROM in_come_products e WHERE DATE(e.created_at) >=?1 and DATE(e.created_at) <=?2", nativeQuery = true)
     List<InComeProducts> findAllByDateTimeDateBetween(LocalDate from, LocalDate to);

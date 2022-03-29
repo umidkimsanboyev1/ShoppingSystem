@@ -50,8 +50,10 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
         groupProducts.setCompanyId(createDto.getCompanyId());
         groupProducts.setDate(createDto.getDate());
         GroupProducts save = repository.save(groupProducts);
+
         List<InComeProducts> byGroupProductsId = inComeProductsService.getByGroupProductsId(save.getId());
         wareHouseProductsService.incomeProducts(byGroupProductsId);
+
         return new DataDto<>(save.getId());
     }
 
