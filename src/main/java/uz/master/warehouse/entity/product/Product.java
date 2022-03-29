@@ -24,4 +24,6 @@ public class Product extends Auditable {
 
     private Double default_price;
 
+    private Long sectorId;
+
 }
