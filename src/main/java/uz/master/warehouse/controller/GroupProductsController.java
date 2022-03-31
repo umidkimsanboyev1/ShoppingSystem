@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import uz.master.warehouse.dto.company.CompanyUpdateDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsCreateDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsUpdateDto;
@@ -22,8 +23,8 @@ import java.util.List;
 @RequestMapping("/groupproducts/*")
 @RequiredArgsConstructor
 public class GroupProductsController {
-    private final GroupProductsService service;
 
+    private final GroupProductsService service;
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PostMapping("/create")
@@ -34,18 +35,17 @@ public class GroupProductsController {
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @DeleteMapping("/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<DataDto> delete(@PathVariable Long id) {
         service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PutMapping("/update")
-    public void update(@RequestBody GroupProductsUpdateDto dto) {
-        service.update(dto);
+    public ResponseEntity<DataDto<Long>> update(@RequestBody GroupProductsUpdateDto dto) {
+        return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
     }
-
-
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @GetMapping("/list")
     public ResponseEntity<DataDto<List<GroupProductsDto>>> getAll() {

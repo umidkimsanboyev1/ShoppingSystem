@@ -26,4 +26,6 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     Product findByModelAndColorAndDeletedFalse(String model, String color);
 
+    @Query(value = "select  count(*) from product where id=?1",nativeQuery = true)
+    int existsByProduct(Long productId);
 }
