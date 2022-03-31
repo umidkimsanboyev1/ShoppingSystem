@@ -17,7 +17,7 @@ import java.util.List;
 
 @Configuration
 @ConditionalOnProperty(name = "springdoc.swagger-ui.enabled", havingValue = "true", matchIfMissing = true)
-public class OpenApiConfig {
+public class  OpenApiConfig {
     private static final String BEARER_FORMAT = "JWT";
     private static final String SCHEME = "Bearer";
     private static final String SECURITY_SCHEME_NAME = "Security Scheme";

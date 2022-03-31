@@ -1,5 +1,8 @@
 package uz.master.warehouse.services.product;
 
+import org.hibernate.search.engine.search.query.SearchResult;
+import org.hibernate.search.mapper.orm.Search;
+import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
@@ -16,6 +19,8 @@ import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.services.organization.FirmService;
 import uz.master.warehouse.validator.product.ProductValidator;
 
+import javax.persistence.EntityManager;
+import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
@@ -24,12 +29,14 @@ import java.util.Objects;
 public class ProductService extends AbstractService<ProductRepository, ProductMapper, ProductValidator> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, Long> {
 
     private final FirmService firmService;
+    private final EntityManager entityManager;
 
     public ProductService(ProductRepository repository,
                           ProductMapper mapper,
-                          ProductValidator validator, FirmService firmService) {
+                          ProductValidator validator, FirmService firmService, EntityManager manager) {
         super(repository, mapper, validator);
         this.firmService = firmService;
+        this.entityManager = manager;
     }
 
     @Override
@@ -37,7 +44,7 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
         if (!validator.validForCreate(createDto)) {
             return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
         }
-        if (Objects.isNull(firmService.get(createDto.getFirmId()).getData())) {
+        if (Objects.isNull(firmService.get(createDto.getFirmId()    ).getData())) {
             return new DataDto<>(new AppErrorDto("Firm Not Found", HttpStatus.NOT_FOUND));
         }
         Product product = mapper.fromCreateDto(createDto);
@@ -79,6 +86,24 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
             throw new UsernameNotFoundException("Not found");
         });
         return new DataDto<>(mapper.toDto(product));
+    }
+
+
+    @Transactional
+    public DataDto<List<ProductDto>>search(String name){
+        SearchSession searchSession = Search.session( entityManager );
+
+
+
+        SearchResult<Product> result = searchSession.search( Product.class )
+                .where( f -> f.match()
+                        .fields( "model")
+                        .matching( name ) )
+                .fetch( 20 );
+
+        long totalHitCount = result.total().hitCount();
+        List<ProductDto> productDtos = mapper.toDto(result.hits());
+        return new DataDto<>(productDtos,totalHitCount);
     }
 
 }
