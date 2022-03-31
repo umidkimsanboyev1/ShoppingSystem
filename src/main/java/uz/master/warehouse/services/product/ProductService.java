@@ -31,9 +31,11 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
     private final FirmService firmService;
     private final EntityManager entityManager;
 
-    public ProductService(ProductRepository repository,
+    public ProductService(
+            ProductRepository repository,
                           ProductMapper mapper,
-                          ProductValidator validator, FirmService firmService, EntityManager manager) {
+                          ProductValidator validator, FirmService firmService, EntityManager manager
+    ) {
         super(repository, mapper, validator);
         this.firmService = firmService;
         this.entityManager = manager;
