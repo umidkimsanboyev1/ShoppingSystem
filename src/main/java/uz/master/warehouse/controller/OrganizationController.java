@@ -26,7 +26,7 @@ public class OrganizationController extends AbstractController {
     @PreAuthorize("hasRole('SUPER_ADMIN')")
     @PostMapping(PATH+"/create")
     public ResponseEntity<DataDto<Long>> create(@RequestBody OrganizationCreateDto dto) {
-        return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
+         return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")

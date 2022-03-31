@@ -1,10 +1,12 @@
 package uz.master.warehouse.services.product;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.groupProducts.GroupProductsCreateDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsUpdateDto;
+import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.product.GroupProducts;
 import uz.master.warehouse.entity.products.InComeProducts;
@@ -16,6 +18,7 @@ import uz.master.warehouse.services.products.InComeProductsService;
 import uz.master.warehouse.services.products.WareHouseProductsService;
 import uz.master.warehouse.validator.product.GroupProductsValidator;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @Service
@@ -39,13 +42,18 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
     }
 
     @Override
-    public DataDto<Long> create(GroupProductsCreateDto createDto) {
+    public DataDto<Long> create(@Valid GroupProductsCreateDto createDto) {
+        if (!validator.validForCreate(createDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
         GroupProducts groupProducts = mapper.fromCreateDto(createDto);
         groupProducts.setCompanyId(createDto.getCompanyId());
         groupProducts.setDate(createDto.getDate());
         GroupProducts save = repository.save(groupProducts);
+
         List<InComeProducts> byGroupProductsId = inComeProductsService.getByGroupProductsId(save.getId());
         wareHouseProductsService.incomeProducts(byGroupProductsId);
+
         return new DataDto<>(save.getId());
     }
 
@@ -57,6 +65,9 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
 
     @Override
     public DataDto<Long> update(GroupProductsUpdateDto updateDto) {
+        if (!validator.validForUpdate(updateDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
+        }
         GroupProducts groupProducts = mapper.fromUpdateDto(updateDto);
         groupProducts.setCompanyId(updateDto.getCompanyId());
         groupProducts.setDate(updateDto.getDate());
