@@ -1,11 +1,15 @@
 package uz.master.warehouse.dto.auth;
 
+import lombok.Getter;
+import lombok.Setter;
 import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.dto.GenericDto;
 import uz.master.warehouse.enums.Role;
 
 import javax.persistence.Column;
 
+@Getter
+@Setter
 public class AuthDto extends GenericDto {
 
     private String fullName;
@@ -14,7 +18,7 @@ public class AuthDto extends GenericDto {
 
     private String phoneNumber;
 
-    private Long orgId;
+    private Long organizationId;
 
     private Role role;
 
