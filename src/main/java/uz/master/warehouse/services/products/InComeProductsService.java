@@ -38,11 +38,11 @@ public class InComeProductsService extends AbstractService<InComeProductsReposit
     public DataDto<Long> create(InComeProductsCreateDto createDto) {
         int existsProduct = productRepository.existsByProduct( createDto.getProductId() );
         if (existsProduct < 1) {
-            return new DataDto<>( new AppErrorDto( HttpStatus.OK, "product not found", "product" ) );
+            return new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND, "product not found", "product" ) );
         }
         int existsGroupProduct = groupProductsRepository.existsGroupProduct( createDto.getProductId() );
         if (existsGroupProduct < 1) {
-            return new DataDto<>( new AppErrorDto( HttpStatus.OK, "Group Product not found", "product" ) );
+            return new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND, "Group Product not found", "product" ) );
         }
         InComeProducts inComeProducts = mapper.fromCreateDto( createDto );
 
@@ -53,14 +53,17 @@ public class InComeProductsService extends AbstractService<InComeProductsReposit
     @Override
     public DataDto<Void> delete(Long id) {
 
-
-        repository.deleteById( id );
+        Long income = repository.findbyIncome( id );
+        if(income<1){
+            return new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND, "Income  Product not found", "product" ) );
+        }
+        repository.deleteIncome( id );
         return new DataDto<>();
     }
 
     @Override
     public DataDto<Long> update(InComeProductsUpdateDto updateDto) {
-        Optional<InComeProducts> optional = repository.findById( updateDto.getId() );
+        Optional<InComeProducts> optional = repository.findByIncome( updateDto.getId() );
         if (optional.isEmpty()) {
 
             return new DataDto<>( new AppErrorDto( HttpStatus.OK, "Income Product not found", "product" ) );

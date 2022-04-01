@@ -33,10 +33,10 @@ public class WarehouseApplication  {
 
 
 
-    @Bean
+//    @Bean
     public void run() throws Exception {
         CommandLineRunner runner=(a)->{
-            service.createUser(new AuthCreateDto(-1L,"zokirov muhammagdjafar","1","+998936432434",encoder.encode("123"), Role.ADMIN));
+            service.createUser(new AuthCreateDto(-1L,"Azizbek Bahodirov","admin","+998942790117",encoder.encode("123"), Role.ADMIN));
         };
         runner.run("s","b");
     }

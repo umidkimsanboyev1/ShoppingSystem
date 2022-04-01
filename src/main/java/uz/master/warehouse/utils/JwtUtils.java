@@ -8,7 +8,8 @@ import java.nio.charset.StandardCharsets;
 import java.util.Date;
 
 public class JwtUtils {
-    public static int expire=600000;
+
+    public static int expire=900000000;
     public static String secret="gfhg4561967$%#%$%^?>?>:gjhgsdfsd?>jahdqpdsdhgf";
     public static Date getExpireDate(){
         return new Date(expire+System.currentTimeMillis());

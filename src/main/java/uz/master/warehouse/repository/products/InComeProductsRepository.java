@@ -1,17 +1,19 @@
 package uz.master.warehouse.repository.products;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 import uz.master.warehouse.entity.payment.Payment;
 import uz.master.warehouse.entity.products.InComeProducts;
 
+import javax.transaction.Transactional;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface InComeProductsRepository extends JpaRepository<InComeProducts, Long> {
-
 
 
 
@@ -22,4 +24,15 @@ public interface InComeProductsRepository extends JpaRepository<InComeProducts, 
 
 
     List<InComeProducts> findAllByGroupProductsId(Long groupProductsId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update InComeProducts c set c.deleted =  true,c. where c.id =?1")
+    void deleteIncome(Long id);
+
+     @Query(value = "select count(*) from in_come_products where id=?1 and not deleted",nativeQuery = true)
+    Long findbyIncome(Long id);
+
+    @Query(value = "select  from in_come_products where id=?1 and not deleted",nativeQuery = true)
+    Optional<InComeProducts> findByIncome(Long id);
 }

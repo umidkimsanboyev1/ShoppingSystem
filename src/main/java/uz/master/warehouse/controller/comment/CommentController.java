@@ -37,9 +37,8 @@ public class CommentController extends AbstractController {
     }
 
     @DeleteMapping(PATH + "/delete/{id}")
-    public ResponseEntity<DataDto> delete(@PathVariable Long id) {
-        commentService.delete( id );
-        return new ResponseEntity<>( HttpStatus.NO_CONTENT );
+    public ResponseEntity<DataDto<Void>> delete(@PathVariable Long id) {
+        return new ResponseEntity<>( commentService.delete( id ),HttpStatus.OK );
 
     }
     @PutMapping(PATH+"/update")
