@@ -931,3 +931,647 @@ uz.master.warehouse.controller.ClientBarController#get(Long) mapped.
 2022-04-01 16:58:37,695 INFO             [SpringApplicationShutdownHook] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean        : Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-04-01 16:58:37,710 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown initiated...
 2022-04-01 16:58:37,719 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown completed.
+2022-04-01 17:10:53,766 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17.0.2 on DESKTOP-20K7905 with PID 15800 (D:\real\ShoppingSystem\target\classes started by Myboo in D:\real\ShoppingSystem)
+2022-04-01 17:10:53,768 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-04-01 17:10:53,769 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
+2022-04-01 17:10:53,830 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-01 17:10:53,830 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-01 17:10:54,641 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-01 17:10:54,722 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 72 ms. Found 15 JPA repository interfaces.
+2022-04-01 17:10:55,209 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat initialized with port(s): 9090 (http)
+2022-04-01 17:10:55,216 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing ProtocolHandler ["http-nio-9090"]
+2022-04-01 17:10:55,216 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting service [Tomcat]
+2022-04-01 17:10:55,216 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-01 17:10:55,281 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing Spring embedded WebApplicationContext
+2022-04-01 17:10:55,282 INFO             [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 1451 ms
+2022-04-01 17:10:55,393 INFO             [restartedMain] org.hibernate.jpa.internal.util.LogHelper                                           : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-01 17:10:55,416 INFO             [restartedMain] org.hibernate.Version                                                               : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-01 17:10:55,486 INFO             [restartedMain] org.hibernate.annotations.common.reflection.java.JavaReflectionManager              : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-01 17:10:55,533 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Starting...
+2022-04-01 17:10:55,642 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Start completed.
+2022-04-01 17:10:55,651 INFO             [restartedMain] org.hibernate.dialect.Dialect                                                       : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-04-01 17:10:55,752 INFO             dMain] org.hibernate.search.mapper.orm.bootstrap.impl.HibernateSearchPreIntegrationService$Initiator: HSEARCH000034: Hibernate Search version 6.1.3.Final
+2022-04-01 17:10:56,098 INFO             [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator         : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-01 17:10:56,175 WARN             [restartedMain] org.hibernate.search.backend.lucene.impl.LuceneBackendFactory                       : HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+2022-04-01 17:10:56,271 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-01 17:10:56,277 WARN             [restartedMain] org.springframework.context.support.AbstractApplicationContext                      : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'warehouseApplication': Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.NoSuchBeanDefinitionException: No qualifying bean of type 'org.springframework.security.crypto.password.PasswordEncoder' available: expected at least 1 bean which qualifies as autowire candidate. Dependency annotations: {}
+2022-04-01 17:10:56,278 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-01 17:10:56,287 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown initiated...
+2022-04-01 17:10:56,298 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown completed.
+2022-04-01 17:10:56,300 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Stopping service [Tomcat]
+2022-04-01 17:10:56,312 INFO             startedMain] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-01 17:10:56,334 ERROR            [restartedMain] org.springframework.boot.diagnostics.LoggingFailureAnalysisReporter                 : 
+
+***************************
+APPLICATION FAILED TO START
+***************************
+
+Description:
+
+Parameter 0 of constructor in uz.master.warehouse.WarehouseApplication required a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' that could not be found.
+
+
+Action:
+
+Consider defining a bean of type 'org.springframework.security.crypto.password.PasswordEncoder' in your configuration.
+
+2022-04-01 17:11:46,539 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17.0.2 on DESKTOP-20K7905 with PID 2988 (D:\real\ShoppingSystem\target\classes started by Myboo in D:\real\ShoppingSystem)
+2022-04-01 17:11:46,540 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-04-01 17:11:46,541 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
+2022-04-01 17:11:46,593 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-01 17:11:46,594 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-01 17:11:47,194 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-01 17:11:47,267 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 66 ms. Found 15 JPA repository interfaces.
+2022-04-01 17:11:47,795 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat initialized with port(s): 9090 (http)
+2022-04-01 17:11:47,802 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing ProtocolHandler ["http-nio-9090"]
+2022-04-01 17:11:47,803 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting service [Tomcat]
+2022-04-01 17:11:47,803 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-01 17:11:47,871 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing Spring embedded WebApplicationContext
+2022-04-01 17:11:47,871 INFO             [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 1276 ms
+2022-04-01 17:11:47,989 INFO             [restartedMain] org.hibernate.jpa.internal.util.LogHelper                                           : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-01 17:11:48,015 INFO             [restartedMain] org.hibernate.Version                                                               : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-01 17:11:48,082 INFO             [restartedMain] org.hibernate.annotations.common.reflection.java.JavaReflectionManager              : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-01 17:11:48,129 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Starting...
+2022-04-01 17:11:48,234 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Start completed.
+2022-04-01 17:11:48,242 INFO             [restartedMain] org.hibernate.dialect.Dialect                                                       : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-04-01 17:11:48,347 INFO             dMain] org.hibernate.search.mapper.orm.bootstrap.impl.HibernateSearchPreIntegrationService$Initiator: HSEARCH000034: Hibernate Search version 6.1.3.Final
+2022-04-01 17:11:48,730 INFO             [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator         : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-01 17:11:48,797 WARN             [restartedMain] org.hibernate.search.backend.lucene.impl.LuceneBackendFactory                       : HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+2022-04-01 17:11:48,902 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-01 17:11:49,236 WARN             startedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-01 17:11:49,516 ERROR            [restartedMain] org.hibernate.hql.internal.ast.ErrorTracker                                         : line 1:92: expecting EQ, found 'c'
+2022-04-01 17:11:49,518 ERROR            [restartedMain] org.hibernate.hql.internal.ast.ErrorTracker                                         : line 1:92: expecting EQ, found 'c'
+antlr.MismatchedTokenException: expecting EQ, found 'c'
+	at antlr.Parser.match(Parser.java:211)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.assignment(HqlBaseParser.java:568)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.setClause(HqlBaseParser.java:505)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.updateStatement(HqlBaseParser.java:248)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.statement(HqlBaseParser.java:183)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:294)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:189)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:113)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:73)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:162)
+	at org.hibernate.internal.AbstractSharedSessionContract.getQueryPlan(AbstractSharedSessionContract.java:636)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:748)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:114)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362)
+	at jdk.proxy4/jdk.proxy4.$Proxy133.createQuery(Unknown Source)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:90)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.<init>(SimpleJpaQuery.java:66)
+	at org.springframework.data.jpa.repository.query.JpaQueryFactory.fromMethodWithQueryString(JpaQueryFactory.java:51)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$DeclaredQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:163)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:252)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:87)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:102)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:94)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1061)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:96)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:86)
+	at java.base/java.util.Optional.map(Optional.java:260)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:86)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:364)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:322)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230)
+	at org.springframework.data.util.Lazy.get(Lazy.java:114)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:328)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at uz.master.warehouse.WarehouseApplication.main(WarehouseApplication.java:31)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+2022-04-01 17:11:49,521 WARN             [restartedMain] org.springframework.context.support.AbstractApplicationContext                      : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsController' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\controller\GroupProductsController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\product\GroupProductsService.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inComeProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\products\InComeProductsService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+2022-04-01 17:11:49,523 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-01 17:11:49,530 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown initiated...
+2022-04-01 17:11:49,533 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown completed.
+2022-04-01 17:11:49,535 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Stopping service [Tomcat]
+2022-04-01 17:11:49,545 INFO             startedMain] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-01 17:11:49,561 ERROR            [restartedMain] org.springframework.boot.SpringApplication                                          : Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsController' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\controller\GroupProductsController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\product\GroupProductsService.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inComeProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\products\InComeProductsService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at uz.master.warehouse.WarehouseApplication.main(WarehouseApplication.java:31)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\product\GroupProductsService.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inComeProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\products\InComeProductsService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 24 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inComeProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\products\InComeProductsService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 38 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 52 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:106)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:94)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1061)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:96)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:86)
+	at java.base/java.util.Optional.map(Optional.java:260)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:86)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:364)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:322)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230)
+	at org.springframework.data.util.Lazy.get(Lazy.java:114)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:328)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 63 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:96)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.<init>(SimpleJpaQuery.java:66)
+	at org.springframework.data.jpa.repository.query.JpaQueryFactory.fromMethodWithQueryString(JpaQueryFactory.java:51)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$DeclaredQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:163)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:252)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:87)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:102)
+	... 85 common frames omitted
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.internal.ast.QuerySyntaxException: expecting EQ, found 'c' near line 1, column 92 [update uz.master.warehouse.entity.products.InComeProducts c set c.deleted =  true,c. where c.id =?1]
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:181)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:188)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:757)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:114)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362)
+	at jdk.proxy4/jdk.proxy4.$Proxy133.createQuery(Unknown Source)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:90)
+	... 91 common frames omitted
+Caused by: org.hibernate.hql.internal.ast.QuerySyntaxException: expecting EQ, found 'c' near line 1, column 92 [update uz.master.warehouse.entity.products.InComeProducts c set c.deleted =  true,c. where c.id =?1]
+	at org.hibernate.hql.internal.ast.QuerySyntaxException.convert(QuerySyntaxException.java:74)
+	at org.hibernate.hql.internal.ast.ErrorTracker.throwQueryException(ErrorTracker.java:93)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:301)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:189)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:113)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:73)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:162)
+	at org.hibernate.internal.AbstractSharedSessionContract.getQueryPlan(AbstractSharedSessionContract.java:636)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:748)
+	... 99 common frames omitted
+2022-04-01 17:12:54,988 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17.0.2 on DESKTOP-20K7905 with PID 9220 (D:\real\ShoppingSystem\target\classes started by Myboo in D:\real\ShoppingSystem)
+2022-04-01 17:12:54,989 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-04-01 17:12:54,990 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
+2022-04-01 17:12:55,042 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-01 17:12:55,043 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-01 17:12:55,674 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-01 17:12:55,761 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 77 ms. Found 15 JPA repository interfaces.
+2022-04-01 17:12:56,312 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat initialized with port(s): 9090 (http)
+2022-04-01 17:12:56,322 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing ProtocolHandler ["http-nio-9090"]
+2022-04-01 17:12:56,322 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting service [Tomcat]
+2022-04-01 17:12:56,322 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-01 17:12:56,393 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing Spring embedded WebApplicationContext
+2022-04-01 17:12:56,394 INFO             [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 1351 ms
+2022-04-01 17:12:56,515 INFO             [restartedMain] org.hibernate.jpa.internal.util.LogHelper                                           : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-01 17:12:56,543 INFO             [restartedMain] org.hibernate.Version                                                               : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-01 17:12:56,619 INFO             [restartedMain] org.hibernate.annotations.common.reflection.java.JavaReflectionManager              : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-01 17:12:56,673 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Starting...
+2022-04-01 17:12:56,779 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Start completed.
+2022-04-01 17:12:56,787 INFO             [restartedMain] org.hibernate.dialect.Dialect                                                       : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-04-01 17:12:56,896 INFO             dMain] org.hibernate.search.mapper.orm.bootstrap.impl.HibernateSearchPreIntegrationService$Initiator: HSEARCH000034: Hibernate Search version 6.1.3.Final
+2022-04-01 17:12:57,349 INFO             [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator         : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-01 17:12:57,418 WARN             [restartedMain] org.hibernate.search.backend.lucene.impl.LuceneBackendFactory                       : HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+2022-04-01 17:12:57,516 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-01 17:12:57,888 WARN             startedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-01 17:12:58,181 ERROR            [restartedMain] org.hibernate.hql.internal.ast.ErrorTracker                                         : line 1:92: expecting EQ, found 'c'
+2022-04-01 17:12:58,182 ERROR            [restartedMain] org.hibernate.hql.internal.ast.ErrorTracker                                         : line 1:92: expecting EQ, found 'c'
+antlr.MismatchedTokenException: expecting EQ, found 'c'
+	at antlr.Parser.match(Parser.java:211)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.assignment(HqlBaseParser.java:568)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.setClause(HqlBaseParser.java:505)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.updateStatement(HqlBaseParser.java:248)
+	at org.hibernate.hql.internal.antlr.HqlBaseParser.statement(HqlBaseParser.java:183)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:294)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:189)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:113)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:73)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:162)
+	at org.hibernate.internal.AbstractSharedSessionContract.getQueryPlan(AbstractSharedSessionContract.java:636)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:748)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:114)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362)
+	at jdk.proxy4/jdk.proxy4.$Proxy133.createQuery(Unknown Source)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:90)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.<init>(SimpleJpaQuery.java:66)
+	at org.springframework.data.jpa.repository.query.JpaQueryFactory.fromMethodWithQueryString(JpaQueryFactory.java:51)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$DeclaredQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:163)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:252)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:87)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:102)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:94)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1061)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:96)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:86)
+	at java.base/java.util.Optional.map(Optional.java:260)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:86)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:364)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:322)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230)
+	at org.springframework.data.util.Lazy.get(Lazy.java:114)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:328)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at uz.master.warehouse.WarehouseApplication.main(WarehouseApplication.java:31)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+2022-04-01 17:12:58,186 WARN             [restartedMain] org.springframework.context.support.AbstractApplicationContext                      : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsController' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\controller\GroupProductsController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\product\GroupProductsService.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inComeProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\products\InComeProductsService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+2022-04-01 17:12:58,189 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-01 17:12:58,196 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown initiated...
+2022-04-01 17:12:58,198 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown completed.
+2022-04-01 17:12:58,200 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Stopping service [Tomcat]
+2022-04-01 17:12:58,212 INFO             startedMain] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-01 17:12:58,225 ERROR            [restartedMain] org.springframework.boot.SpringApplication                                          : Application run failed
+org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsController' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\controller\GroupProductsController.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\product\GroupProductsService.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inComeProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\products\InComeProductsService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at uz.master.warehouse.WarehouseApplication.main(WarehouseApplication.java:31)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'groupProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\product\GroupProductsService.class]: Unsatisfied dependency expressed through constructor parameter 3; nested exception is org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inComeProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\products\InComeProductsService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 24 common frames omitted
+Caused by: org.springframework.beans.factory.UnsatisfiedDependencyException: Error creating bean with name 'inComeProductsService' defined in file [D:\real\ShoppingSystem\target\classes\uz\master\warehouse\services\products\InComeProductsService.class]: Unsatisfied dependency expressed through constructor parameter 0; nested exception is org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:800)
+	at org.springframework.beans.factory.support.ConstructorResolver.autowireConstructor(ConstructorResolver.java:229)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.autowireConstructor(AbstractAutowireCapableBeanFactory.java:1372)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1222)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 38 common frames omitted
+Caused by: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'inComeProductsRepository' defined in uz.master.warehouse.repository.products.InComeProductsRepository defined in @EnableJpaRepositories declared on JpaRepositoriesRegistrar.EnableJpaRepositoriesConfiguration: Invocation of init method failed; nested exception is org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1804)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:620)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.config.DependencyDescriptor.resolveCandidate(DependencyDescriptor.java:276)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.doResolveDependency(DefaultListableBeanFactory.java:1389)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.resolveDependency(DefaultListableBeanFactory.java:1309)
+	at org.springframework.beans.factory.support.ConstructorResolver.resolveAutowiredArgument(ConstructorResolver.java:887)
+	at org.springframework.beans.factory.support.ConstructorResolver.createArgumentArray(ConstructorResolver.java:791)
+	... 52 common frames omitted
+Caused by: org.springframework.data.repository.query.QueryCreationException: Could not create query for public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)! Reason: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!; nested exception is java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.data.repository.query.QueryCreationException.create(QueryCreationException.java:101)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:106)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$mapMethodsToQuery$1(QueryExecutorMethodInterceptor.java:94)
+	at java.base/java.util.stream.ReferencePipeline$3$1.accept(ReferencePipeline.java:197)
+	at java.base/java.util.Iterator.forEachRemaining(Iterator.java:133)
+	at java.base/java.util.Collections$UnmodifiableCollection$1.forEachRemaining(Collections.java:1061)
+	at java.base/java.util.Spliterators$IteratorSpliterator.forEachRemaining(Spliterators.java:1845)
+	at java.base/java.util.stream.AbstractPipeline.copyInto(AbstractPipeline.java:509)
+	at java.base/java.util.stream.AbstractPipeline.wrapAndCopyInto(AbstractPipeline.java:499)
+	at java.base/java.util.stream.ReduceOps$ReduceOp.evaluateSequential(ReduceOps.java:921)
+	at java.base/java.util.stream.AbstractPipeline.evaluate(AbstractPipeline.java:234)
+	at java.base/java.util.stream.ReferencePipeline.collect(ReferencePipeline.java:682)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.mapMethodsToQuery(QueryExecutorMethodInterceptor.java:96)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lambda$new$0(QueryExecutorMethodInterceptor.java:86)
+	at java.base/java.util.Optional.map(Optional.java:260)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.<init>(QueryExecutorMethodInterceptor.java:86)
+	at org.springframework.data.repository.core.support.RepositoryFactorySupport.getRepository(RepositoryFactorySupport.java:364)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.lambda$afterPropertiesSet$5(RepositoryFactoryBeanSupport.java:322)
+	at org.springframework.data.util.Lazy.getNullable(Lazy.java:230)
+	at org.springframework.data.util.Lazy.get(Lazy.java:114)
+	at org.springframework.data.repository.core.support.RepositoryFactoryBeanSupport.afterPropertiesSet(RepositoryFactoryBeanSupport.java:328)
+	at org.springframework.data.jpa.repository.support.JpaRepositoryFactoryBean.afterPropertiesSet(JpaRepositoryFactoryBean.java:144)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.invokeInitMethods(AbstractAutowireCapableBeanFactory.java:1863)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.initializeBean(AbstractAutowireCapableBeanFactory.java:1800)
+	... 63 common frames omitted
+Caused by: java.lang.IllegalArgumentException: Validation failed for query for method public abstract void uz.master.warehouse.repository.products.InComeProductsRepository.deleteIncome(java.lang.Long)!
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:96)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.<init>(SimpleJpaQuery.java:66)
+	at org.springframework.data.jpa.repository.query.JpaQueryFactory.fromMethodWithQueryString(JpaQueryFactory.java:51)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$DeclaredQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:163)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$CreateIfNotFoundQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:252)
+	at org.springframework.data.jpa.repository.query.JpaQueryLookupStrategy$AbstractQueryLookupStrategy.resolveQuery(JpaQueryLookupStrategy.java:87)
+	at org.springframework.data.repository.core.support.QueryExecutorMethodInterceptor.lookupQuery(QueryExecutorMethodInterceptor.java:102)
+	... 85 common frames omitted
+Caused by: java.lang.IllegalArgumentException: org.hibernate.hql.internal.ast.QuerySyntaxException: expecting EQ, found 'c' near line 1, column 92 [update uz.master.warehouse.entity.products.InComeProducts c set c.deleted =  true,c. where c.id =?1]
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:138)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:181)
+	at org.hibernate.internal.ExceptionConverterImpl.convert(ExceptionConverterImpl.java:188)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:757)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:114)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.orm.jpa.ExtendedEntityManagerCreator$ExtendedEntityManagerInvocationHandler.invoke(ExtendedEntityManagerCreator.java:362)
+	at jdk.proxy4/jdk.proxy4.$Proxy133.createQuery(Unknown Source)
+	at org.springframework.data.jpa.repository.query.SimpleJpaQuery.validateQuery(SimpleJpaQuery.java:90)
+	... 91 common frames omitted
+Caused by: org.hibernate.hql.internal.ast.QuerySyntaxException: expecting EQ, found 'c' near line 1, column 92 [update uz.master.warehouse.entity.products.InComeProducts c set c.deleted =  true,c. where c.id =?1]
+	at org.hibernate.hql.internal.ast.QuerySyntaxException.convert(QuerySyntaxException.java:74)
+	at org.hibernate.hql.internal.ast.ErrorTracker.throwQueryException(ErrorTracker.java:93)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.parse(QueryTranslatorImpl.java:301)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.doCompile(QueryTranslatorImpl.java:189)
+	at org.hibernate.hql.internal.ast.QueryTranslatorImpl.compile(QueryTranslatorImpl.java:144)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:113)
+	at org.hibernate.engine.query.spi.HQLQueryPlan.<init>(HQLQueryPlan.java:73)
+	at org.hibernate.engine.query.spi.QueryPlanCache.getHQLQueryPlan(QueryPlanCache.java:162)
+	at org.hibernate.internal.AbstractSharedSessionContract.getQueryPlan(AbstractSharedSessionContract.java:636)
+	at org.hibernate.internal.AbstractSharedSessionContract.createQuery(AbstractSharedSessionContract.java:748)
+	... 99 common frames omitted
+2022-04-01 17:13:36,969 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17.0.2 on DESKTOP-20K7905 with PID 1084 (D:\real\ShoppingSystem\target\classes started by Myboo in D:\real\ShoppingSystem)
+2022-04-01 17:13:36,971 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-04-01 17:13:36,972 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
+2022-04-01 17:13:37,022 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-01 17:13:37,023 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-01 17:13:38,039 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-01 17:13:38,176 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 121 ms. Found 15 JPA repository interfaces.
+2022-04-01 17:13:38,854 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat initialized with port(s): 9090 (http)
+2022-04-01 17:13:38,861 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing ProtocolHandler ["http-nio-9090"]
+2022-04-01 17:13:38,861 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting service [Tomcat]
+2022-04-01 17:13:38,862 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-01 17:13:38,962 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing Spring embedded WebApplicationContext
+2022-04-01 17:13:38,962 INFO             [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 1939 ms
+2022-04-01 17:13:39,137 INFO             [restartedMain] org.hibernate.jpa.internal.util.LogHelper                                           : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-01 17:13:39,164 INFO             [restartedMain] org.hibernate.Version                                                               : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-01 17:13:39,236 INFO             [restartedMain] org.hibernate.annotations.common.reflection.java.JavaReflectionManager              : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-01 17:13:39,282 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Starting...
+2022-04-01 17:13:39,397 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Start completed.
+2022-04-01 17:13:39,415 INFO             [restartedMain] org.hibernate.dialect.Dialect                                                       : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-04-01 17:13:39,714 INFO             dMain] org.hibernate.search.mapper.orm.bootstrap.impl.HibernateSearchPreIntegrationService$Initiator: HSEARCH000034: Hibernate Search version 6.1.3.Final
+2022-04-01 17:13:40,747 INFO             [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator         : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-01 17:13:40,833 WARN             [restartedMain] org.hibernate.search.backend.lucene.impl.LuceneBackendFactory                       : HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+2022-04-01 17:13:40,951 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-01 17:13:41,294 WARN             startedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-01 17:13:41,793 INFO             [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain                         : Will not secure any request
+2022-04-01 17:13:42,559 INFO             [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer            : LiveReload server is running on port 35729
+2022-04-01 17:13:42,579 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting ProtocolHandler ["http-nio-9090"]
+2022-04-01 17:13:42,599 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat started on port(s): 9090 (http) with context path ''
+2022-04-01 17:13:42,609 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Started WarehouseApplication in 5.899 seconds (JVM running for 6.621)
+2022-04-01 17:13:47,826 INFO             [SpringApplicationShutdownHook] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean        : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-01 17:13:47,833 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown initiated...
+2022-04-01 17:13:47,836 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown completed.

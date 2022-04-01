@@ -18,6 +18,10 @@ import javax.servlet.http.HttpServletRequest;
 @RequiredArgsConstructor
 public class AuthController extends AbstractController {
     private final AuthUserService authUserService;
+    @GetMapping(PATH+"/auth/profile")
+    public ResponseEntity<DataDto<AuthDto>>profile(){
+        return new ResponseEntity<>(authUserService.get(),HttpStatus.OK);
+    }
 
     @PostMapping(PATH + "/auth/login")
     public ResponseEntity<DataDto<SessionDto>> login(@RequestBody AuthUserDto loginDto) {

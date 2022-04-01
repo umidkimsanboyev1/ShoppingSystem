@@ -84,4 +84,6 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
         AppErrorDto appError = new AppErrorDto(HttpStatus.BAD_REQUEST,"Bad Request",request.getRequestURL().toString());
         new ObjectMapper().writeValue(response.getOutputStream(), appError);
     }
+
+
 }

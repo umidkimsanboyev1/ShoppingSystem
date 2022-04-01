@@ -16,16 +16,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.dto.auth.AuthCreateDto;
-import uz.master.warehouse.dto.auth.AuthUpdateDto;
-import uz.master.warehouse.dto.auth.AuthUserDto;
-import uz.master.warehouse.dto.auth.SessionDto;
+import uz.master.warehouse.dto.auth.*;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.auth.AuthUser;
@@ -52,6 +50,14 @@ public class AuthUserService implements UserDetailsService {
     private final ObjectMapper objectMapper;
     private final ServerProperties serverProperties;
    private PasswordEncoder passwordEncoder;
+
+
+   public DataDto<AuthDto>get(){
+       String principal = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+       AuthUser authUser = repository.findByUsernameAndDeletedFalse(principal).get();
+       AuthDto authDto = mapper.toDto(authUser);
+       return new DataDto<>(authDto);
+   }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -157,4 +163,7 @@ public class AuthUserService implements UserDetailsService {
                 .issuedAt(System.currentTimeMillis())
                 .build());
     }
+
+
+
 }
