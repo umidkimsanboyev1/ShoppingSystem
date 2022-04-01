@@ -23,7 +23,7 @@ public interface GroupProductsRepository extends JpaRepository<GroupProducts, Lo
 
     List<GroupProducts> findAllByDeletedFalse();
 
-    @Query(value = "select  count(*) from group_products where id=?1", nativeQuery = true)
+    @Query(value = "select  count(*) from group_products where not deleted and id=?1", nativeQuery = true)
     int existsGroupProduct(Long productId);
 
 }

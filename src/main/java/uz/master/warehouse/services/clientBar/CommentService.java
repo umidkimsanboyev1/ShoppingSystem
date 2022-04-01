@@ -3,6 +3,7 @@ package uz.master.warehouse.services.clientBar;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
@@ -36,11 +37,11 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
     public DataDto<Long> create(CommentCreateDto createDto) {
         boolean existsBar = clientBarRepository.existsByIdAndDeletedFalse( createDto.getClientBarId() );
         if (!existsBar) {
-            return new DataDto<>( new AppErrorDto( "Client Bar", HttpStatus.NOT_FOUND ) );
+            return new DataDto<>( new AppErrorDto( "Client bar not found", HttpStatus.NOT_FOUND ) );
         }
 
         Comment comment = mapper.fromCreateDto( createDto );
-        String username = ((User) SecurityContextHolder.getContext().getAuthentication().getPrincipal()).getUsername();
+        String username =  (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<AuthUser> optionalAuthUser = authUserRepository.findByUsernameAndDeletedFalse( username );
         comment.setAuthorId( optionalAuthUser.get().getId() );
         repository.save( comment );
@@ -49,8 +50,12 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
 
     @Override
     public DataDto<Void> delete(Long id) {
-        repository.deleteById(id  );
-        return new DataDto<>();
+        Optional<Comment> optional = repository.findByIdAndDeletedFalse( id );
+        if(optional.isEmpty()){
+            return new DataDto<>( new AppErrorDto( "Comment not found", HttpStatus.NOT_FOUND ) );
+        }
+        repository.deleteComment(id  );
+        return new DataDto<>(true);
     }
 
 

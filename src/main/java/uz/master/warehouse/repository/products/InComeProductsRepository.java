@@ -16,6 +16,7 @@ public interface InComeProductsRepository extends JpaRepository<InComeProducts, 
     int existsByProduct(Long productId);
 
 
+
     @Query(value = "select  count(*) from group_products where id=?1", nativeQuery = true)
     int existsGroupProduct(Long productId);
 
@@ -24,4 +25,15 @@ public interface InComeProductsRepository extends JpaRepository<InComeProducts, 
 
 
     List<InComeProducts> findAllByGroupProductsId(Long groupProductsId);
+
+    @Transactional
+    @Modifying
+    @Query(value = "update InComeProducts c set c.deleted =  true,c. where c.id =?1")
+    void deleteIncome(Long id);
+
+     @Query(value = "select count(*) from in_come_products where id=?1 and not deleted",nativeQuery = true)
+    Long findbyIncome(Long id);
+
+    @Query(value = "select  from in_come_products where id=?1 and not deleted",nativeQuery = true)
+    Optional<InComeProducts> findByIncome(Long id);
 }

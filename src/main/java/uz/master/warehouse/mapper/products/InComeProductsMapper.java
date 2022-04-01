@@ -2,6 +2,7 @@ package uz.master.warehouse.mapper.products;
 
 import org.mapstruct.Mapper;
 import org.mapstruct.MappingTarget;
+import org.mapstruct.NullValuePropertyMappingStrategy;
 import org.springframework.stereotype.Component;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsCreateDto;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsDto;
@@ -12,7 +13,7 @@ import uz.master.warehouse.mapper.BaseMapper;
 import java.util.List;
 
 @Component
-@Mapper(componentModel = "spring")
+@Mapper(componentModel = "spring", nullValuePropertyMappingStrategy = NullValuePropertyMappingStrategy.IGNORE)
 public interface InComeProductsMapper extends BaseMapper<InComeProducts, InComeProductsDto, InComeProductsCreateDto, InComeProductsUpdateDto> {
     @Override
     InComeProductsDto toDto(InComeProducts inComeProducts);
