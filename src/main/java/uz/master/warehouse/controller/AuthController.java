@@ -2,16 +2,17 @@ package uz.master.warehouse.controller;
 
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.*;
 import uz.master.warehouse.controller.base.AbstractController;
-import uz.master.warehouse.dto.auth.AuthCreateDto;
-import uz.master.warehouse.dto.auth.AuthUpdateDto;
-import uz.master.warehouse.dto.auth.AuthUserDto;
-import uz.master.warehouse.dto.auth.SessionDto;
+import uz.master.warehouse.dto.auth.*;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.auth.AuthUserService;
+
+import javax.servlet.http.HttpServletRequest;
 
 @RestController
 @RequiredArgsConstructor
@@ -23,9 +24,15 @@ public class AuthController extends AbstractController {
         return new ResponseEntity<>(authUserService.login(loginDto),HttpStatus.OK);
     }
 
+    @Secured(value = "ADMIN")
     @PostMapping(PATH+"/auth/create")
     public ResponseEntity<DataDto<Long>>create(@RequestBody AuthCreateDto dto){
         return new ResponseEntity<>(authUserService.createUser(dto), HttpStatus.OK);
+    }
+
+    @PostMapping(PATH+"/auth/refresh")
+    public ResponseEntity<DataDto<SessionDto>>refreshToken(@RequestBody AuthRefreshToken token, HttpServletRequest request){
+        return new ResponseEntity<>(authUserService.refreshToken(token.getToken(),request),HttpStatus.OK);
     }
 
     @PatchMapping(PATH+"/auth/update")

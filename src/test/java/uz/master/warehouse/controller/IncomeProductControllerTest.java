@@ -1,4 +1,4 @@
-package uz.master.warehouse.controller.incomProduct;
+package uz.master.warehouse.controller;
 
 import org.junit.jupiter.api.Test;
 

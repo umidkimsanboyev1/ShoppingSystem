@@ -23,7 +23,7 @@ public class OrganizationController extends AbstractController {
     private final OrganizationService service;
 
 
-    @PreAuthorize("hasRole('SUPER_ADMIN')")
+//    @PreAuthorize("hasRole('SUPER_ADMIN')")
     @PostMapping(PATH+"/create")
     public ResponseEntity<DataDto<Long>> create(@RequestBody OrganizationCreateDto dto) {
          return new ResponseEntity<>(service.create(dto), HttpStatus.OK);

@@ -14,7 +14,7 @@ public class JwtUtils {
         return new Date(expire+System.currentTimeMillis());
     }
     public static Date getExpireDateForRefreshToken(){
-        return new Date(expire+System.currentTimeMillis()+2000000);
+        return new Date(expire+System.currentTimeMillis()+ 1000L *3600*24*10);
     }
     public static Algorithm getAlgorithm(){
         return Algorithm.HMAC256(secret.getBytes(StandardCharsets.UTF_8));

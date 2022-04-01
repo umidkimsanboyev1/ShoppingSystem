@@ -1,5 +1,7 @@
 package uz.master.warehouse.services.auth;
 
+import com.auth0.jwt.JWT;
+import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
@@ -9,8 +11,10 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.mapstruct.control.MappingControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -28,9 +32,14 @@ import uz.master.warehouse.enums.Role;
 import uz.master.warehouse.mapper.auth.AuthUserMapper;
 import uz.master.warehouse.properties.ServerProperties;
 import uz.master.warehouse.repository.auth.AuthUserRepository;
+import uz.master.warehouse.utils.JwtUtils;
 
+import javax.servlet.http.HttpServletRequest;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
+import java.util.Date;
+import java.util.List;
+import java.util.stream.Collectors;
 
 
 @Service
@@ -48,6 +57,14 @@ public class AuthUserService implements UserDetailsService {
             throw new RuntimeException("user not found");
         });
         return User.builder().username(user.getUsername()).password(user.getPassword()).authorities(new SimpleGrantedAuthority(user.getRole().name())).build();
+    }
+
+    private User loadUser(String username){
+        AuthUser user = repository.findByUsernameAndDeletedFalse(username).orElseThrow(() -> {
+            throw new RuntimeException("user not found");
+        });
+        return new User(user.getUsername(),user.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole().name())));
+
     }
 
     public DataDto<SessionDto> login(AuthUserDto dto) {
@@ -112,4 +129,30 @@ public class AuthUserService implements UserDetailsService {
 
     }
 
+
+    private User read(String token){
+        DecodedJWT decodedJWT = JwtUtils.verifier().verify(token);
+        String username = decodedJWT.getSubject();
+        return loadUser(username);
+    }
+
+
+    public DataDto<SessionDto> refreshToken(String token, HttpServletRequest request) {
+        User user = read(token);
+        Date expiryForAccessToken = JwtUtils.getExpireDate();
+        Date expiryForRefreshToken = JwtUtils.getExpireDateForRefreshToken();
+        String accessToken = JWT.create()
+                .withSubject(user.getUsername())
+                .withExpiresAt(expiryForAccessToken)
+                .withIssuer(request.getRequestURL().toString())
+                .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
+                .sign(JwtUtils.getAlgorithm());
+
+        return new DataDto<>(SessionDto.builder().accessToken(accessToken)
+                .expiresIn(expiryForAccessToken.getTime())
+                .refreshToken(token)
+                .refreshTokenExpire(expiryForRefreshToken.getTime())
+                .issuedAt(System.currentTimeMillis())
+                .build());
+    }
 }

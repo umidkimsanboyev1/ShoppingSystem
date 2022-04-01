@@ -8,4 +8,7 @@ import uz.master.warehouse.dto.GenericDto;
 @Getter
 @Setter
 public class OutComeProductsUpdateDto extends GenericDto {
+
+
+
 }
