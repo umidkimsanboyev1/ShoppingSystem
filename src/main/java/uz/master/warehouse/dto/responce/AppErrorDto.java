@@ -48,7 +48,7 @@ public class AppErrorDto implements BaseDto {
     }
 
     public AppErrorDto(String error,HttpStatus internalServerError) {
-        this.message=getMessage();
+        this.message=error;
         this.timestamp = Timestamp.valueOf(LocalDateTime.now());
         this.status=internalServerError.value();
         this.code=internalServerError.getReasonPhrase();

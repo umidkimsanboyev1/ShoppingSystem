@@ -27,7 +27,6 @@ import java.io.IOException;
 import java.util.Date;
 import java.util.stream.Collectors;
 
-@Slf4j
 public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     private final AuthenticationManager authenticationManager;
 
@@ -40,12 +39,11 @@ public class CustomAuthenticationFilter extends UsernamePasswordAuthenticationFi
     public Authentication attemptAuthentication(HttpServletRequest request, HttpServletResponse response) throws AuthenticationException {
         try {
             AuthUserDto loginDto = new ObjectMapper().readValue(request.getReader(), AuthUserDto.class);
-            log.info("Username is: {}", loginDto.getUsername());
             UsernamePasswordAuthenticationToken authenticationToken =
                     new UsernamePasswordAuthenticationToken(loginDto.getUsername(), loginDto.getPassword());
             return authenticationManager.authenticate(authenticationToken);
         } catch (IOException e) {
-            log.error(e.getMessage(), e);
+
             throw new RuntimeException(e.getMessage(), e.getCause());
         }
     }

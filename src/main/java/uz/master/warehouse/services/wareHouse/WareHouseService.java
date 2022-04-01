@@ -3,6 +3,7 @@ package uz.master.warehouse.services.wareHouse;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.responce.DataDto;
+import uz.master.warehouse.exception.NotFoundException;
 import uz.master.warehouse.validator.warehouse.WareHouseValidator;
 import uz.master.warehouse.dto.wareHouse.WareHouseCreateDto;
 import uz.master.warehouse.dto.wareHouse.WareHouseDto;
@@ -62,7 +63,7 @@ public class WareHouseService extends AbstractService<
     @Override
     public DataDto<WareHouseDto> get(Long id) {
         WareHouse found = repository.findById(id).orElseThrow(() -> {
-            throw new RuntimeException("not found");
+            throw new NotFoundException("not found");
         });
         return new DataDto<>(mapper.toDto(found));
     }

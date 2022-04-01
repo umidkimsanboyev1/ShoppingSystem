@@ -1,4 +1,4 @@
-package uz.master.warehouse.controller.comment;
+package uz.master.warehouse.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

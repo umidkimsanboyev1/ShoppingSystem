@@ -13,7 +13,7 @@ public class OrganizationValidator implements GenericValidator<OrganizationCreat
     @Override
     public boolean validForCreate(OrganizationCreateDto createDto) {
         return (Objects.nonNull(createDto.getName())
-                && Objects.isNull(createDto.getOwnerId()));
+                && Objects.nonNull(createDto.getOwnerId()));
     }
 
     @Override

@@ -12,6 +12,7 @@ import java.time.LocalDateTime;
 @Getter
 @Setter
 public class GroupProductsUpdateDto extends GenericDto {
+
     private Long companyId;
 
     private LocalDateTime date;

@@ -12,16 +12,16 @@ public class MarketValidator implements GenericValidator<MarketCreateDto, Market
     @Override
     public boolean validForCreate(MarketCreateDto createDto) {
         return (Objects.nonNull(createDto.getOrganizationId())
-                && Objects.isNull(createDto.getName())
-                && Objects.isNull(createDto.getLocation())
-                && Objects.isNull(createDto.getOwnerId())
-                && Objects.isNull(createDto.getDescription()));
+                && Objects.nonNull(createDto.getName())
+                && Objects.nonNull(createDto.getLocation())
+                && Objects.nonNull(createDto.getOwnerId())
+                && Objects.nonNull(createDto.getDescription()));
     }
 
     @Override
     public boolean validForUpdate(MarketUpdateDto updateDto) {
         return (Objects.nonNull(updateDto.getName())
-                && Objects.isNull(updateDto.getDescription())
-                && Objects.isNull(updateDto.getLocation()));
+                && Objects.nonNull(updateDto.getDescription())
+                && Objects.nonNull(updateDto.getLocation()));
     }
 }

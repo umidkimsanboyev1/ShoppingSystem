@@ -56,4 +56,12 @@ public class ProductController {
         return new ResponseEntity<>(service.get(id), HttpStatus.OK);
 
     }
+
+
+    @PreAuthorize("hasAnyRole('ADMIN')")
+    @GetMapping("/search/{model}")
+    public ResponseEntity<DataDto<List<ProductDto>>>search(@PathVariable String model){
+        DataDto<List<ProductDto>> search1 = service.search(model);
+        return new ResponseEntity<>(search1,HttpStatus.OK);
+    }
 }
