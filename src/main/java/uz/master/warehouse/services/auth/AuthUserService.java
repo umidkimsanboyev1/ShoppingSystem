@@ -50,7 +50,7 @@ public class AuthUserService implements UserDetailsService {
     private final AuthUserRepository repository;
     private final ObjectMapper objectMapper;
     private final ServerProperties serverProperties;
-   private PasswordEncoder passwordEncoder;
+   private final PasswordEncoder passwordEncoder;
 
 
    public DataDto<AuthDto>get(){

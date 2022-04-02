@@ -30,6 +30,50 @@
 2022-04-02 14:48:15,141 INFO             [SpringApplicationShutdownHook] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean        : Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-04-02 14:48:15,148 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown initiated...
 2022-04-02 14:48:15,150 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown completed.
+2022-04-02 14:52:11,338 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17 on DESKTOP-R9AUUQJ with PID 15740 (C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem\target\classes started by Azizbek in C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem)
+2022-04-02 14:52:11,428 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-04-02 14:52:11,434 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
+2022-04-02 14:52:11,667 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-02 14:52:11,668 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-02 14:52:13,791 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-02 14:52:14,036 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 226 ms. Found 15 JPA repository interfaces.
+2022-04-02 14:52:15,268 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat initialized with port(s): 9090 (http)
+2022-04-02 14:52:15,291 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing ProtocolHandler ["http-nio-9090"]
+2022-04-02 14:52:15,292 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting service [Tomcat]
+2022-04-02 14:52:15,292 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-02 14:52:15,659 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing Spring embedded WebApplicationContext
+2022-04-02 14:52:15,660 INFO             [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 3987 ms
+2022-04-02 14:52:16,013 INFO             [restartedMain] org.hibernate.jpa.internal.util.LogHelper                                           : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-02 14:52:16,071 INFO             [restartedMain] org.hibernate.Version                                                               : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-02 14:52:16,232 INFO             [restartedMain] org.hibernate.annotations.common.reflection.java.JavaReflectionManager              : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-02 14:52:16,344 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Starting...
+2022-04-02 14:52:16,575 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Start completed.
+2022-04-02 14:52:16,600 INFO             [restartedMain] org.hibernate.dialect.Dialect                                                       : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-04-02 14:52:16,941 INFO             dMain] org.hibernate.search.mapper.orm.bootstrap.impl.HibernateSearchPreIntegrationService$Initiator: HSEARCH000034: Hibernate Search version 6.1.3.Final
+2022-04-02 14:52:17,898 INFO             [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator         : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-02 14:52:18,070 WARN             [restartedMain] org.hibernate.search.backend.lucene.impl.LuceneBackendFactory                       : HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+2022-04-02 14:52:18,360 WARN             [restartedMain] org.hibernate.search.engine.cfg.spi.ConfigurationPropertyChecker                    : HSEARCH000568: Invalid configuration passed to Hibernate Search: some properties in the given configuration are not used. There might be misspelled property keys in your configuration. Unused properties: [hibernate.search.backend.hosts]. To disable this warning, set the property 'hibernate.search.configuration_property_checking.strategy' to 'ignore'.
+2022-04-02 14:52:18,364 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-02 14:52:19,043 WARN             startedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-02 14:52:20,268 INFO             [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain                         : Will not secure any request
+2022-04-02 14:52:20,430 WARN             [restartedMain] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                                    : SQL Error: 0, SQLState: 23505
+2022-04-02 14:52:20,431 ERROR            [restartedMain] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                                    : ERROR: duplicate key value violates unique constraint "uk_t1iph3dfc25ukwcl9xemtnojn"
+  Detail: Key (username)=(admin) already exists.
+2022-04-02 14:52:22,264 INFO             [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer            : LiveReload server is running on port 35729
+2022-04-02 14:52:22,300 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting ProtocolHandler ["http-nio-9090"]
+2022-04-02 14:52:22,329 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat started on port(s): 9090 (http) with context path ''
+2022-04-02 14:52:22,350 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Started WarehouseApplication in 12.984 seconds (JVM running for 15.742)
+2022-04-02 14:53:31,067 INFO             [http-nio-9090-exec-1] org.apache.juli.logging.DirectJDKLog                                         : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-02 14:53:31,068 INFO             [http-nio-9090-exec-1] org.springframework.web.servlet.FrameworkServlet                             : Initializing Servlet 'dispatcherServlet'
+2022-04-02 14:53:31,074 INFO             [http-nio-9090-exec-1] org.springframework.web.servlet.FrameworkServlet                             : Completed initialization in 5 ms
+2022-04-02 14:53:33,575 INFO             [http-nio-9090-exec-6] org.springdoc.api.AbstractOpenApiResource                                    : Init duration for springdoc-openapi is: 1675 ms
+2022-04-02 14:55:45,533 WARN             [http-nio-9090-exec-2] org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder             : Encoded password does not look like BCrypt
+2022-04-02 14:55:45,564 WARN             [http-nio-9090-exec-1] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver     : Resolved [java.lang.NullPointerException: Cannot invoke "com.fasterxml.jackson.databind.JsonNode.toString()" because "node" is null]
+2022-04-02 14:57:26,788 WARN             [http-nio-9090-exec-8] org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder             : Encoded password does not look like BCrypt
+2022-04-02 14:57:26,793 WARN             [http-nio-9090-exec-7] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver     : Resolved [java.lang.NullPointerException: Cannot invoke "com.fasterxml.jackson.databind.JsonNode.toString()" because "node" is null]
+2022-04-02 15:02:57,078 INFO             [SpringApplicationShutdownHook] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean        : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-02 15:02:57,098 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown initiated...
+2022-04-02 15:02:57,115 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown completed.
 2022-04-02 14:49:55,543 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17.0.2 on DESKTOP-20K7905 with PID 6628 (D:\real\ShoppingSystem\target\classes started by Myboo in D:\real\ShoppingSystem)
 2022-04-02 14:49:55,544 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
 2022-04-02 14:49:55,545 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
@@ -62,3 +106,252 @@
 2022-04-02 15:00:27,576 INFO             [SpringApplicationShutdownHook] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean        : Closing JPA EntityManagerFactory for persistence unit 'default'
 2022-04-02 15:00:27,706 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown initiated...
 2022-04-02 15:00:27,723 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown completed.
+2022-04-02 15:06:48,725 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17 on DESKTOP-R9AUUQJ with PID 12240 (C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem\target\classes started by Azizbek in C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem)
+2022-04-02 15:06:48,732 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-04-02 15:06:48,734 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
+2022-04-02 15:06:48,880 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-02 15:06:48,882 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-02 15:06:50,944 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-02 15:06:51,296 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 332 ms. Found 15 JPA repository interfaces.
+2022-04-02 15:06:52,921 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat initialized with port(s): 9090 (http)
+2022-04-02 15:06:52,935 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing ProtocolHandler ["http-nio-9090"]
+2022-04-02 15:06:52,936 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting service [Tomcat]
+2022-04-02 15:06:52,937 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-02 15:06:53,236 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing Spring embedded WebApplicationContext
+2022-04-02 15:06:53,237 INFO             [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 4353 ms
+2022-04-02 15:06:53,605 INFO             [restartedMain] org.hibernate.jpa.internal.util.LogHelper                                           : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-02 15:06:53,710 INFO             [restartedMain] org.hibernate.Version                                                               : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-02 15:06:53,980 INFO             [restartedMain] org.hibernate.annotations.common.reflection.java.JavaReflectionManager              : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-02 15:06:54,123 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Starting...
+2022-04-02 15:06:54,456 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Start completed.
+2022-04-02 15:06:54,495 INFO             [restartedMain] org.hibernate.dialect.Dialect                                                       : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-04-02 15:06:54,818 INFO             dMain] org.hibernate.search.mapper.orm.bootstrap.impl.HibernateSearchPreIntegrationService$Initiator: HSEARCH000034: Hibernate Search version 6.1.3.Final
+2022-04-02 15:06:56,015 INFO             [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator         : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-02 15:06:56,247 WARN             [restartedMain] org.hibernate.search.backend.lucene.impl.LuceneBackendFactory                       : HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+2022-04-02 15:06:56,658 WARN             [restartedMain] org.hibernate.search.engine.cfg.spi.ConfigurationPropertyChecker                    : HSEARCH000568: Invalid configuration passed to Hibernate Search: some properties in the given configuration are not used. There might be misspelled property keys in your configuration. Unused properties: [hibernate.search.backend.hosts]. To disable this warning, set the property 'hibernate.search.configuration_property_checking.strategy' to 'ignore'.
+2022-04-02 15:06:56,663 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-02 15:06:57,581 WARN             startedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-02 15:06:59,178 INFO             [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain                         : Will not secure any request
+2022-04-02 15:06:59,367 WARN             [restartedMain] org.springframework.context.support.AbstractApplicationContext                      : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'run' defined in uz.master.warehouse.WarehouseApplication: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [void]: Factory method 'run' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.security.crypto.password.PasswordEncoder.encode(java.lang.CharSequence)" because "this.passwordEncoder" is null
+2022-04-02 15:06:59,382 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-02 15:06:59,405 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown initiated...
+2022-04-02 15:06:59,415 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown completed.
+2022-04-02 15:06:59,424 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Stopping service [Tomcat]
+2022-04-02 15:06:59,458 INFO             startedMain] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-02 15:06:59,513 ERROR            [restartedMain] org.springframework.boot.SpringApplication                                          : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'run' defined in uz.master.warehouse.WarehouseApplication: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [void]: Factory method 'run' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.security.crypto.password.PasswordEncoder.encode(java.lang.CharSequence)" because "this.passwordEncoder" is null
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:486)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at uz.master.warehouse.WarehouseApplication.main(WarehouseApplication.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [void]: Factory method 'run' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.security.crypto.password.PasswordEncoder.encode(java.lang.CharSequence)" because "this.passwordEncoder" is null
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 24 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.security.crypto.password.PasswordEncoder.encode(java.lang.CharSequence)" because "this.passwordEncoder" is null
+	at uz.master.warehouse.services.auth.AuthUserService.createUser(AuthUserService.java:110)
+	at uz.master.warehouse.WarehouseApplication.lambda$run$0(WarehouseApplication.java:44)
+	at uz.master.warehouse.WarehouseApplication.run(WarehouseApplication.java:46)
+	at uz.master.warehouse.WarehouseApplication$$EnhancerBySpringCGLIB$$4b3285e9.CGLIB$run$0(<generated>)
+	at uz.master.warehouse.WarehouseApplication$$EnhancerBySpringCGLIB$$4b3285e9$$FastClassBySpringCGLIB$$8e01815c.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at uz.master.warehouse.WarehouseApplication$$EnhancerBySpringCGLIB$$4b3285e9.run(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 25 common frames omitted
+2022-04-02 15:07:29,821 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17 on DESKTOP-R9AUUQJ with PID 13644 (C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem\target\classes started by Azizbek in C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem)
+2022-04-02 15:07:29,825 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-04-02 15:07:29,827 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
+2022-04-02 15:07:30,045 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-02 15:07:30,047 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-02 15:07:31,650 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-02 15:07:31,959 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 295 ms. Found 15 JPA repository interfaces.
+2022-04-02 15:07:33,155 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat initialized with port(s): 9090 (http)
+2022-04-02 15:07:33,164 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing ProtocolHandler ["http-nio-9090"]
+2022-04-02 15:07:33,165 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting service [Tomcat]
+2022-04-02 15:07:33,166 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-02 15:07:33,445 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing Spring embedded WebApplicationContext
+2022-04-02 15:07:33,447 INFO             [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 3399 ms
+2022-04-02 15:07:33,790 INFO             [restartedMain] org.hibernate.jpa.internal.util.LogHelper                                           : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-02 15:07:33,855 INFO             [restartedMain] org.hibernate.Version                                                               : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-02 15:07:34,020 INFO             [restartedMain] org.hibernate.annotations.common.reflection.java.JavaReflectionManager              : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-02 15:07:34,150 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Starting...
+2022-04-02 15:07:34,377 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Start completed.
+2022-04-02 15:07:34,414 INFO             [restartedMain] org.hibernate.dialect.Dialect                                                       : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-04-02 15:07:34,748 INFO             dMain] org.hibernate.search.mapper.orm.bootstrap.impl.HibernateSearchPreIntegrationService$Initiator: HSEARCH000034: Hibernate Search version 6.1.3.Final
+2022-04-02 15:07:35,711 INFO             [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator         : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-02 15:07:35,872 WARN             [restartedMain] org.hibernate.search.backend.lucene.impl.LuceneBackendFactory                       : HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+2022-04-02 15:07:36,159 WARN             [restartedMain] org.hibernate.search.engine.cfg.spi.ConfigurationPropertyChecker                    : HSEARCH000568: Invalid configuration passed to Hibernate Search: some properties in the given configuration are not used. There might be misspelled property keys in your configuration. Unused properties: [hibernate.search.backend.hosts]. To disable this warning, set the property 'hibernate.search.configuration_property_checking.strategy' to 'ignore'.
+2022-04-02 15:07:36,162 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-02 15:07:36,845 WARN             startedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-02 15:07:37,972 INFO             [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain                         : Will not secure any request
+2022-04-02 15:07:38,134 WARN             [restartedMain] org.springframework.context.support.AbstractApplicationContext                      : Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'run' defined in uz.master.warehouse.WarehouseApplication: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [void]: Factory method 'run' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.security.crypto.password.PasswordEncoder.encode(java.lang.CharSequence)" because "this.passwordEncoder" is null
+2022-04-02 15:07:38,149 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-02 15:07:38,172 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown initiated...
+2022-04-02 15:07:38,185 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Shutdown completed.
+2022-04-02 15:07:38,201 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Stopping service [Tomcat]
+2022-04-02 15:07:38,235 INFO             startedMain] org.springframework.boot.autoconfigure.logging.ConditionEvaluationReportLoggingListener: 
+
+Error starting ApplicationContext. To display the conditions report re-run your application with 'debug' enabled.
+2022-04-02 15:07:38,290 ERROR            [restartedMain] org.springframework.boot.SpringApplication                                          : Application run failed
+org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'run' defined in uz.master.warehouse.WarehouseApplication: Bean instantiation via factory method failed; nested exception is org.springframework.beans.BeanInstantiationException: Failed to instantiate [void]: Factory method 'run' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.security.crypto.password.PasswordEncoder.encode(java.lang.CharSequence)" because "this.passwordEncoder" is null
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:658)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiateUsingFactoryMethod(ConstructorResolver.java:486)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.instantiateUsingFactoryMethod(AbstractAutowireCapableBeanFactory.java:1352)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBeanInstance(AbstractAutowireCapableBeanFactory.java:1195)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.doCreateBean(AbstractAutowireCapableBeanFactory.java:582)
+	at org.springframework.beans.factory.support.AbstractAutowireCapableBeanFactory.createBean(AbstractAutowireCapableBeanFactory.java:542)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.lambda$doGetBean$0(AbstractBeanFactory.java:335)
+	at org.springframework.beans.factory.support.DefaultSingletonBeanRegistry.getSingleton(DefaultSingletonBeanRegistry.java:234)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.doGetBean(AbstractBeanFactory.java:333)
+	at org.springframework.beans.factory.support.AbstractBeanFactory.getBean(AbstractBeanFactory.java:208)
+	at org.springframework.beans.factory.support.DefaultListableBeanFactory.preInstantiateSingletons(DefaultListableBeanFactory.java:953)
+	at org.springframework.context.support.AbstractApplicationContext.finishBeanFactoryInitialization(AbstractApplicationContext.java:918)
+	at org.springframework.context.support.AbstractApplicationContext.refresh(AbstractApplicationContext.java:583)
+	at org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext.refresh(ServletWebServerApplicationContext.java:145)
+	at org.springframework.boot.SpringApplication.refresh(SpringApplication.java:740)
+	at org.springframework.boot.SpringApplication.refreshContext(SpringApplication.java:415)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:303)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1312)
+	at org.springframework.boot.SpringApplication.run(SpringApplication.java:1301)
+	at uz.master.warehouse.WarehouseApplication.main(WarehouseApplication.java:32)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.boot.devtools.restart.RestartLauncher.run(RestartLauncher.java:49)
+Caused by: org.springframework.beans.BeanInstantiationException: Failed to instantiate [void]: Factory method 'run' threw exception; nested exception is java.lang.NullPointerException: Cannot invoke "org.springframework.security.crypto.password.PasswordEncoder.encode(java.lang.CharSequence)" because "this.passwordEncoder" is null
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:185)
+	at org.springframework.beans.factory.support.ConstructorResolver.instantiate(ConstructorResolver.java:653)
+	... 24 common frames omitted
+Caused by: java.lang.NullPointerException: Cannot invoke "org.springframework.security.crypto.password.PasswordEncoder.encode(java.lang.CharSequence)" because "this.passwordEncoder" is null
+	at uz.master.warehouse.services.auth.AuthUserService.createUser(AuthUserService.java:110)
+	at uz.master.warehouse.WarehouseApplication.lambda$run$0(WarehouseApplication.java:44)
+	at uz.master.warehouse.WarehouseApplication.run(WarehouseApplication.java:46)
+	at uz.master.warehouse.WarehouseApplication$$EnhancerBySpringCGLIB$$7f542bf1.CGLIB$run$0(<generated>)
+	at uz.master.warehouse.WarehouseApplication$$EnhancerBySpringCGLIB$$7f542bf1$$FastClassBySpringCGLIB$$9cc1c407.invoke(<generated>)
+	at org.springframework.cglib.proxy.MethodProxy.invokeSuper(MethodProxy.java:244)
+	at org.springframework.context.annotation.ConfigurationClassEnhancer$BeanMethodInterceptor.intercept(ConfigurationClassEnhancer.java:331)
+	at uz.master.warehouse.WarehouseApplication$$EnhancerBySpringCGLIB$$7f542bf1.run(<generated>)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:77)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:568)
+	at org.springframework.beans.factory.support.SimpleInstantiationStrategy.instantiate(SimpleInstantiationStrategy.java:154)
+	... 25 common frames omitted
+2022-04-02 15:09:18,866 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17 on DESKTOP-R9AUUQJ with PID 6772 (C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem\target\classes started by Azizbek in C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem)
+2022-04-02 15:09:18,870 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-04-02 15:09:18,870 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
+2022-04-02 15:09:18,964 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-02 15:09:18,965 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-02 15:09:20,607 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-02 15:09:20,923 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 303 ms. Found 15 JPA repository interfaces.
+2022-04-02 15:09:21,929 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat initialized with port(s): 9090 (http)
+2022-04-02 15:09:21,940 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing ProtocolHandler ["http-nio-9090"]
+2022-04-02 15:09:21,941 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting service [Tomcat]
+2022-04-02 15:09:21,941 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-02 15:09:22,163 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing Spring embedded WebApplicationContext
+2022-04-02 15:09:22,163 INFO             [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 3197 ms
+2022-04-02 15:09:22,439 INFO             [restartedMain] org.hibernate.jpa.internal.util.LogHelper                                           : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-02 15:09:22,504 INFO             [restartedMain] org.hibernate.Version                                                               : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-02 15:09:22,672 INFO             [restartedMain] org.hibernate.annotations.common.reflection.java.JavaReflectionManager              : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-02 15:09:22,808 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Starting...
+2022-04-02 15:09:23,023 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Start completed.
+2022-04-02 15:09:23,043 INFO             [restartedMain] org.hibernate.dialect.Dialect                                                       : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-04-02 15:09:23,402 INFO             dMain] org.hibernate.search.mapper.orm.bootstrap.impl.HibernateSearchPreIntegrationService$Initiator: HSEARCH000034: Hibernate Search version 6.1.3.Final
+2022-04-02 15:09:24,321 INFO             [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator         : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-02 15:09:24,540 WARN             [restartedMain] org.hibernate.search.backend.lucene.impl.LuceneBackendFactory                       : HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+2022-04-02 15:09:24,884 WARN             [restartedMain] org.hibernate.search.engine.cfg.spi.ConfigurationPropertyChecker                    : HSEARCH000568: Invalid configuration passed to Hibernate Search: some properties in the given configuration are not used. There might be misspelled property keys in your configuration. Unused properties: [hibernate.search.backend.hosts]. To disable this warning, set the property 'hibernate.search.configuration_property_checking.strategy' to 'ignore'.
+2022-04-02 15:09:24,888 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-02 15:09:25,879 WARN             startedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-02 15:09:27,074 INFO             [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain                         : Will not secure any request
+2022-04-02 15:09:27,253 WARN             [restartedMain] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                                    : SQL Error: 0, SQLState: 23505
+2022-04-02 15:09:27,253 ERROR            [restartedMain] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                                    : ERROR: duplicate key value violates unique constraint "uk_t1iph3dfc25ukwcl9xemtnojn"
+  Detail: Key (username)=(admin) already exists.
+2022-04-02 15:09:29,104 INFO             [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer            : LiveReload server is running on port 35729
+2022-04-02 15:09:29,144 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting ProtocolHandler ["http-nio-9090"]
+2022-04-02 15:09:29,181 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat started on port(s): 9090 (http) with context path ''
+2022-04-02 15:09:29,207 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Started WarehouseApplication in 10.925 seconds (JVM running for 17.708)
+2022-04-02 15:09:39,487 INFO             [http-nio-9090-exec-1] org.apache.juli.logging.DirectJDKLog                                         : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-02 15:09:39,488 INFO             [http-nio-9090-exec-1] org.springframework.web.servlet.FrameworkServlet                             : Initializing Servlet 'dispatcherServlet'
+2022-04-02 15:09:39,490 INFO             [http-nio-9090-exec-1] org.springframework.web.servlet.FrameworkServlet                             : Completed initialization in 1 ms
+2022-04-02 15:09:40,105 WARN             [http-nio-9090-exec-2] org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder             : Encoded password does not look like BCrypt
+2022-04-02 15:09:40,179 WARN             [http-nio-9090-exec-1] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver     : Resolved [java.lang.NullPointerException: Cannot invoke "com.fasterxml.jackson.databind.JsonNode.toString()" because "node" is null]
+2022-04-02 15:09:46,925 INFO             [http-nio-9090-exec-9] org.springdoc.api.AbstractOpenApiResource                                    : Init duration for springdoc-openapi is: 1441 ms
+2022-04-02 15:13:01,665 WARN             [http-nio-9090-exec-6] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver     : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "SUPER": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "SUPER": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]<EOL> at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 7, column: 11] (through reference chain: uz.master.warehouse.dto.auth.AuthCreateDto["role"])]
+2022-04-02 15:15:49,417 INFO             [SpringApplicationShutdownHook] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean        : Closing JPA EntityManagerFactory for persistence unit 'default'
+2022-04-02 15:15:49,451 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown initiated...
+2022-04-02 15:15:49,473 INFO             [SpringApplicationShutdownHook] com.zaxxer.hikari.HikariDataSource                                  : HikariPool-1 - Shutdown completed.
+2022-04-02 15:16:02,878 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Starting WarehouseApplication using Java 17 on DESKTOP-R9AUUQJ with PID 13544 (C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem\target\classes started by Azizbek in C:\Users\Azizbek\Desktop\Project_Spring\Ware_house\ShoppingSystem)
+2022-04-02 15:16:02,887 DEBUG            [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Running with Spring Boot v2.6.4, Spring v5.3.16
+2022-04-02 15:16:02,888 INFO             [restartedMain] org.springframework.boot.SpringApplication                                          : No active profile set, falling back to 1 default profile: "default"
+2022-04-02 15:16:03,064 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : Devtools property defaults active! Set 'spring.devtools.add-properties' to 'false' to disable
+2022-04-02 15:16:03,065 INFO             [restartedMain] org.springframework.boot.logging.DeferredLog                                        : For additional web related logging consider setting the 'logging.level.web' property to 'DEBUG'
+2022-04-02 15:16:04,672 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2022-04-02 15:16:04,933 INFO             [restartedMain] org.springframework.data.repository.config.RepositoryConfigurationDelegate          : Finished Spring Data repository scanning in 240 ms. Found 15 JPA repository interfaces.
+2022-04-02 15:16:06,225 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat initialized with port(s): 9090 (http)
+2022-04-02 15:16:06,236 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing ProtocolHandler ["http-nio-9090"]
+2022-04-02 15:16:06,237 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting service [Tomcat]
+2022-04-02 15:16:06,237 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting Servlet engine: [Apache Tomcat/9.0.58]
+2022-04-02 15:16:06,439 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Initializing Spring embedded WebApplicationContext
+2022-04-02 15:16:06,441 INFO             [restartedMain] org.springframework.boot.web.servlet.context.ServletWebServerApplicationContext     : Root WebApplicationContext: initialization completed in 3375 ms
+2022-04-02 15:16:06,883 INFO             [restartedMain] org.hibernate.jpa.internal.util.LogHelper                                           : HHH000204: Processing PersistenceUnitInfo [name: default]
+2022-04-02 15:16:06,984 INFO             [restartedMain] org.hibernate.Version                                                               : HHH000412: Hibernate ORM core version 5.6.5.Final
+2022-04-02 15:16:07,260 INFO             [restartedMain] org.hibernate.annotations.common.reflection.java.JavaReflectionManager              : HCANN000001: Hibernate Commons Annotations {5.1.2.Final}
+2022-04-02 15:16:07,406 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Starting...
+2022-04-02 15:16:07,767 INFO             [restartedMain] com.zaxxer.hikari.HikariDataSource                                                  : HikariPool-1 - Start completed.
+2022-04-02 15:16:07,811 INFO             [restartedMain] org.hibernate.dialect.Dialect                                                       : HHH000400: Using dialect: org.hibernate.dialect.PostgreSQL10Dialect
+2022-04-02 15:16:08,599 INFO             dMain] org.hibernate.search.mapper.orm.bootstrap.impl.HibernateSearchPreIntegrationService$Initiator: HSEARCH000034: Hibernate Search version 6.1.3.Final
+2022-04-02 15:16:10,009 INFO             [restartedMain] org.hibernate.engine.transaction.jta.platform.internal.JtaPlatformInitiator         : HHH000490: Using JtaPlatform implementation: [org.hibernate.engine.transaction.jta.platform.internal.NoJtaPlatform]
+2022-04-02 15:16:10,169 WARN             [restartedMain] org.hibernate.search.backend.lucene.impl.LuceneBackendFactory                       : HSEARCH000075: Missing value for configuration property 'hibernate.search.backend.lucene_version': using LATEST (currently '8.11.1'). Context: default backend
+2022-04-02 15:16:10,525 WARN             [restartedMain] org.hibernate.search.engine.cfg.spi.ConfigurationPropertyChecker                    : HSEARCH000568: Invalid configuration passed to Hibernate Search: some properties in the given configuration are not used. There might be misspelled property keys in your configuration. Unused properties: [hibernate.search.backend.hosts]. To disable this warning, set the property 'hibernate.search.configuration_property_checking.strategy' to 'ignore'.
+2022-04-02 15:16:10,529 INFO             [restartedMain] org.springframework.orm.jpa.AbstractEntityManagerFactoryBean                        : Initialized JPA EntityManagerFactory for persistence unit 'default'
+2022-04-02 15:16:11,452 WARN             startedMain] org.springframework.boot.autoconfigure.orm.jpa.JpaBaseConfiguration$JpaWebConfiguration: spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2022-04-02 15:16:12,773 INFO             [restartedMain] org.springframework.security.web.DefaultSecurityFilterChain                         : Will not secure any request
+2022-04-02 15:16:12,969 WARN             [restartedMain] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                                    : SQL Error: 0, SQLState: 23505
+2022-04-02 15:16:12,970 ERROR            [restartedMain] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                                    : ERROR: duplicate key value violates unique constraint "uk_t1iph3dfc25ukwcl9xemtnojn"
+  Detail: Key (username)=(admin) already exists.
+2022-04-02 15:16:14,923 INFO             [restartedMain] org.springframework.boot.devtools.autoconfigure.OptionalLiveReloadServer            : LiveReload server is running on port 35729
+2022-04-02 15:16:14,959 INFO             [restartedMain] org.apache.juli.logging.DirectJDKLog                                                : Starting ProtocolHandler ["http-nio-9090"]
+2022-04-02 15:16:14,997 INFO             [restartedMain] org.springframework.boot.web.embedded.tomcat.TomcatWebServer                        : Tomcat started on port(s): 9090 (http) with context path ''
+2022-04-02 15:16:15,014 INFO             [restartedMain] org.springframework.boot.StartupInfoLogger                                          : Started WarehouseApplication in 13.201 seconds (JVM running for 16.912)
+2022-04-02 15:16:23,791 INFO             [http-nio-9090-exec-1] org.apache.juli.logging.DirectJDKLog                                         : Initializing Spring DispatcherServlet 'dispatcherServlet'
+2022-04-02 15:16:23,792 INFO             [http-nio-9090-exec-1] org.springframework.web.servlet.FrameworkServlet                             : Initializing Servlet 'dispatcherServlet'
+2022-04-02 15:16:23,795 INFO             [http-nio-9090-exec-1] org.springframework.web.servlet.FrameworkServlet                             : Completed initialization in 2 ms
+2022-04-02 15:16:24,058 WARN             [http-nio-9090-exec-1] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver     : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "SUPER": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "SUPER": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]<EOL> at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 7, column: 11] (through reference chain: uz.master.warehouse.dto.auth.AuthCreateDto["role"])]
+2022-04-02 15:16:31,305 WARN             [http-nio-9090-exec-2] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver     : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "SUPER": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "SUPER": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]<EOL> at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 7, column: 11] (through reference chain: uz.master.warehouse.dto.auth.AuthCreateDto["role"])]
+2022-04-02 15:17:27,788 WARN             [http-nio-9090-exec-4] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                             : SQL Error: 0, SQLState: 23505
+2022-04-02 15:17:27,789 ERROR            [http-nio-9090-exec-4] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                             : ERROR: duplicate key value violates unique constraint "uk_t1iph3dfc25ukwcl9xemtnojn"
+  Detail: Key (username)=(jasur1) already exists.
+2022-04-02 15:19:42,649 WARN             [http-nio-9090-exec-9] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                             : SQL Error: 0, SQLState: 23505
+2022-04-02 15:19:42,650 ERROR            [http-nio-9090-exec-9] org.hibernate.engine.jdbc.spi.SqlExceptionHelper                             : ERROR: duplicate key value violates unique constraint "uk_t1iph3dfc25ukwcl9xemtnojn"
+  Detail: Key (username)=(jasur11) already exists.
+2022-04-02 15:20:04,321 WARN             [http-nio-9090-exec-1] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver     : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "ADMIN2": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "ADMIN2": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]<EOL> at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 7, column: 11] (through reference chain: uz.master.warehouse.dto.auth.AuthCreateDto["role"])]
+2022-04-02 15:21:12,307 WARN             [http-nio-9090-exec-3] org.springframework.web.servlet.handler.AbstractHandlerExceptionResolver     : Resolved [org.springframework.http.converter.HttpMessageNotReadableException: JSON parse error: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "ADMIN2": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]; nested exception is com.fasterxml.jackson.databind.exc.InvalidFormatException: Cannot deserialize value of type `uz.master.warehouse.enums.Role` from String "ADMIN2": not one of the values accepted for Enum class: [SUPER_ADMIN, WAREHOUSEMAN, CASHIER, ADMIN, SElLER]<EOL> at [Source: (org.springframework.util.StreamUtils$NonClosingInputStream); line: 7, column: 11] (through reference chain: uz.master.warehouse.dto.auth.AuthCreateDto["role"])]

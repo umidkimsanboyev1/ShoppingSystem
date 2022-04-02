@@ -23,6 +23,7 @@ import uz.master.warehouse.services.auth.AuthUserService;
 @RequiredArgsConstructor
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
     public final static String[] WHITE_LIST = {
+            "/**",
             "/api/login",
             "/api/v1/refresh-token",
             "/api/v1/auth/token",
