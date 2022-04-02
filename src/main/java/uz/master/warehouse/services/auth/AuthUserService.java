@@ -107,6 +107,7 @@ public class AuthUserService implements UserDetailsService {
         AuthUser authUser = mapper.fromCreateDto(dto);
         authUser.setBlocked(false);
         authUser.setDeleted(false);
+        authUser.setPassword(passwordEncoder.encode(dto.getPassword()));
         try {
             return new DataDto<>(repository.save(authUser).getId());
 
