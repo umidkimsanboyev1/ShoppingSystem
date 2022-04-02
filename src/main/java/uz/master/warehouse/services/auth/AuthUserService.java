@@ -38,6 +38,7 @@ import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 import java.util.stream.Collectors;
 
 
@@ -77,6 +78,7 @@ public class AuthUserService implements UserDetailsService {
 
     public DataDto<SessionDto> login(AuthUserDto dto) {
         try {
+
             HttpClient httpclient = HttpClientBuilder.create().build();
             HttpPost httppost = new HttpPost(serverProperties.getServerUrl() + "/api/login");
             byte[] bytes = objectMapper.writeValueAsBytes(dto);
@@ -119,7 +121,7 @@ public class AuthUserService implements UserDetailsService {
 
     public void delete(Long id, Long adminId) {
         if(repository.findById(adminId).orElseThrow().getRole().equals(Role.ADMIN)){
-            repository.delete(id);
+            repository.delete(id, UUID.randomUUID().toString());
         }
     }
 

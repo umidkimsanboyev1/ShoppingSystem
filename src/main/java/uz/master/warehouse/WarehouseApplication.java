@@ -9,6 +9,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.web.client.RestTemplate;
 import uz.master.warehouse.dto.auth.AuthCreateDto;
 import uz.master.warehouse.enums.Role;
 import uz.master.warehouse.properties.OpenApiProperties;
@@ -31,6 +32,10 @@ public class WarehouseApplication  {
         SpringApplication.run(WarehouseApplication.class, args);
     }
 
+    @Bean
+    public RestTemplate template(){
+       return new RestTemplate();
+    }
 
 
 //    @Bean

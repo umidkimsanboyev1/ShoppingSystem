@@ -14,6 +14,6 @@ public interface AuthUserRepository extends JpaRepository<AuthUser, Long> {
 
     @Transactional
     @Modifying
-    @Query("update AuthUser  set deleted=true where id = ?1 ")
-    void delete(Long id);
+    @Query(value = "update auth_user  set deleted=true , username = (username || ?2 )  where id = ?1 " ,nativeQuery = true)
+    void delete(Long id,String token);
 }

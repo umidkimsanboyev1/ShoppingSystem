@@ -1,5 +1,6 @@
 package uz.master.warehouse.services.products;
 
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
@@ -25,7 +26,7 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
     private final WareHouseProductsService service;
     private final WareHouseProductsService wareHouseProductsService;
 
-    public OutComeProductsService(OutComeProductsRepository repository, OutComeProductsMapper mapper, OutComeProductsValidator validator, WareHouseProductsService service, WareHouseProductsService wareHouseProductsService) {
+    public OutComeProductsService(OutComeProductsRepository repository, @Qualifier("outComeProductsMapperImpl") OutComeProductsMapper mapper, OutComeProductsValidator validator, WareHouseProductsService service, WareHouseProductsService wareHouseProductsService) {
         super(repository, mapper, validator);
         this.service = service;
         this.wareHouseProductsService = wareHouseProductsService;
