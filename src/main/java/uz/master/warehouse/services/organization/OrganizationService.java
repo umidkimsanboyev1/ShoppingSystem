@@ -3,6 +3,7 @@ package uz.master.warehouse.services.organization;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import uz.master.warehouse.dto.organization.OrganizationCreateDto;
 import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.organization.OrganizationUpdateDto;
@@ -13,6 +14,7 @@ import uz.master.warehouse.mapper.organization.OrganizationMapper;
 import uz.master.warehouse.repository.organization.OrganizationRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
+import uz.master.warehouse.services.file.FileStorageService;
 import uz.master.warehouse.validator.organization.OrganizationValidator;
 
 import java.util.List;
@@ -30,8 +32,11 @@ public class OrganizationService extends AbstractService<
         OrganizationUpdateDto,
         Long> {
 
-    public OrganizationService(OrganizationRepository repository,  OrganizationMapper mapper, OrganizationValidator validator) {
+    private final FileStorageService fileService;
+
+    public OrganizationService(OrganizationRepository repository, OrganizationMapper mapper, OrganizationValidator validator, FileStorageService fileService) {
         super(repository, mapper, validator);
+        this.fileService = fileService;
     }
 
 
@@ -60,7 +65,7 @@ public class OrganizationService extends AbstractService<
         }
         Organization organization = mapper.fromUpdateDto(updateDto);
         organization.setName(updateDto.getName());
-        repository.updateOrg(organization.getId(),organization.getName());
+        repository.updateOrg(organization.getId(), organization.getName());
         return new DataDto<>(organization.getId());
     }
 
@@ -73,10 +78,20 @@ public class OrganizationService extends AbstractService<
     @Override
     public DataDto<OrganizationDto> get(Long id) {
         Organization organization = repository.findByIdAndDeletedFalse(id);
-        if (Objects.isNull(organization)){
+        if (Objects.isNull(organization)) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Organization not found", "organization/get"));
 
         }
         return new DataDto<>(mapper.toDto(organization));
+    }
+
+    public boolean loadLogo(Long id, MultipartFile file) {
+        try {
+            String generatedName = fileService.store(file);
+            repository.updateLogo(generatedName, id);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
     }
 }
