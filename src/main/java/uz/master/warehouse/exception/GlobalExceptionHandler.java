@@ -10,6 +10,7 @@ import uz.master.warehouse.dto.responce.DataDto;
 
 @ControllerAdvice
 public class GlobalExceptionHandler {
+
     @ExceptionHandler(value = RuntimeException.class)
     public ResponseEntity<DataDto<AppErrorDto>> http(RuntimeException e, WebRequest request) {
         return new ResponseEntity<>(new DataDto<>(new AppErrorDto(e.getMessage(), request, HttpStatus.OK)), HttpStatus.OK);
