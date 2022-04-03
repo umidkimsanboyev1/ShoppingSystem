@@ -24,6 +24,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.auth.*;
+import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.auth.AuthUser;
@@ -31,6 +32,7 @@ import uz.master.warehouse.enums.Role;
 import uz.master.warehouse.mapper.auth.AuthUserMapper;
 import uz.master.warehouse.properties.ServerProperties;
 import uz.master.warehouse.repository.auth.AuthUserRepository;
+import uz.master.warehouse.services.organization.OrganizationService;
 import uz.master.warehouse.utils.JwtUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -50,8 +52,8 @@ public class AuthUserService implements UserDetailsService {
     private final AuthUserRepository repository;
     private final ObjectMapper objectMapper;
     private final ServerProperties serverProperties;
-   private PasswordEncoder passwordEncoder;
-
+   private final PasswordEncoder passwordEncoder;
+   private final OrganizationService service;
 
    public DataDto<AuthDto>get(){
        String principal = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -103,7 +105,7 @@ public class AuthUserService implements UserDetailsService {
     }
 
     public DataDto<Long> createUser(AuthCreateDto dto) {
-
+         service.get(dto.getOrganizationId());
         AuthUser authUser = mapper.fromCreateDto(dto);
         authUser.setBlocked(false);
         authUser.setDeleted(false);
