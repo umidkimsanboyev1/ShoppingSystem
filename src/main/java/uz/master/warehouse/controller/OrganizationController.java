@@ -33,14 +33,15 @@ public class OrganizationController extends AbstractController {
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
     @DeleteMapping(PATH + "/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<DataDto> delete(@PathVariable Long id) {
         service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
     @PutMapping(PATH + "/update")
-    public void update(@RequestBody OrganizationUpdateDto dto) {
-        service.update(dto);
+    public ResponseEntity<DataDto<Long>> update(@RequestBody OrganizationUpdateDto dto) {
+        return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
     }
 
 
@@ -48,14 +49,12 @@ public class OrganizationController extends AbstractController {
     @GetMapping(PATH + "/list")
     public ResponseEntity<DataDto<List<OrganizationDto>>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
-
     }
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
     @GetMapping(PATH + "/get/{id}")
     public ResponseEntity<DataDto<OrganizationDto>> get(@PathVariable Long id) {
         return new ResponseEntity<>(service.get(id), HttpStatus.OK);
-
     }
 
     @PreAuthorize("hasRole('ADMIN')")
@@ -65,7 +64,6 @@ public class OrganizationController extends AbstractController {
         if (result) {
             return new ResponseEntity<>(new DataDto<>(true), HttpStatus.OK);
         } else return new ResponseEntity<>(new DataDto<>(false), HttpStatus.BAD_REQUEST);
-
     }
 
     @PreAuthorize("hasRole('ADMIN')")

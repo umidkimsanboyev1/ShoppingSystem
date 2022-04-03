@@ -9,8 +9,10 @@ import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.organization.OrganizationUpdateDto;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
+import uz.master.warehouse.entity.auth.AuthUser;
 import uz.master.warehouse.entity.organization.Organization;
 import uz.master.warehouse.mapper.organization.OrganizationMapper;
+import uz.master.warehouse.repository.auth.AuthUserRepository;
 import uz.master.warehouse.repository.organization.OrganizationRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
@@ -19,6 +21,7 @@ import uz.master.warehouse.validator.organization.OrganizationValidator;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 @Service
 public class OrganizationService extends AbstractService<
@@ -33,10 +36,12 @@ public class OrganizationService extends AbstractService<
         Long> {
 
     private final FileStorageService fileService;
+    private final AuthUserRepository userRepository;
 
-    public OrganizationService(OrganizationRepository repository, OrganizationMapper mapper, OrganizationValidator validator, FileStorageService fileService) {
+    public OrganizationService(OrganizationRepository repository, OrganizationMapper mapper, OrganizationValidator validator, FileStorageService fileService, AuthUserRepository userRepository) {
         super(repository, mapper, validator);
         this.fileService = fileService;
+        this.userRepository = userRepository;
     }
 
 
@@ -44,6 +49,10 @@ public class OrganizationService extends AbstractService<
     public DataDto<Long> create(OrganizationCreateDto createDto) {
         if (!validator.validForCreate(createDto)) {
             return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
+        Optional<AuthUser> ownerById = userRepository.findById(createDto.getOwnerId());
+        if (ownerById.isEmpty()){
+            return new DataDto<>(new AppErrorDto("USER_NOT_FOUND", HttpStatus.BAD_REQUEST));
         }
         Organization organization = mapper.fromCreateDto(createDto);
         organization.setName(createDto.getName());
@@ -93,5 +102,9 @@ public class OrganizationService extends AbstractService<
         } catch (Exception e) {
             return false;
         }
+    }
+
+    public AuthUserRepository getUserRepository() {
+        return userRepository;
     }
 }
