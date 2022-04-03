@@ -10,5 +10,4 @@ public class PaymentDto extends GenericDto {
     private Long organizationId;
     private Long companyId;
     private Long sum;
-
 }
