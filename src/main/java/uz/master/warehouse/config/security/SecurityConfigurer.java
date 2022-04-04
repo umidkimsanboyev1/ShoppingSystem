@@ -22,6 +22,7 @@ import uz.master.warehouse.services.auth.AuthUserService;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
+
     public final static String[] WHITE_LIST = {
             "/api/login",
             "/api/v1/refresh-token",
@@ -31,6 +32,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
             "/api/docs/**",
 
     };
+
     private final AuthUserService userService;
     private final PasswordEncoder passwordEncoder;
 
@@ -39,7 +41,12 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
 
-    @Override
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests().antMatchers("/").permitAll();
+//    }
+
+        @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.cors().disable();

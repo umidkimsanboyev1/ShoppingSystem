@@ -24,11 +24,11 @@ import java.util.List;
 
 @Service
 
-public class ClientBarService extends AbstractService<ClientBarRepository, ClientBarMapper, ClientBarValidator> implements GenericCrudService<ClientBar, ClientBarDto, ClientBarCreateDto, ClientBarUpdateDto, Long> {
+public class ClientBarService extends AbstractService<ClientBarRepository, ClientBarMapper> implements GenericCrudService<ClientBar, ClientBarDto, ClientBarCreateDto, ClientBarUpdateDto, Long> {
 
     public final OutComeProductsService service;
-    public ClientBarService(ClientBarRepository repository, ClientBarMapper mapper, ClientBarValidator validator, OutComeProductsService service) {
-        super(repository, mapper, validator);
+    public ClientBarService(ClientBarRepository repository, ClientBarMapper mapper, OutComeProductsService service) {
+        super(repository, mapper);
         this.service = service;
     }
 

@@ -19,7 +19,6 @@ import javax.validation.constraints.NotNull;
 public class ProductCreateDto implements BaseDto {
 
     @NotBlank
-    @Min(2)
     private Integer item_count;
 
     @NotBlank

@@ -19,8 +19,7 @@ import java.util.List;
 @Service
 public class WareHouseService extends AbstractService<
         WareHouseRepository,
-        WareHouseMapper,
-        WareHouseValidator
+        WareHouseMapper
         > implements GenericCrudService<
         WareHouse,
         WareHouseDto,
@@ -28,8 +27,8 @@ public class WareHouseService extends AbstractService<
         WareHouseUpdateDto,
         Long
         > {
-    public WareHouseService(WareHouseRepository repository, @Qualifier("wareHouseMapperImpl") WareHouseMapper mapper, WareHouseValidator validator) {
-        super(repository, mapper, validator);
+    public WareHouseService(WareHouseRepository repository, @Qualifier("wareHouseMapperImpl") WareHouseMapper mapper) {
+        super(repository, mapper);
     }
 
 
@@ -48,7 +47,6 @@ public class WareHouseService extends AbstractService<
 
     @Override
     public DataDto<Long> update(WareHouseUpdateDto updateDto) {
-        validator.check(updateDto.getId());
         repository.update(updateDto.getName(),updateDto.getLocation(),updateDto.getId());
         return new DataDto<>(updateDto.getId());
     }
