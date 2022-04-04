@@ -20,6 +20,8 @@ public class AuthDto extends GenericDto {
 
     private Long organizationId;
 
+    private String picturePath;
+
     private Role role;
 
 }

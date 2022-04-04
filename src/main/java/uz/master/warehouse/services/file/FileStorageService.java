@@ -61,4 +61,5 @@ public class FileStorageService {
         FileSystemResource resource = new FileSystemResource(UNICORN_UPLOADS_B_4_LIB + fileName);
         return UploadsDto.builder().resource(resource).originalName(uploads.get().getOriginalName()).newName(uploads.get().getGeneratedName()).contentType(uploads.get().getContentType()).size(uploads.get().getSize()).build();
     }
+
 }

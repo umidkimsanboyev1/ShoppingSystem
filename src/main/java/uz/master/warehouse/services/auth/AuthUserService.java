@@ -35,6 +35,7 @@ import uz.master.warehouse.enums.Role;
 import uz.master.warehouse.mapper.auth.AuthUserMapper;
 import uz.master.warehouse.properties.ServerProperties;
 import uz.master.warehouse.repository.auth.AuthUserRepository;
+import uz.master.warehouse.services.file.FileStorageService;
 import uz.master.warehouse.services.organization.OrganizationService;
 import uz.master.warehouse.utils.JwtUtils;
 
@@ -65,6 +66,7 @@ public class AuthUserService implements UserDetailsService {
     private final ServerProperties serverProperties;
    private final PasswordEncoder passwordEncoder;
    private final OrganizationService service;
+   private final FileStorageService fileStorageService;
 
     private  Path root = Paths.get("D:/uploads");
 //    @PostConstruct
@@ -197,12 +199,8 @@ public class AuthUserService implements UserDetailsService {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String contentType = com.google.common.io.Files.getFileExtension(picture.getOriginalFilename());
         if("jpg".equals(contentType)||"png".equals(contentType)){
-
-            String path = UUID.randomUUID().toString();
-            String pathURL = String.valueOf(root.resolve(path+"."+contentType));
-            File file=new File(pathURL);
-            FileUtils.copyToFile(picture.getInputStream(),file);
-            repository.updatePicture(pathURL,username);
+            String store = fileStorageService.store(picture);
+            repository.updatePicture(store,username);
         }else {
             throw new RuntimeException("picture content type error");
         }
