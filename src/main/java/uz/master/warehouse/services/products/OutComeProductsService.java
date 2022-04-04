@@ -20,14 +20,14 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 
 @Service
-public class OutComeProductsService extends AbstractService<OutComeProductsRepository, OutComeProductsMapper, OutComeProductsValidator>
+public class OutComeProductsService extends AbstractService<OutComeProductsRepository, OutComeProductsMapper>
         implements GenericCrudService<OutComeProducts, OutComeProductsDto, OutComeProductsCreateDto, OutComeProductsUpdateDto, Long> {
 
     private final WareHouseProductsService service;
     private final WareHouseProductsService wareHouseProductsService;
 
-    public OutComeProductsService(OutComeProductsRepository repository, @Qualifier("outComeProductsMapperImpl") OutComeProductsMapper mapper, OutComeProductsValidator validator, WareHouseProductsService service, WareHouseProductsService wareHouseProductsService) {
-        super(repository, mapper, validator);
+    public OutComeProductsService(OutComeProductsRepository repository, @Qualifier("outComeProductsMapperImpl") OutComeProductsMapper mapper, WareHouseProductsService service, WareHouseProductsService wareHouseProductsService) {
+        super(repository, mapper);
         this.service = service;
         this.wareHouseProductsService = wareHouseProductsService;
     }

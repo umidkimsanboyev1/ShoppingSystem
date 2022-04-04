@@ -21,8 +21,7 @@ import java.util.Objects;
 @Service
 public class MarketService extends AbstractService<
         MarketRepository,
-        MarketMapper,
-        MarketValidator
+        MarketMapper
         > implements GenericCrudService<
         Market,
         MarketDto,
@@ -32,16 +31,14 @@ public class MarketService extends AbstractService<
         > {
 
 
-    public MarketService(MarketRepository repository,  MarketMapper mapper, MarketValidator validator) {
-        super(repository, mapper, validator);
+    public MarketService(MarketRepository repository,  MarketMapper mapper) {
+        super(repository, mapper);
     }
 
 
     @Override
     public DataDto<Long> create(MarketCreateDto createDto) {
-        if (!validator.validForCreate(createDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-        }
+
         Market market = mapper.fromCreateDto(createDto);
         Organization organization = repository.findByOrgId(createDto.getOrganizationId());
         if (Objects.isNull(organization)) {
@@ -64,9 +61,7 @@ public class MarketService extends AbstractService<
 
     @Override
     public DataDto<Long> update(MarketUpdateDto updateDto) {
-        if (!validator.validForUpdate(updateDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
-        }
+
         Market market = mapper.fromUpdateDto(updateDto);
         market.setName(updateDto.getName());
         market.setDescription(updateDto.getDescription());

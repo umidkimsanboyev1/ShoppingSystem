@@ -7,19 +7,16 @@ import uz.master.warehouse.mapper.BaseMapper;
 /**
  * @param <R> Repository
  * @param <M> Mapper
- * @param <V> Validator
  */
-public abstract class AbstractService<R extends JpaRepository, M extends BaseMapper, V extends BaseValidator> {
+public abstract class AbstractService<R extends JpaRepository, M extends BaseMapper> {
 
     protected R repository;
     protected M mapper;
-    protected V validator;
 
 
-    public AbstractService(R repository, M mapper, V validator) {
+    public AbstractService(R repository, M mapper) {
         this.repository = repository;
         this.mapper = mapper;
-        this.validator = validator;
     }
 
 
