@@ -66,15 +66,6 @@ public class OrganizationController extends AbstractController {
         } else return new ResponseEntity<>(new DataDto<>(false), HttpStatus.BAD_REQUEST);
     }
 
-    @PreAuthorize("hasRole('ADMIN')")
-    @PostMapping(PATH + "/downloadLogo/{id}")
-    public ResponseEntity<DataDto<Void>> downloadLogo(@PathVariable("id") Long id,@RequestParam("file") MultipartFile file) {
-        boolean result = service.loadLogo(id, file);
-        if (result) {
-            return new ResponseEntity<>(new DataDto<>(true), HttpStatus.OK);
-        } else return new ResponseEntity<>(new DataDto<>(false), HttpStatus.BAD_REQUEST);
-
-    }
 
 
 }

@@ -22,11 +22,11 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class InComeProductsService extends AbstractService<InComeProductsRepository, InComeProductsMapper, InComeProductsValidator>
+public class InComeProductsService extends AbstractService<InComeProductsRepository, InComeProductsMapper>
         implements GenericCrudService<InComeProducts, InComeProductsDto, InComeProductsCreateDto, InComeProductsUpdateDto, Long> {
 
-    public InComeProductsService(InComeProductsRepository repository, InComeProductsMapper mapper, InComeProductsValidator validator, ProductRepository productRepository, GroupProductsRepository groupProductsRepository) {
-        super( repository, mapper, validator );
+    public InComeProductsService(InComeProductsRepository repository, InComeProductsMapper mapper, ProductRepository productRepository, GroupProductsRepository groupProductsRepository) {
+        super( repository, mapper);
         this.productRepository = productRepository;
         this.groupProductsRepository = groupProductsRepository;
     }

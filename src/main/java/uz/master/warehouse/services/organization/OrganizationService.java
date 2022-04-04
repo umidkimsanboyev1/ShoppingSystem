@@ -26,8 +26,7 @@ import java.util.Optional;
 @Service
 public class OrganizationService extends AbstractService<
         OrganizationRepository,
-        OrganizationMapper,
-        OrganizationValidator>
+        OrganizationMapper>
         implements GenericCrudService<
         Organization,
         OrganizationDto,
@@ -38,8 +37,8 @@ public class OrganizationService extends AbstractService<
     private final FileStorageService fileService;
     private final AuthUserRepository userRepository;
 
-    public OrganizationService(OrganizationRepository repository, OrganizationMapper mapper, OrganizationValidator validator, FileStorageService fileService, AuthUserRepository userRepository) {
-        super(repository, mapper, validator);
+    public OrganizationService(OrganizationRepository repository, OrganizationMapper mapper, FileStorageService fileService, AuthUserRepository userRepository) {
+        super(repository, mapper);
         this.fileService = fileService;
         this.userRepository = userRepository;
     }
@@ -47,9 +46,6 @@ public class OrganizationService extends AbstractService<
 
     @Override
     public DataDto<Long> create(OrganizationCreateDto createDto) {
-        if (!validator.validForCreate(createDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-        }
         Optional<AuthUser> ownerById = userRepository.findById(createDto.getOwnerId());
         if (ownerById.isEmpty()){
             return new DataDto<>(new AppErrorDto("USER_NOT_FOUND", HttpStatus.BAD_REQUEST));
@@ -69,9 +65,7 @@ public class OrganizationService extends AbstractService<
 
     @Override
     public DataDto<Long> update(OrganizationUpdateDto updateDto) {
-        if (!validator.validForUpdate(updateDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
-        }
+
         Organization organization = mapper.fromUpdateDto(updateDto);
         organization.setName(updateDto.getName());
         repository.updateOrg(organization.getId(), organization.getName());

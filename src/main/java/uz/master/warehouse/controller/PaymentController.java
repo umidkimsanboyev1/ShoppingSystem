@@ -12,6 +12,7 @@ import uz.master.warehouse.dto.payment.PaymentUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.payment.PaymentService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class PaymentController extends AbstractController {
 
     @PreAuthorize(value = "hasRole('ADMIN')")
     @PostMapping(PATH + "/create")
-    public ResponseEntity<DataDto<Long>> create(@RequestBody PaymentCreateDto dto) {
+    public ResponseEntity<DataDto<Long>> create(@RequestBody @Valid PaymentCreateDto dto) {
         return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
     }
 

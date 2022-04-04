@@ -24,22 +24,20 @@ import java.util.Objects;
 import java.util.Optional;
 
 @Service
-public class WareHouseProductsService extends AbstractService<WareHouseProductsRepository, WareHouseProductsMapper, WareHouseProductsValidator>
+public class WareHouseProductsService extends AbstractService<WareHouseProductsRepository, WareHouseProductsMapper>
         implements GenericCrudService<WareHouseProducts, WareHouseProductsDto, WareHouseProductsCreateDto, WareHouseProductsUpdateDto, Long> {
 
     private final ProductRepository productRepository;
 
-    public WareHouseProductsService(WareHouseProductsRepository repository, WareHouseProductsMapper mapper, WareHouseProductsValidator validator, ProductRepository productRepository) {
-        super(repository, mapper, validator);
+    public WareHouseProductsService(WareHouseProductsRepository repository, WareHouseProductsMapper mapper, ProductRepository productRepository) {
+        super(repository, mapper);
         this.productRepository = productRepository;
     }
 
 
     @Override
     public DataDto<Long> create(WareHouseProductsCreateDto createDto) {
-        if (!validator.validForCreate(createDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-        }
+
         Optional<Product> product = productRepository.findByIdAndDeletedFalse(createDto.getProductId());
         if (product.isEmpty()) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Product not found", "product"));
@@ -57,9 +55,7 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
 
     @Override
     public DataDto<Long> update(WareHouseProductsUpdateDto updateDto) {
-        if (!validator.validForUpdate(updateDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
-        }
+
         Optional<WareHouseProducts> optional = repository.findById(updateDto.getId());
         if (optional.isEmpty()) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Income Product not found", "product"));

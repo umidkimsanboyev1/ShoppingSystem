@@ -7,9 +7,9 @@ import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.validator.warehouse.SectorValidator;
 
 @Service
-public class SectorService extends AbstractService<SectorRepository, SectorMapper, SectorValidator> {
+public class SectorService extends AbstractService<SectorRepository, SectorMapper> {
 
-    public SectorService(SectorRepository repository, SectorMapper mapper, SectorValidator validator) {
-        super(repository, mapper, validator);
+    public SectorService(SectorRepository repository, SectorMapper mapper) {
+        super(repository, mapper);
     }
 }

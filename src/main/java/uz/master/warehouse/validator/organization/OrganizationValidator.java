@@ -1,23 +1,27 @@
 package uz.master.warehouse.validator.organization;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.springframework.stereotype.Component;
-import uz.master.warehouse.dto.organization.OrganizationCreateDto;
-import uz.master.warehouse.dto.organization.OrganizationUpdateDto;
+import uz.master.warehouse.annotations.HaveOrg;
+import uz.master.warehouse.services.organization.OrganizationService;
 import uz.master.warehouse.validator.BaseValidator;
-import uz.master.warehouse.validator.GenericValidator;
 
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 import java.util.Objects;
 
 @Component
-public class OrganizationValidator implements GenericValidator<OrganizationCreateDto, OrganizationUpdateDto> {
-    @Override
-    public boolean validForCreate(OrganizationCreateDto createDto) {
-        return (Objects.nonNull(createDto.getName())
-                && Objects.nonNull(createDto.getOwnerId()));
+public class OrganizationValidator  implements ConstraintValidator<HaveOrg,Long> , BaseValidator {
+
+    private final OrganizationService service;
+
+    public OrganizationValidator(OrganizationService service) {
+        this.service = service;
     }
 
     @Override
-    public boolean validForUpdate(OrganizationUpdateDto updateDto) {
-        return Objects.nonNull(updateDto.getName());
+    public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
+        return Objects.isNull(service.get(id).getData());
     }
 }
