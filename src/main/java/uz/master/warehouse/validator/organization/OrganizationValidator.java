@@ -1,7 +1,5 @@
 package uz.master.warehouse.validator.organization;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.springframework.stereotype.Component;
 import uz.master.warehouse.annotations.HaveOrg;
 import uz.master.warehouse.services.organization.OrganizationService;

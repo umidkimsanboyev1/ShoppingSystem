@@ -24,7 +24,7 @@ public class PaymentController extends AbstractController {
 
     @PreAuthorize(value = "hasRole('ADMIN')")
     @PostMapping(PATH + "/create")
-    public ResponseEntity<DataDto<Long>> create(@RequestBody @Valid PaymentCreateDto dto) {
+    public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody  PaymentCreateDto dto) {
         return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
     }
 

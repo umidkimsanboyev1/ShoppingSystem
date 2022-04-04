@@ -18,7 +18,6 @@ public class PaymentCreateDto implements BaseDto {
 
     @NotBlank
     @HaveOrg
-    @Positive
     private Long organizationId;
 
     @NotBlank
