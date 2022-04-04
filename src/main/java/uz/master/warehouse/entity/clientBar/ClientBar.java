@@ -24,8 +24,11 @@ public class ClientBar extends Auditable {
 
     private boolean paid;
 
+    private boolean taken;
+
     @Override
     public boolean equals(Object obj) {
         return this.equals(obj);
     }
+
 }
