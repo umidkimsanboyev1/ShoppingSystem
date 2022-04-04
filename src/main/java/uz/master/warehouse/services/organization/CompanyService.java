@@ -19,20 +19,23 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class CompanyService extends AbstractService<CompanyRepository, CompanyMapper> implements GenericCrudService<
+public class CompanyService extends AbstractService<CompanyRepository, CompanyMapper, CompanyValidator> implements GenericCrudService<
         Company,
         CompanyDto,
         CompanyCreateDto,
         CompanyUpdateDto,
         Long> {
 
-    public CompanyService(CompanyRepository repository, CompanyMapper mapper) {
-        super(repository, mapper);
+    public CompanyService(CompanyRepository repository, CompanyMapper mapper, CompanyValidator validator) {
+        super(repository, mapper, validator);
     }
+
 
     @Override
     public DataDto<Long> create(@Valid CompanyCreateDto createDto) {
-
+        if (!validator.validForCreate(createDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
 
         Company company = mapper.fromCreateDto(createDto);
         company.setName(createDto.getName());
@@ -50,7 +53,9 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
 
     @Override
     public DataDto<Long> update(CompanyUpdateDto updateDto) {
-
+        if (!validator.validForUpdate(updateDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
+        }
         Company company = mapper.fromUpdateDto(updateDto);
         company.setName(updateDto.getName());
         repository.update(company.getId(), company.getName());

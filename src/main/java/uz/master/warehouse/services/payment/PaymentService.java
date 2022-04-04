@@ -24,7 +24,8 @@ import java.util.Objects;
 @Service
 public class PaymentService extends AbstractService<
         PaymentRepository,
-        PaymentMapper> implements GenericCrudService<
+        PaymentMapper,
+        PaymentValidator> implements GenericCrudService<
         Payment,
         PaymentDto,
         PaymentCreateDto,
@@ -33,13 +34,16 @@ public class PaymentService extends AbstractService<
 
 
     public PaymentService(PaymentRepository repository,
-                          PaymentMapper mapper) {
-        super(repository, mapper);
+                          PaymentMapper mapper,
+                          PaymentValidator validator) {
+        super(repository, mapper, validator);
     }
 
     @Override
-    public DataDto<Long> create(@Valid PaymentCreateDto createDto) {
-
+    public DataDto<Long> create(PaymentCreateDto createDto) {
+        if (!validator.validForCreate(createDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+        }
         Payment payment = mapper.fromCreateDto(createDto);
         payment.setOrganizationId(createDto.getOrganizationId());
         payment.setCompanyId(createDto.getCompanyId());
@@ -56,7 +60,9 @@ public class PaymentService extends AbstractService<
 
     @Override
     public DataDto<Long> update(PaymentUpdateDto updateDto) {
-
+        if (!validator.validForUpdate(updateDto)) {
+            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
+        }
         Payment payment = mapper.fromUpdateDto(updateDto);
         payment.setSum(updateDto.getSum());
         repository.updatePayment(payment.getId(), payment.getSum());
@@ -84,5 +90,12 @@ public class PaymentService extends AbstractService<
         LocalDate to = LocalDate.parse(toDate);
         List<Payment> allByDateTimeDateBetween = repository.findAllByDateTimeDateBetween(from, to);
         return new DataDto<>(mapper.toDto(allByDateTimeDateBetween));
+    }
+
+    public List<PaymentDto> getByTimeBetween(String fromDate, String toDate) {
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        List<Payment> allByDateTimeDateBetween = repository.findAllByDateTimeDateBetween(from, to);
+        return mapper.toDto(allByDateTimeDateBetween);
     }
 }
