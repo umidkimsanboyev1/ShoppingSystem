@@ -39,7 +39,6 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
         if (!existsBar) {
             return new DataDto<>( new AppErrorDto( "Client bar not found", HttpStatus.NOT_FOUND ) );
         }
-
         Comment comment = mapper.fromCreateDto( createDto );
         String username =  (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         Optional<AuthUser> optionalAuthUser = authUserRepository.findByUsernameAndDeletedFalse( username );
