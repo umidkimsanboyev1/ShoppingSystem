@@ -8,8 +8,20 @@ import uz.master.warehouse.dto.sector.SectorUpdateDto;
 import uz.master.warehouse.entity.wareHouse.Sector;
 import uz.master.warehouse.mapper.BaseMapper;
 
+import java.util.List;
+
 @Component
 @Mapper(componentModel = "spring")
 public interface SectorMapper extends BaseMapper<Sector, SectorDto, SectorCreateDto, SectorUpdateDto> {
+    @Override
+    SectorDto toDto(Sector sector);
 
+    @Override
+    List<SectorDto> toDto(List<Sector> e);
+
+    @Override
+    Sector fromCreateDto(SectorCreateDto sectorCreateDto);
+
+    @Override
+    Sector fromUpdateDto(SectorUpdateDto sectorUpdateDto);
 }

@@ -5,12 +5,14 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
+import uz.master.warehouse.controller.base.AbstractController;
 import uz.master.warehouse.dto.company.CompanyCreateDto;
 import uz.master.warehouse.dto.company.CompanyDto;
 import uz.master.warehouse.dto.company.CompanyUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.organization.CompanyService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 /**
@@ -19,13 +21,13 @@ import java.util.List;
 @RestController
 @RequestMapping("/company/*")
 @RequiredArgsConstructor
-public class CompanyController {
+public class CompanyController extends AbstractController {
 
     private final CompanyService service;
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PostMapping("/create")
-    public ResponseEntity<DataDto<Long>> create(@RequestBody CompanyCreateDto dto) {
+    public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody CompanyCreateDto dto) {
         return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
     }
 
@@ -39,7 +41,7 @@ public class CompanyController {
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PutMapping("/update")
-    public ResponseEntity<DataDto<Long>> update(@RequestBody CompanyUpdateDto dto) {
+    public ResponseEntity<DataDto<Long>> update(@Valid @RequestBody CompanyUpdateDto dto) {
         return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
     }
 

@@ -4,6 +4,7 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
+import org.springframework.stereotype.Repository;
 import uz.master.warehouse.entity.product.GroupProducts;
 
 import javax.transaction.Transactional;
@@ -12,6 +13,7 @@ import java.util.List;
 /**
  * @author Panjiyev Javohir, сб 16:58. 26.03.2022
  */
+@Repository
 public interface GroupProductsRepository extends JpaRepository<GroupProducts, Long> {
     @Transactional
     @Modifying

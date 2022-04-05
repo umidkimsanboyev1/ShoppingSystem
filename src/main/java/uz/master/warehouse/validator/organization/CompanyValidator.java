@@ -21,7 +21,7 @@ public class CompanyValidator implements ConstraintValidator<HaveCompany, Long>,
 
     @Override
     public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
-        return Objects.nonNull(service.get(id));
+        return service.get(id).isSuccess();
     }
 
 }

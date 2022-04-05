@@ -15,6 +15,7 @@ import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.clientBar.ClientBarService;
 import uz.master.warehouse.services.organization.FirmService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -25,7 +26,7 @@ public class FirmController extends AbstractController {
 
 
     @PostMapping(value = PATH + "client/create")
-    public ResponseEntity<DataDto<Long>> create(@RequestBody FirmCreateDto createDto) {
+    public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody FirmCreateDto createDto) {
         return new ResponseEntity<>(service.create(createDto), HttpStatus.OK);
     }
 
