@@ -69,4 +69,3 @@ public class SectorService extends AbstractService<SectorRepository, SectorMappe
         return new DataDto<>(mapper.toDto(sector));
     }
 }
-}
