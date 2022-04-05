@@ -39,7 +39,7 @@ public class ProductController {
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PutMapping("/update")
-    public void update(@RequestBody ProductUpdateDto dto) {
+    public void update(@Valid @RequestBody ProductUpdateDto dto) {
         service.update(dto);
     }
 

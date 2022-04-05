@@ -5,6 +5,7 @@ import lombok.Setter;
 import uz.master.warehouse.dto.GenericDto;
 
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
 
 
 @Getter
@@ -12,6 +13,7 @@ import javax.validation.constraints.NotNull;
 public class ProductUpdateDto extends GenericDto {
 
     @NotNull
+    @Positive
     private Double default_price;
 
 }
