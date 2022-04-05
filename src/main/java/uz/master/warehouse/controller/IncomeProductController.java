@@ -47,7 +47,6 @@ public class IncomeProductController extends AbstractController {
 
     @PutMapping(PATH + "create")
     public ResponseEntity<DataDto<Long>> update(@Valid @RequestBody InComeProductsUpdateDto dto) {
-
         return new ResponseEntity<>(inComeProductsService.update(dto), HttpStatus.OK);
     }
 
