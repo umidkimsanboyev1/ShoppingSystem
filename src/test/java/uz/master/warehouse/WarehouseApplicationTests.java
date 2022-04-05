@@ -13,12 +13,12 @@ class WarehouseApplicationTests  {
     @Autowired
     private  ProductService service;
 
-    @Test
-    void contextLoads() {
-
-        service.create(new ProductCreateDto(10,"1001","qizil",-1L,12.0d)
-        );
-
-    }
+//    @Test
+//    void contextLoads() {
+//
+//        service.create(new ProductCreateDto(10,"1001","qizil",-1L,12.0d)
+//        );
+//
+//    }
 
 }

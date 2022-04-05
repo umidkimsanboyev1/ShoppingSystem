@@ -31,26 +31,11 @@ public class PaymentService extends AbstractService<
         Long> {
 
 
-    public PaymentService(PaymentRepository repository,
-<<<<<<< HEAD
-                          PaymentMapper mapper,
-                          PaymentValidator validator) {
-=======
-                          PaymentMapper mapper) {
->>>>>>> origin/master
+    public PaymentService(PaymentRepository repository, PaymentMapper mapper) {
         super(repository, mapper);
     }
 
-    @Override
-<<<<<<< HEAD
-    public DataDto<Long> create(PaymentCreateDto createDto) {
-//        if (!validator.validForCreate(createDto)) {
-//            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-//        }
-=======
     public DataDto<Long> create(@Valid PaymentCreateDto createDto) {
-
->>>>>>> origin/master
         Payment payment = mapper.fromCreateDto(createDto);
         payment.setOrganizationId(createDto.getOrganizationId());
         payment.setCompanyId(createDto.getCompanyId());
@@ -65,12 +50,7 @@ public class PaymentService extends AbstractService<
         return new DataDto<>();
     }
 
-    @Override
-<<<<<<< HEAD
-    public DataDto<Long> update(PaymentUpdateDto updateDto) {
-=======
     public DataDto<Long> update(@Valid PaymentUpdateDto updateDto) {
->>>>>>> origin/master
 //        if (!validator.validForUpdate(updateDto)) {
 //            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
 //        }

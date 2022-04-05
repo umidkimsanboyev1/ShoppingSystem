@@ -2,6 +2,7 @@ package uz.master.warehouse.services.wareHouse;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.dto.sector.SectorCreateDto;
 import uz.master.warehouse.dto.sector.SectorDto;
@@ -67,5 +68,10 @@ public class SectorService extends AbstractService<SectorRepository, SectorMappe
             throw new UsernameNotFoundException("Not found");
         });
         return new DataDto<>(mapper.toDto(sector));
+    }
+
+    @Override
+    public DataDto<List<SectorDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 }
