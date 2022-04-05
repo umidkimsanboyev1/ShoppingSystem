@@ -1,6 +1,5 @@
 package uz.master.warehouse.services.payment;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.payment.PaymentCreateDto;
@@ -15,9 +14,7 @@ import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.validator.payment.PaymentValidator;
 
-import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 

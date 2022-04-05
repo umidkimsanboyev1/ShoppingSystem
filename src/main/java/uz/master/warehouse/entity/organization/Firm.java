@@ -6,8 +6,6 @@ import lombok.Setter;
 import uz.master.warehouse.entity.base.Auditable;
 
 import javax.persistence.Entity;
-import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
 
 @Entity
 @Getter

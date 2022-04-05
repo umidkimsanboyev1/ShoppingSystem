@@ -1,12 +1,10 @@
 package uz.master.warehouse.services.product;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.groupProducts.GroupProductsCreateDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsUpdateDto;
-import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.product.GroupProducts;
 import uz.master.warehouse.entity.products.InComeProducts;
@@ -16,7 +14,6 @@ import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.services.products.InComeProductsService;
 import uz.master.warehouse.services.products.WareHouseProductsService;
-import uz.master.warehouse.validator.product.GroupProductsValidator;
 
 import javax.validation.Valid;
 import java.util.List;

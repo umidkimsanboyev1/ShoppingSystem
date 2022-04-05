@@ -13,12 +13,15 @@ import java.util.List;
 @Component
 @Mapper(componentModel = "spring")
 public interface CompanyMapper extends BaseMapper<Company,CompanyDto,CompanyCreateDto,CompanyUpdateDto> {
+    @Override
+    CompanyDto toDto(Company company);
 
-    Company fromCreateDto(CompanyCreateDto createDto);
+    @Override
+    List<CompanyDto> toDto(List<Company> e);
 
-    Company fromUpdateDto(CompanyUpdateDto updateDto);
+    @Override
+    Company fromCreateDto(CompanyCreateDto companyCreateDto);
 
-    List<CompanyDto> toDto(List<Company> all);
-
-    CompanyDto toDto (Company company);
+    @Override
+    Company fromUpdateDto(CompanyUpdateDto companyUpdateDto);
 }
