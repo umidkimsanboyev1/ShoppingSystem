@@ -24,7 +24,7 @@ import java.util.Optional;
 
 @Service
 public class InComeProductsService extends AbstractService<InComeProductsRepository, InComeProductsMapper>
-        implements GenericCrudService<InComeProducts, InComeProductsDto, InComeProductsCreateDto, InComeProductsUpdateDto, Long> {
+        implements GenericCrudService<InComeProducts, InComeProductsDto, InComeProductsCreateDto, InComeProductsUpdateDto,GenericCriteria, Long> {
 
     public InComeProductsService(InComeProductsRepository repository, InComeProductsMapper mapper, ProductRepository productRepository, GroupProductsRepository groupProductsRepository, WareHouseProductsRepository wareHouseProductsRepository, WareHouseProductsService wareHouseProductsService) {
         super(repository, mapper);

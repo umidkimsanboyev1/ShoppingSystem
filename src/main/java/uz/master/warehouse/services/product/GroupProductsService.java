@@ -3,6 +3,7 @@ package uz.master.warehouse.services.product;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.criteria.GenericCriteria;
+import uz.master.warehouse.criteria.GroupProductsCriteria;
 import uz.master.warehouse.dto.groupProducts.GroupProductsCreateDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsUpdateDto;
@@ -26,6 +27,7 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
         GroupProductsDto,
         GroupProductsCreateDto,
         GroupProductsUpdateDto,
+        GroupProductsCriteria,
         Long> {
 
     private final InComeProductsService inComeProductsService;
@@ -84,7 +86,7 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
     }
 
     @Override
-    public DataDto<List<GroupProductsDto>> getWithCriteria(GenericCriteria criteria) {
+    public DataDto<List<GroupProductsDto>> getWithCriteria(GroupProductsCriteria criteria) {
         return null;
     }
 }

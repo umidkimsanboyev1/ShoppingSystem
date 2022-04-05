@@ -25,6 +25,7 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
         CompanyDto,
         CompanyCreateDto,
         CompanyUpdateDto,
+        GenericCriteria,
         Long> {
     public CompanyService(CompanyRepository repository, CompanyMapper mapper) {
         super(repository, mapper);

@@ -29,6 +29,7 @@ public class MarketService extends AbstractService<
         MarketDto,
         MarketCreateDto,
         MarketUpdateDto,
+        GenericCriteria,
         Long
         > {
 

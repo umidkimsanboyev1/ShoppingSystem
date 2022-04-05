@@ -33,6 +33,7 @@ public class OrganizationService extends AbstractService<
         OrganizationDto,
         OrganizationCreateDto,
         OrganizationUpdateDto,
+        GenericCriteria,
         Long> {
 
     private final FileStorageService fileService;
@@ -94,7 +95,7 @@ public class OrganizationService extends AbstractService<
         return null;
     }
 
-    public  String getName(Long id) {
+    public String getName(Long id) {
         return get(id).getData().getName();
     }
 

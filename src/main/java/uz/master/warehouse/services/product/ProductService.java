@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.criteria.GenericCriteria;
+import uz.master.warehouse.criteria.ProductCriteria;
 import uz.master.warehouse.dto.product.ProductCreateDto;
 import uz.master.warehouse.dto.product.ProductDto;
 import uz.master.warehouse.dto.product.ProductUpdateDto;
@@ -27,7 +28,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class ProductService extends AbstractService<ProductRepository, ProductMapper> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, Long> {
+public class ProductService extends AbstractService<ProductRepository, ProductMapper> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto,ProductCriteria, Long> {
 
     private final FirmService firmService;
     private final EntityManager entityManager;
@@ -87,7 +88,7 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
     }
 
     @Override
-    public DataDto<List<ProductDto>> getWithCriteria(GenericCriteria criteria) {
+    public DataDto<List<ProductDto>> getWithCriteria(ProductCriteria criteria) {
         return null;
     }
 

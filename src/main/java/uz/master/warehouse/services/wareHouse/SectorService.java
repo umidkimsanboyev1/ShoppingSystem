@@ -22,6 +22,7 @@ public class SectorService extends AbstractService<SectorRepository, SectorMappe
         SectorDto,
         SectorCreateDto,
         SectorUpdateDto,
+        GenericCriteria,
         Long> {
 
 

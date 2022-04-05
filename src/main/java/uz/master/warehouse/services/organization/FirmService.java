@@ -1,6 +1,7 @@
 package uz.master.warehouse.services.organization;
 
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.FirmCriteria;
 import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.firm.FirmCreateDto;
 import uz.master.warehouse.dto.firm.FirmDto;
@@ -16,7 +17,7 @@ import uz.master.warehouse.validator.organization.FirmValidator;
 import java.util.List;
 
 @Service
-public class FirmService extends AbstractService<FirmRepository, FirmMapper> implements GenericCrudService<Firm, FirmDto, FirmCreateDto, FirmUpdateDto, Long> {
+public class FirmService extends AbstractService<FirmRepository, FirmMapper> implements GenericCrudService<Firm, FirmDto, FirmCreateDto, FirmUpdateDto, FirmCriteria, Long> {
     public FirmService(FirmRepository repository, FirmMapper mapper) {
         super(repository, mapper);
     }
@@ -53,7 +54,7 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
     }
 
     @Override
-    public DataDto<List<FirmDto>> getWithCriteria(GenericCriteria criteria) {
+    public DataDto<List<FirmDto>> getWithCriteria(FirmCriteria criteria) {
         return null;
     }
 }

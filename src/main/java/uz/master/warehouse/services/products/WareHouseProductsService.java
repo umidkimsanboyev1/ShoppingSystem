@@ -26,7 +26,7 @@ import java.util.Optional;
 
 @Service
 public class WareHouseProductsService extends AbstractService<WareHouseProductsRepository, WareHouseProductsMapper>
-        implements GenericCrudService<WareHouseProducts, WareHouseProductsDto, WareHouseProductsCreateDto, WareHouseProductsUpdateDto, Long> {
+        implements GenericCrudService<WareHouseProducts, WareHouseProductsDto, WareHouseProductsCreateDto, WareHouseProductsUpdateDto, GenericCriteria, Long> {
 
     private final ProductRepository productRepository;
 
