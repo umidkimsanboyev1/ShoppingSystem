@@ -10,7 +10,7 @@ import javax.validation.ConstraintValidatorContext;
 import java.util.Objects;
 
 @Component
-public class OrganizationValidator  implements ConstraintValidator<HaveOrg,Long> , BaseValidator {
+public class OrganizationValidator implements ConstraintValidator<HaveOrg, Long>, BaseValidator {
 
     private final OrganizationService service;
 
@@ -20,6 +20,6 @@ public class OrganizationValidator  implements ConstraintValidator<HaveOrg,Long>
 
     @Override
     public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
-        return Objects.isNull(service.get(id).getData());
+        return service.get(id).isSuccess();
     }
 }

@@ -20,6 +20,6 @@ public class FirmValidator implements ConstraintValidator<HaveFirm, Long>, BaseV
 
     @Override
     public boolean isValid(Long aLong, ConstraintValidatorContext constraintValidatorContext) {
-        return !service.get(aLong).isSuccess();
+        return service.get(aLong).isSuccess();
     }
 }

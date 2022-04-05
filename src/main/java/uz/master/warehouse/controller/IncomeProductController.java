@@ -11,6 +11,7 @@ import uz.master.warehouse.dto.InComeProducts.InComeProductsUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.products.InComeProductsService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 
@@ -22,7 +23,7 @@ public class IncomeProductController extends AbstractController {
     private final InComeProductsService inComeProductsService;
 
     @PostMapping(PATH + "create")
-    public ResponseEntity<DataDto<Long>> create(@RequestBody InComeProductsCreateDto dto) {
+    public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody InComeProductsCreateDto dto) {
         return new ResponseEntity<>(inComeProductsService.create(dto), HttpStatus.OK);
     }
 
@@ -45,7 +46,7 @@ public class IncomeProductController extends AbstractController {
     }
 
     @PutMapping(PATH + "create")
-    public ResponseEntity<DataDto<Long>> update(@RequestBody InComeProductsUpdateDto dto) {
+    public ResponseEntity<DataDto<Long>> update(@Valid @RequestBody InComeProductsUpdateDto dto) {
 
         return new ResponseEntity<>(inComeProductsService.update(dto), HttpStatus.OK);
     }

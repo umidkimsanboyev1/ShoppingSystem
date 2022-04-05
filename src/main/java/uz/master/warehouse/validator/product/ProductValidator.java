@@ -20,6 +20,6 @@ public class ProductValidator implements ConstraintValidator<HaveProduct, Long>,
 
     @Override
     public boolean isValid(Long aLong, ConstraintValidatorContext constraintValidatorContext) {
-        return !service.get(aLong).isSuccess();
+        return service.get(aLong).isSuccess();
     }
 }
