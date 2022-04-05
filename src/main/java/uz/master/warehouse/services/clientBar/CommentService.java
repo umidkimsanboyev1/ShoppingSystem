@@ -24,9 +24,9 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
-public class CommentService extends AbstractService<CommentRepository, CommentMapper, CommentValidator> implements GenericCrudService<Comment, CommentDto, CommentCreateDto, CommentUpdateDto, Long> {
-    public CommentService(CommentRepository repository, CommentMapper mapper, CommentValidator validator, ClientBarRepository clientBarRepository, AuthUserRepository authUserRepository) {
-        super(repository, mapper, validator);
+public class CommentService extends AbstractService<CommentRepository, CommentMapper> implements GenericCrudService<Comment, CommentDto, CommentCreateDto, CommentUpdateDto, Long> {
+    public CommentService(CommentRepository repository, CommentMapper mapper, ClientBarRepository clientBarRepository, AuthUserRepository authUserRepository) {
+        super(repository, mapper);
         this.clientBarRepository = clientBarRepository;
         this.authUserRepository = authUserRepository;
     }

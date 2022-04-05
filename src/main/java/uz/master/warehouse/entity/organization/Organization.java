@@ -15,6 +15,9 @@ public class Organization extends Auditable {
 
     @Column(unique = true, nullable = false)
     private String name;
+
+    private String logoPath;
+
     @Column(nullable = false)
     private Long ownerId;
 }

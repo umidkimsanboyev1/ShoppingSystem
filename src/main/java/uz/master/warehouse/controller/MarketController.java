@@ -28,14 +28,15 @@ public class MarketController extends AbstractController {
 
 
     @DeleteMapping(PATH+"/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<DataDto> delete(@PathVariable Long id) {
         service.delete(id);
+        return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
 
     @PutMapping(PATH+"/update")
-    public void update(@RequestBody MarketUpdateDto dto) {
-        service.update(dto);
+    public ResponseEntity<DataDto<Long>> update(@RequestBody MarketUpdateDto dto) {
+        return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
     }
 
 

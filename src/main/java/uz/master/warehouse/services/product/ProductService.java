@@ -26,26 +26,23 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class ProductService extends AbstractService<ProductRepository, ProductMapper, ProductValidator> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, Long> {
+public class ProductService extends AbstractService<ProductRepository, ProductMapper> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, Long> {
 
     private final FirmService firmService;
     private final EntityManager entityManager;
 
     public ProductService(
             ProductRepository repository,
-                          ProductMapper mapper,
-                          ProductValidator validator, FirmService firmService, EntityManager manager
+                          ProductMapper mapper,FirmService firmService, EntityManager manager
     ) {
-        super(repository, mapper, validator);
+        super(repository, mapper);
         this.firmService = firmService;
         this.entityManager = manager;
     }
 
     @Override
     public DataDto<Long> create( ProductCreateDto createDto) {
-        if (!validator.validForCreate(createDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-        }
+
         if (Objects.isNull(firmService.get(createDto.getFirmId()    ).getData())) {
             return new DataDto<>(new AppErrorDto("Firm Not Found", HttpStatus.NOT_FOUND));
         }
@@ -67,9 +64,7 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
 
     @Override
     public DataDto<Long> update(ProductUpdateDto updateDto) {
-        if (!validator.validForUpdate(updateDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-        }
+
         Product product = mapper.fromUpdateDto(updateDto);
         product.setDefault_price(updateDto.getDefault_price());
         Product save = repository.save(product);

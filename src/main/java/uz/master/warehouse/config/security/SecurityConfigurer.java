@@ -22,6 +22,7 @@ import uz.master.warehouse.services.auth.AuthUserService;
 @EnableWebSecurity
 @RequiredArgsConstructor
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
+
     public final static String[] WHITE_LIST = {
             "/**",
             "/api/login",
@@ -32,6 +33,7 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
             "/api/docs/**",
 
     };
+
     private final AuthUserService userService;
     private final PasswordEncoder passwordEncoder;
 
@@ -40,20 +42,32 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
         auth.userDetailsService(userService).passwordEncoder(passwordEncoder);
     }
 
-    @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.cors().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests()
-                .antMatchers(WHITE_LIST)
-                .permitAll()
-                .anyRequest().authenticated();
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.authorizeRequests().antMatchers("/").permitAll();
+//    }
 
-        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
-        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-
+        @Override
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
     }
+
+
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
+//        http.cors().disable();
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.authorizeRequests()
+//                .antMatchers(WHITE_LIST)
+//                .permitAll()
+//                .anyRequest().authenticated();
+//
+//        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+//        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+//
+//    }
 
     @Bean
     @Override

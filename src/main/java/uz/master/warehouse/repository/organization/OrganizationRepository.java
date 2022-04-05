@@ -26,4 +26,9 @@ public interface OrganizationRepository extends JpaRepository<Organization, Long
 
     List<Organization> findAllByDeletedFalse();
 
+    @Transactional
+    @Modifying
+    @Query(value = "update Organization set logoPath=:path   where id=:id")
+    void updateLogo(@Param(value = "path") String path,@Param(value = "id") Long id);
+
 }

@@ -17,12 +17,13 @@ public class AuthUser extends Auditable {
 
     @Column(nullable = false,unique = true)
     private String username;
-    @Column(nullable = false)
+    @Column(nullable = false,unique = true)
     private String phoneNumber;
     @Column(nullable = false)
     private String password;
 
     private String picturePath;
+
 
     @Column(nullable = false)
     private Long organizationId;

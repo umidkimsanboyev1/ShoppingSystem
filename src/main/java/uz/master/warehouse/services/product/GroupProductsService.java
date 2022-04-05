@@ -22,7 +22,7 @@ import javax.validation.Valid;
 import java.util.List;
 
 @Service
-public  class GroupProductsService extends AbstractService<GroupProductsRepository, GroupProductsMapper, GroupProductsValidator>
+public  class GroupProductsService extends AbstractService<GroupProductsRepository, GroupProductsMapper>
         implements GenericCrudService<
         GroupProducts,
         GroupProductsDto,
@@ -34,18 +34,15 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
     private final WareHouseProductsService wareHouseProductsService;
 
     public GroupProductsService(GroupProductsRepository repository,
-                                GroupProductsMapper mapper,
-                                GroupProductsValidator validator, InComeProductsService inComeProductsService, WareHouseProductsService wareHouseProductsService) {
-        super(repository, mapper, validator);
+                                GroupProductsMapper mapper, InComeProductsService inComeProductsService, WareHouseProductsService wareHouseProductsService) {
+        super(repository, mapper);
         this.inComeProductsService = inComeProductsService;
         this.wareHouseProductsService = wareHouseProductsService;
     }
 
     @Override
     public DataDto<Long> create(@Valid GroupProductsCreateDto createDto) {
-        if (!validator.validForCreate(createDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-        }
+
         GroupProducts groupProducts = mapper.fromCreateDto(createDto);
         groupProducts.setCompanyId(createDto.getCompanyId());
         groupProducts.setDate(createDto.getDate());
@@ -65,9 +62,7 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
 
     @Override
     public DataDto<Long> update(GroupProductsUpdateDto updateDto) {
-        if (!validator.validForUpdate(updateDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
-        }
+
         GroupProducts groupProducts = mapper.fromUpdateDto(updateDto);
         groupProducts.setCompanyId(updateDto.getCompanyId());
         groupProducts.setDate(updateDto.getDate());
