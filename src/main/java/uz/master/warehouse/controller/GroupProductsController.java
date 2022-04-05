@@ -42,7 +42,6 @@ public class GroupProductsController extends AbstractController {
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
-
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PutMapping("/update")
     public ResponseEntity<DataDto<Long>> update(@Valid @RequestBody GroupProductsUpdateDto dto) {
