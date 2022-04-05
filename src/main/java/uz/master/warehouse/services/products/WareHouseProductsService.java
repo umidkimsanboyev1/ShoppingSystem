@@ -97,24 +97,24 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
         return repository.findByProductIdAndDeletedFalse(id);
     }
 
-    public DataDto<List<WareHouseProductsDto>> getByModel(String model) {
-        List<Product> products = productRepository.findAllByModelAndDeletedFalse(model);
-        if (products.isEmpty()) {
-            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
-        }
-        List<Long> productIds = products.stream().map(Auditable::getId).toList();
-        List<WareHouseProducts> allByProductIdIsIn = repository.findByProductIdIn(productIds);
-        return new DataDto<>(mapper.toDto(allByProductIdIsIn));
-    }
-
-    public DataDto<WareHouseProductsDto> getByModelAndColor(String model, String color) {
-        Product product = productRepository.findByModelAndColorAndDeletedFalse(model, color);
-        if (Objects.isNull(product)) {
-            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
-        }
-        WareHouseProducts wareHouseProduct = this.getByProductId(product.getId());
-        return new DataDto<>(mapper.toDto(wareHouseProduct));
-    }
+//    public DataDto<List<WareHouseProductsDto>> getByModel(String model) {
+//        List<Product> products = productRepository.findAllByModelAndDeletedFalse(model);
+//        if (products.isEmpty()) {
+//            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
+//        }
+//        List<Long> productIds = products.stream().map(Auditable::getId).toList();
+//        List<WareHouseProducts> allByProductIdIsIn = repository.findByProductIdIn(productIds);
+//        return new DataDto<>(mapper.toDto(allByProductIdIsIn));
+//    }
+//
+//    public DataDto<WareHouseProductsDto> getByModelAndColor(String model, String color) {
+//        Product product = productRepository.findByModelAndColorAndDeletedFalse(model, color);
+//        if (Objects.isNull(product)) {
+//            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
+//        }
+//        WareHouseProducts wareHouseProduct = this.getByProductId(product.getId());
+//        return new DataDto<>(mapper.toDto(wareHouseProduct));
+//    }
 
 
     public void checkCount(Long productId, int count) {

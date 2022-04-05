@@ -14,4 +14,5 @@ public class ProductCriteria extends GenericCriteria {
     private String color;
 
     private Long firmId;
+
 }

@@ -70,7 +70,7 @@ public class ProductController extends AbstractController {
     }
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    @GetMapping(PATH + "/list")
+    @GetMapping(PATH + "/listByCriteri")
     public ResponseEntity<DataDto<List<ProductDto>>> getWithCriteria(ProductCriteria criteria) {
         return new ResponseEntity<>(service.getWithCriteria(criteria), HttpStatus.OK);
     }
