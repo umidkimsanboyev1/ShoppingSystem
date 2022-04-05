@@ -10,6 +10,7 @@ import uz.master.warehouse.enums.Role;
 
 import javax.persistence.Column;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -27,12 +28,13 @@ public class AuthCreateDto implements BaseDto {
     private String username;
 
     @NotBlank
+    @Pattern(regexp = "[+998][0-9]{9}]")
     private String phoneNumber;
 
     @NotBlank
     private String password;
 
     @NotBlank
-    private Role role;
+    private String role;
 
 }

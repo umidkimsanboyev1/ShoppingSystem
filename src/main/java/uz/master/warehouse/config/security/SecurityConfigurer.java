@@ -47,19 +47,26 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 //    }
 
         @Override
-    protected void configure(HttpSecurity http) throws Exception {
-        http.csrf().disable();
-        http.cors().disable();
-        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-        http.authorizeRequests()
-                .antMatchers(WHITE_LIST)
-                .permitAll()
-                .anyRequest().authenticated();
-
-        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
-        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-
+    protected void configure(HttpSecurity httpSecurity) throws Exception {
+        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
     }
+
+
+
+//    @Override
+//    protected void configure(HttpSecurity http) throws Exception {
+//        http.csrf().disable();
+//        http.cors().disable();
+//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+//        http.authorizeRequests()
+//                .antMatchers(WHITE_LIST)
+//                .permitAll()
+//                .anyRequest().authenticated();
+//
+//        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+//        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+//
+//    }
 
     @Bean
     @Override

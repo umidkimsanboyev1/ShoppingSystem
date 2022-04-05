@@ -5,6 +5,7 @@ import com.auth0.jwt.interfaces.DecodedJWT;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
+import org.apache.commons.io.FileUtils;
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
 import org.apache.http.client.methods.HttpPost;
@@ -14,6 +15,7 @@ import org.apache.http.util.EntityUtils;
 import org.mapstruct.control.MappingControl;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -23,6 +25,7 @@ import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import uz.master.warehouse.dto.auth.*;
 import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.responce.AppErrorDto;
@@ -32,14 +35,23 @@ import uz.master.warehouse.enums.Role;
 import uz.master.warehouse.mapper.auth.AuthUserMapper;
 import uz.master.warehouse.properties.ServerProperties;
 import uz.master.warehouse.repository.auth.AuthUserRepository;
+import uz.master.warehouse.services.file.FileStorageService;
 import uz.master.warehouse.services.organization.OrganizationService;
 import uz.master.warehouse.utils.JwtUtils;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletRequest;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
+import java.io.*;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.time.chrono.Chronology;
+import java.time.chrono.HijrahChronology;
+import java.time.format.DateTimeFormatterBuilder;
+import java.time.format.FormatStyle;
 import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
@@ -54,6 +66,18 @@ public class AuthUserService implements UserDetailsService {
     private final ServerProperties serverProperties;
    private final PasswordEncoder passwordEncoder;
    private final OrganizationService service;
+   private final FileStorageService fileStorageService;
+
+    private  Path root = Paths.get("D:/uploads");
+//    @PostConstruct
+    public void init() {
+        try {
+            Files.createDirectory(root);
+        } catch (IOException e) {
+            throw new RuntimeException("Could not initialize folder for upload!");
+        }
+    }
+
 
    public DataDto<AuthDto>get(){
        String principal = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
@@ -105,18 +129,19 @@ public class AuthUserService implements UserDetailsService {
     }
 
     public DataDto<Long> createUser(AuthCreateDto dto) {
-         service.get(dto.getOrganizationId());
+        Role role = Role.ADMIN.checkRole(dto.getRole());
+        service.get(dto.getOrganizationId());
         AuthUser authUser = mapper.fromCreateDto(dto);
         authUser.setBlocked(false);
         authUser.setDeleted(false);
+        authUser.setRole(role);
         authUser.setPassword(passwordEncoder.encode(dto.getPassword()));
+
         try {
             return new DataDto<>(repository.save(authUser).getId());
 
-        }
-
-        catch (Exception e) {
-            return new DataDto<>(new AppErrorDto(HttpStatus.IM_USED, "already Taken", "auth/user/create"));
+        } catch (Exception e) {
+            return new DataDto<>(new AppErrorDto(HttpStatus.IM_USED, "already Taken phone or username ", "auth/user/create"));
         }
 
 
@@ -170,5 +195,15 @@ public class AuthUserService implements UserDetailsService {
     }
 
 
+    public void savePicture(MultipartFile picture) throws IOException {
+        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String contentType = com.google.common.io.Files.getFileExtension(picture.getOriginalFilename());
+        if("jpg".equals(contentType)||"png".equals(contentType)){
+            String store = fileStorageService.store(picture);
+            repository.updatePicture(store,username);
+        }else {
+            throw new RuntimeException("picture content type error");
+        }
+    }
 
 }
