@@ -3,6 +3,7 @@ package uz.master.warehouse.services.payment;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.payment.PaymentCreateDto;
 import uz.master.warehouse.dto.payment.PaymentDto;
 import uz.master.warehouse.dto.payment.PaymentUpdateDto;
@@ -24,8 +25,7 @@ import java.util.Objects;
 @Service
 public class PaymentService extends AbstractService<
         PaymentRepository,
-        PaymentMapper,
-        PaymentValidator> implements GenericCrudService<
+        PaymentMapper> implements GenericCrudService<
         Payment,
         PaymentDto,
         PaymentCreateDto,
@@ -36,14 +36,14 @@ public class PaymentService extends AbstractService<
     public PaymentService(PaymentRepository repository,
                           PaymentMapper mapper,
                           PaymentValidator validator) {
-        super(repository, mapper, validator);
+        super(repository, mapper);
     }
 
     @Override
     public DataDto<Long> create(PaymentCreateDto createDto) {
-        if (!validator.validForCreate(createDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-        }
+//        if (!validator.validForCreate(createDto)) {
+//            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
+//        }
         Payment payment = mapper.fromCreateDto(createDto);
         payment.setOrganizationId(createDto.getOrganizationId());
         payment.setCompanyId(createDto.getCompanyId());
@@ -60,9 +60,9 @@ public class PaymentService extends AbstractService<
 
     @Override
     public DataDto<Long> update(PaymentUpdateDto updateDto) {
-        if (!validator.validForUpdate(updateDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
-        }
+//        if (!validator.validForUpdate(updateDto)) {
+//            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
+//        }
         Payment payment = mapper.fromUpdateDto(updateDto);
         payment.setSum(updateDto.getSum());
         repository.updatePayment(payment.getId(), payment.getSum());
@@ -83,6 +83,11 @@ public class PaymentService extends AbstractService<
 
         }
         return new DataDto<>(mapper.toDto(payment));
+    }
+
+    @Override
+    public DataDto<List<PaymentDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 
     public DataDto<List<PaymentDto>> getByTime(String fromDate, String toDate) {

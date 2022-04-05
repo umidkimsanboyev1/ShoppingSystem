@@ -1,6 +1,7 @@
 package uz.master.warehouse.services.organization;
 
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.firm.FirmCreateDto;
 import uz.master.warehouse.dto.firm.FirmDto;
 import uz.master.warehouse.dto.firm.FirmUpdateDto;
@@ -49,5 +50,10 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
     @Override
     public DataDto<FirmDto> get(Long id) {
         return new DataDto<>(mapper.toDto(repository.findByIdAndDeletedFalse(id)));
+    }
+
+    @Override
+    public DataDto<List<FirmDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 }

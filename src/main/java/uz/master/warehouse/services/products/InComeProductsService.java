@@ -2,6 +2,7 @@ package uz.master.warehouse.services.products;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsCreateDto;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsDto;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsUpdateDto;
@@ -84,6 +85,11 @@ public class InComeProductsService extends AbstractService<InComeProductsReposit
         }
         InComeProductsDto inComeProductsDto = mapper.toDto( optional.get() );
         return new DataDto<>( inComeProductsDto );
+    }
+
+    @Override
+    public DataDto<List<InComeProductsDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 
     public DataDto<List<InComeProductsDto>> getByTime(String from, String to) {

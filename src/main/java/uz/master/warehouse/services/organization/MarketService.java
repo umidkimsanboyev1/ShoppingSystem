@@ -2,6 +2,7 @@ package uz.master.warehouse.services.organization;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.market.MarketCreateDto;
 import uz.master.warehouse.dto.market.MarketDto;
 import uz.master.warehouse.dto.market.MarketUpdateDto;
@@ -84,5 +85,10 @@ public class MarketService extends AbstractService<
 
         }
         return new DataDto<>(mapper.toDto(market));
+    }
+
+    @Override
+    public DataDto<List<MarketDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 }

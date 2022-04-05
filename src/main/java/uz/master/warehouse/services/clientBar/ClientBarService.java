@@ -2,6 +2,7 @@ package uz.master.warehouse.services.clientBar;
 
 
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsCreateDto;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
 import uz.master.warehouse.dto.responce.DataDto;
@@ -60,5 +61,10 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
     @Override
     public DataDto<ClientBarDto> get(Long id) {
         return new DataDto<>(mapper.toDto(repository.findByIdAndDeletedFalse(id)));
+    }
+
+    @Override
+    public DataDto<List<ClientBarDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 }

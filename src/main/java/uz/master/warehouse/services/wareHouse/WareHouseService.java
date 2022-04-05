@@ -2,6 +2,7 @@ package uz.master.warehouse.services.wareHouse;
 
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.exception.NotFoundException;
 import uz.master.warehouse.validator.warehouse.WareHouseValidator;
@@ -64,5 +65,10 @@ public class WareHouseService extends AbstractService<
             throw new NotFoundException("not found");
         });
         return new DataDto<>(mapper.toDto(found));
+    }
+
+    @Override
+    public DataDto<List<WareHouseDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 }

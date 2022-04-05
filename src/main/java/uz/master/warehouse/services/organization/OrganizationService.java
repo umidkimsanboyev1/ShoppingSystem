@@ -4,6 +4,7 @@ package uz.master.warehouse.services.organization;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.organization.OrganizationCreateDto;
 import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.organization.OrganizationUpdateDto;
@@ -86,6 +87,11 @@ public class OrganizationService extends AbstractService<
 
         }
         return new DataDto<>(mapper.toDto(organization));
+    }
+
+    @Override
+    public DataDto<List<OrganizationDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 
     public  String getName(Long id) {

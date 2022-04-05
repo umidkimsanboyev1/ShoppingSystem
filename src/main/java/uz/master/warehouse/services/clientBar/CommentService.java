@@ -5,6 +5,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.auth.AuthUser;
@@ -91,5 +92,10 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
         }
         CommentDto commentDto = mapper.toDto( optional.get() );
         return new DataDto<>( commentDto );
+    }
+
+    @Override
+    public DataDto<List<CommentDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 }

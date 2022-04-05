@@ -2,6 +2,7 @@ package uz.master.warehouse.services.products;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsCreateDto;
@@ -85,6 +86,11 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
         }
         WareHouseProductsDto warehouseProductsDto = mapper.toDto(optional.get());
         return new DataDto<>(warehouseProductsDto);
+    }
+
+    @Override
+    public DataDto<List<WareHouseProductsDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 
     public WareHouseProducts getByProductId(Long id) {

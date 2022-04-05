@@ -6,6 +6,7 @@ import org.hibernate.search.mapper.orm.session.SearchSession;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.product.ProductCreateDto;
 import uz.master.warehouse.dto.product.ProductDto;
 import uz.master.warehouse.dto.product.ProductUpdateDto;
@@ -83,6 +84,11 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
             throw new UsernameNotFoundException("Not found");
         });
         return new DataDto<>(mapper.toDto(product));
+    }
+
+    @Override
+    public DataDto<List<ProductDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 
 

@@ -1,5 +1,6 @@
 package uz.master.warehouse.services;
 
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.dto.GenericDto;
 import uz.master.warehouse.dto.responce.DataDto;
@@ -21,4 +22,6 @@ public interface GenericService<
     DataDto<List<D>> getAll();
 
     DataDto<D> get(K id);
+
+    DataDto<List<D>> getWithCriteria(GenericCriteria criteria);
 }
