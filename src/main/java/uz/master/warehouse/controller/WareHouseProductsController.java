@@ -12,6 +12,7 @@ import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.products.WareHouseProductsService;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class WareHouseProductsController extends AbstractController {
     private final WareHouseProductsService warehouseProductsService;
 
     @PostMapping(PATH + "/create")
-    public ResponseEntity<DataDto<Long>> create(@RequestBody WareHouseProductsCreateDto dto) {
+    public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody WareHouseProductsCreateDto dto) {
         return new ResponseEntity<>(warehouseProductsService.create(dto), HttpStatus.OK);
     }
 
@@ -54,7 +55,7 @@ public class WareHouseProductsController extends AbstractController {
     }
 
     @PutMapping(PATH + "/update")
-    public ResponseEntity<DataDto<Long>> update(@RequestBody WareHouseProductsUpdateDto dto) {
+    public ResponseEntity<DataDto<Long>> update(@Valid @RequestBody WareHouseProductsUpdateDto dto) {
         return new ResponseEntity<>(warehouseProductsService.update(dto), HttpStatus.OK);
     }
 

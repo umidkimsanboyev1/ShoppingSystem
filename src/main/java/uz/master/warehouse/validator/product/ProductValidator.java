@@ -1,24 +1,25 @@
 package uz.master.warehouse.validator.product;
 
 import org.springframework.stereotype.Component;
-import uz.master.warehouse.dto.product.ProductCreateDto;
-import uz.master.warehouse.dto.product.ProductUpdateDto;
-import uz.master.warehouse.validator.GenericValidator;
+import uz.master.warehouse.annotations.HaveProduct;
+import uz.master.warehouse.services.product.ProductService;
+import uz.master.warehouse.validator.BaseValidator;
 
-import java.util.Objects;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class ProductValidator implements GenericValidator<ProductCreateDto, ProductUpdateDto> {
-    @Override
-    public boolean validForCreate(ProductCreateDto createDto) {
-        return (Objects.nonNull(createDto.getFirmId())
-                && Objects.nonNull(createDto.getModel())
-                && Objects.nonNull(createDto.getItem_count()));
+public class ProductValidator implements ConstraintValidator<HaveProduct, Long>, BaseValidator {
 
+    private final ProductService service;
+
+    public ProductValidator(ProductService service) {
+        this.service = service;
     }
 
+
     @Override
-    public boolean validForUpdate(ProductUpdateDto updateDto) {
-        return (Objects.nonNull(updateDto.getDefault_price()));
+    public boolean isValid(Long aLong, ConstraintValidatorContext constraintValidatorContext) {
+        return service.get(aLong).isSuccess();
     }
 }
