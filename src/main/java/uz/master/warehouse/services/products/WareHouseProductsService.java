@@ -117,15 +117,12 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
         });
     }
 
-    public void incomeProducts(List<InComeProducts> list) {
-        for (InComeProducts inComeProducts : list) {
-            WareHouseProducts wareHouseProducts = this.getByProductId(inComeProducts.getProductId());
-            if (Objects.isNull(wareHouseProducts)) {
-                this.create(new WareHouseProductsCreateDto(inComeProducts.getCount(), inComeProducts.getProductId()));
-            } else
-                this.update(new WareHouseProductsUpdateDto(wareHouseProducts.getCount() + inComeProducts.getCount(), inComeProducts.getProductId()));
-        }
-
+    public void incomeProducts(InComeProducts list) {
+        WareHouseProducts wareHouseProducts = this.getByProductId(list.getProductId());
+        if (Objects.isNull(wareHouseProducts)) {
+            this.create(new WareHouseProductsCreateDto(list.getCount(), list.getProductId()));
+        } else
+            this.update(new WareHouseProductsUpdateDto(wareHouseProducts.getCount() + list.getCount(), list.getProductId()));
     }
 
     public boolean outcomeProducts(OutComeProducts outComeProducts) {
@@ -136,6 +133,7 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
                 return true;
             } else if (wareHouseProducts.getCount() == outComeProducts.getCount()) {
                 this.delete(wareHouseProducts.getId());
+                productRepository.deleteProduct(wareHouseProducts.getProductId());
                 return true;
             } else
                 return false;

@@ -44,12 +44,10 @@ public class SectorController extends AbstractController {
     public ResponseEntity<DataDto> delete(@PathVariable Long id) {
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-
     }
 
     @PutMapping(PATH + "update")
     public ResponseEntity<DataDto<Long>> update(@Valid @RequestBody SectorUpdateDto dto) {
-
         return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
     }
 }
