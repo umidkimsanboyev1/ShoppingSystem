@@ -27,17 +27,26 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
         CompanyUpdateDto,
         Long> {
 
+<<<<<<< HEAD
+    public CompanyService(CompanyRepository repository, CompanyMapper mapper) {
+        super(repository, mapper);
+    }
+=======
+>>>>>>> origin/master
+
     public CompanyService(CompanyRepository repository, CompanyMapper mapper) {
         super(repository, mapper);
     }
 
-
     @Override
     public DataDto<Long> create(@Valid CompanyCreateDto createDto) {
+<<<<<<< HEAD
 //        if (!validator.validForCreate(createDto)) {
 //            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
 //        }
 
+=======
+>>>>>>> origin/master
         Company company = mapper.fromCreateDto(createDto);
         company.setName(createDto.getName());
         company.setRegistrationNumber(createDto.getRegisterNumber());
@@ -54,9 +63,12 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
 
     @Override
     public DataDto<Long> update(CompanyUpdateDto updateDto) {
+<<<<<<< HEAD
 //        if (!validator.validForUpdate(updateDto)) {
 //            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
 //        }
+=======
+>>>>>>> origin/master
         Company company = mapper.fromUpdateDto(updateDto);
         company.setName(updateDto.getName());
         repository.update(company.getId(), company.getName());

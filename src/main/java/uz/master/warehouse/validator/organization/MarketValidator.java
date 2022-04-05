@@ -1,27 +1,24 @@
 package uz.master.warehouse.validator.organization;
 
 import org.springframework.stereotype.Component;
-import uz.master.warehouse.dto.market.MarketCreateDto;
-import uz.master.warehouse.dto.market.MarketUpdateDto;
-import uz.master.warehouse.validator.GenericValidator;
+import uz.master.warehouse.annotations.HaveMarket;
+import uz.master.warehouse.services.organization.MarketService;
+import uz.master.warehouse.validator.BaseValidator;
 
-import java.util.Objects;
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class MarketValidator implements GenericValidator<MarketCreateDto, MarketUpdateDto> {
-    @Override
-    public boolean validForCreate(MarketCreateDto createDto) {
-        return (Objects.nonNull(createDto.getOrganizationId())
-                && Objects.nonNull(createDto.getName())
-                && Objects.nonNull(createDto.getLocation())
-                && Objects.nonNull(createDto.getOwnerId())
-                && Objects.nonNull(createDto.getDescription()));
+
+public class MarketValidator implements ConstraintValidator<HaveMarket, Long>, BaseValidator {
+    private final MarketService service;
+
+    public MarketValidator(MarketService service) {
+        this.service = service;
     }
 
     @Override
-    public boolean validForUpdate(MarketUpdateDto updateDto) {
-        return (Objects.nonNull(updateDto.getName())
-                && Objects.nonNull(updateDto.getDescription())
-                && Objects.nonNull(updateDto.getLocation()));
+    public boolean isValid(Long id, ConstraintValidatorContext constraintValidatorContext) {
+        return service.get(id).isSuccess();
     }
 }

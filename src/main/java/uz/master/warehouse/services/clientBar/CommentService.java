@@ -1,17 +1,12 @@
 package uz.master.warehouse.services.clientBar;
 
 import org.springframework.http.HttpStatus;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
-import uz.master.warehouse.entity.auth.AuthUser;
-import uz.master.warehouse.repository.auth.AuthUserRepository;
 import uz.master.warehouse.repository.clientBar.ClientBarRepository;
-import uz.master.warehouse.validator.clientBar.CommentValidator;
+import uz.master.warehouse.session.SessionUser;
 import uz.master.warehouse.dto.comment.CommentCreateDto;
 import uz.master.warehouse.dto.comment.CommentDto;
 import uz.master.warehouse.dto.comment.CommentUpdateDto;
@@ -26,52 +21,51 @@ import java.util.Optional;
 
 @Service
 public class CommentService extends AbstractService<CommentRepository, CommentMapper> implements GenericCrudService<Comment, CommentDto, CommentCreateDto, CommentUpdateDto, Long> {
-    public CommentService(CommentRepository repository, CommentMapper mapper, ClientBarRepository clientBarRepository, AuthUserRepository authUserRepository) {
+    public CommentService(CommentRepository repository, CommentMapper mapper, ClientBarRepository clientBarRepository, SessionUser sessionUser) {
         super(repository, mapper);
         this.clientBarRepository = clientBarRepository;
-        this.authUserRepository = authUserRepository;
+        this.sessionUser = sessionUser;
     }
+
     private final ClientBarRepository clientBarRepository;
-    private final AuthUserRepository authUserRepository;
+    private final SessionUser sessionUser;
 
     @Override
     public DataDto<Long> create(CommentCreateDto createDto) {
-        boolean existsBar = clientBarRepository.existsByIdAndDeletedFalse( createDto.getClientBarId() );
+        boolean existsBar = clientBarRepository.existsByIdAndDeletedFalse(createDto.getClientBarId());
         if (!existsBar) {
-            return new DataDto<>( new AppErrorDto( "Client bar not found", HttpStatus.NOT_FOUND ) );
+            return new DataDto<>(new AppErrorDto("Client bar not found", HttpStatus.NOT_FOUND));
         }
-        Comment comment = mapper.fromCreateDto( createDto );
-        String username =  (String)SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-        Optional<AuthUser> optionalAuthUser = authUserRepository.findByUsernameAndDeletedFalse( username );
-        comment.setAuthorId( optionalAuthUser.get().getId() );
-        repository.save( comment );
-        return new DataDto<>( repository.save( comment ).getId() );
+        Comment comment = mapper.fromCreateDto(createDto);
+        comment.setAuthorId(sessionUser.getId());
+        repository.save(comment);
+        return new DataDto<>(repository.save(comment).getId());
     }
 
     @Override
     public DataDto<Void> delete(Long id) {
-        Optional<Comment> optional = repository.findByIdAndDeletedFalse( id );
-        if(optional.isEmpty()){
-            return new DataDto<>( new AppErrorDto( "Comment not found", HttpStatus.NOT_FOUND ) );
+        Optional<Comment> optional = repository.findByIdAndDeletedFalse(id);
+        if (optional.isEmpty()) {
+            return new DataDto<>(new AppErrorDto("Comment not found", HttpStatus.NOT_FOUND));
         }
-        repository.deleteComment(id  );
+        repository.deleteComment(id);
         return new DataDto<>(true);
     }
 
 
     @Override
     public DataDto<Long> update(CommentUpdateDto updateDto) {
-        Optional<Comment> optionalComment = repository.findById( updateDto.getId() );
-        if(optionalComment.isEmpty()){
-            return new DataDto<>( new AppErrorDto( HttpStatus.OK, "Income Product not found", "product" ) );
+        Optional<Comment> optionalComment = repository.findById(updateDto.getId());
+        if (optionalComment.isEmpty()) {
+            return new DataDto<>(new AppErrorDto(HttpStatus.OK, "Income Product not found", "product"));
         }
-        Comment comment = mapper.fromUpdateDto( updateDto, optionalComment.get() );
+        Comment comment = mapper.fromUpdateDto(updateDto, optionalComment.get());
         try {
 
-            Comment save = repository.save( comment );
-            return new DataDto<>( save.getId() );
+            Comment save = repository.save(comment);
+            return new DataDto<>(save.getId());
         } catch (Exception e) {
-            return new DataDto<>( new AppErrorDto( HttpStatus.OK, "Bad credentional", "comment" ) );
+            return new DataDto<>(new AppErrorDto(HttpStatus.OK, "Bad credentional", "comment"));
 
         }
     }
@@ -80,18 +74,18 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
     @Override
     public DataDto<List<CommentDto>> getAll() {
         List<Comment> commentList = repository.findAllByDeletedFalse();
-        List<CommentDto> commentDto = mapper.toDto( commentList );
-        return new DataDto<>( commentDto );
+        List<CommentDto> commentDto = mapper.toDto(commentList);
+        return new DataDto<>(commentDto);
     }
 
     @Override
     public DataDto<CommentDto> get(Long id) {
-        Optional<Comment> optional = repository.findByIdAndDeletedFalse( id );
+        Optional<Comment> optional = repository.findByIdAndDeletedFalse(id);
         if (optional.isEmpty()) {
-            return new DataDto<>( new AppErrorDto( HttpStatus.NOT_FOUND, "Comment not found", "product" ) );
+            return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Comment not found", "product"));
         }
-        CommentDto commentDto = mapper.toDto( optional.get() );
-        return new DataDto<>( commentDto );
+        CommentDto commentDto = mapper.toDto(optional.get());
+        return new DataDto<>(commentDto);
     }
 
     @Override

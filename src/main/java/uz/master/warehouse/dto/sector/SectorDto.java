@@ -8,4 +8,9 @@ import uz.master.warehouse.dto.GenericDto;
 @Getter
 @Setter
 public class SectorDto extends GenericDto {
+    private String name;
+
+    private String color;
+
+    private Long wareHouseId;
 }

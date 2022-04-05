@@ -2,8 +2,6 @@ package uz.master.warehouse.controller;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.messaging.handler.annotation.MessageMapping;
-import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.web.bind.annotation.*;
 import uz.master.warehouse.controller.base.AbstractController;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
@@ -12,7 +10,6 @@ import uz.master.warehouse.dto.outComeProducts.OutComeProductsUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.products.OutComeProductsService;
 
-import java.nio.file.Path;
 import java.util.List;
 
 @RestController

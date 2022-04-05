@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import uz.master.warehouse.annotations.HaveFirm;
+import uz.master.warehouse.annotations.HaveSector;
 import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.dto.GenericDto;
 
@@ -35,5 +36,9 @@ public class ProductCreateDto implements BaseDto {
 
     @Positive
     private Double default_price;
+
+    @HaveSector
+    @NotBlank
+    private Long sectorId;
 
 }

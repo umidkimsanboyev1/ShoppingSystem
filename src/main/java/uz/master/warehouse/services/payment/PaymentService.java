@@ -1,6 +1,5 @@
 package uz.master.warehouse.services.payment;
 
-import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.criteria.GenericCriteria;
@@ -18,7 +17,6 @@ import uz.master.warehouse.validator.payment.PaymentValidator;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -34,16 +32,25 @@ public class PaymentService extends AbstractService<
 
 
     public PaymentService(PaymentRepository repository,
+<<<<<<< HEAD
                           PaymentMapper mapper,
                           PaymentValidator validator) {
+=======
+                          PaymentMapper mapper) {
+>>>>>>> origin/master
         super(repository, mapper);
     }
 
     @Override
+<<<<<<< HEAD
     public DataDto<Long> create(PaymentCreateDto createDto) {
 //        if (!validator.validForCreate(createDto)) {
 //            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
 //        }
+=======
+    public DataDto<Long> create(@Valid PaymentCreateDto createDto) {
+
+>>>>>>> origin/master
         Payment payment = mapper.fromCreateDto(createDto);
         payment.setOrganizationId(createDto.getOrganizationId());
         payment.setCompanyId(createDto.getCompanyId());
@@ -59,7 +66,11 @@ public class PaymentService extends AbstractService<
     }
 
     @Override
+<<<<<<< HEAD
     public DataDto<Long> update(PaymentUpdateDto updateDto) {
+=======
+    public DataDto<Long> update(@Valid PaymentUpdateDto updateDto) {
+>>>>>>> origin/master
 //        if (!validator.validForUpdate(updateDto)) {
 //            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
 //        }

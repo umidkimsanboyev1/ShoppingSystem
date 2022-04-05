@@ -20,6 +20,8 @@ import uz.master.warehouse.services.download.BetweenDatePdfService;
 import uz.master.warehouse.services.payment.PaymentService;
 
 import javax.validation.Valid;
+import java.io.ByteArrayInputStream;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @RestController
@@ -28,13 +30,11 @@ import java.util.List;
 public class PaymentController extends AbstractController {
 
     private final PaymentService service;
-    private final PaymentRepository repository;
-    private final PaymentMapper mapper;
     private final BetweenDatePdfService betweenDatePdfService;
 
     @PreAuthorize(value = "hasRole('ADMIN')")
     @PostMapping(PATH + "/create")
-    public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody  PaymentCreateDto dto) {
+    public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody PaymentCreateDto dto) {
         return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
     }
 
@@ -70,11 +70,12 @@ public class PaymentController extends AbstractController {
 
     @RequestMapping(value = "/betweenTimeDownload", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> paymentReport() {
-        String fromDate="2022-03-10";
-        String toDate="2022-10-10";
+    public ResponseEntity<InputStreamResource> paymentReport(String fromDate, String toDate) {
+        ///for test
+//        String fromDate="2022-03-10";
+//        String toDate="2022-10-10";
         List<PaymentDto> byTimeBetween = service.getByTimeBetween(fromDate, toDate);
-        ByteArrayInputStream bis = betweenDatePdfService.paymentReport(byTimeBetween,fromDate,toDate);
+        ByteArrayInputStream bis = betweenDatePdfService.paymentReport(byTimeBetween, fromDate, toDate);
         var headers = new HttpHeaders();
         String now = LocalDateTime.now().toString();
         String filename = now + ".pdf";
