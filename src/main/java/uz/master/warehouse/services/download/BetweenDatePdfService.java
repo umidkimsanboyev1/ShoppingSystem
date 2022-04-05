@@ -68,14 +68,10 @@ public class BetweenDatePdfService {
                 PdfPCell(table, payment.getSum().toString());
             }
 
-//            Document document1 = new Document();
-//            document1.open();
-//            document1.add(new Paragraph(Element.ALIGN_CENTER, fromDate + " and " + toDate));
-//            document1.close();
-
-
+//
             PdfWriter.getInstance(document, out);
             document.open();
+            document.add(new Paragraph(Element.ALIGN_JUSTIFIED_ALL, fromDate + " and " + toDate + "\n\n\n"));
             document.add(table);
             document.close();
 
