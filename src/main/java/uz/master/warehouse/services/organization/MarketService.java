@@ -15,6 +15,7 @@ import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.validator.organization.MarketValidator;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 
@@ -31,14 +32,13 @@ public class MarketService extends AbstractService<
         > {
 
 
-    public MarketService(MarketRepository repository,  MarketMapper mapper) {
+    public MarketService(MarketRepository repository, MarketMapper mapper) {
         super(repository, mapper);
     }
 
 
     @Override
-    public DataDto<Long> create(MarketCreateDto createDto) {
-
+    public DataDto<Long> create(@Valid MarketCreateDto createDto) {
         Market market = mapper.fromCreateDto(createDto);
         Organization organization = repository.findByOrgId(createDto.getOrganizationId());
         if (Objects.isNull(organization)) {
@@ -60,13 +60,13 @@ public class MarketService extends AbstractService<
     }
 
     @Override
-    public DataDto<Long> update(MarketUpdateDto updateDto) {
+    public DataDto<Long> update(@Valid MarketUpdateDto updateDto) {
 
         Market market = mapper.fromUpdateDto(updateDto);
         market.setName(updateDto.getName());
         market.setDescription(updateDto.getDescription());
         market.setLocation(updateDto.getLocation());
-          repository.update(market.getId(), market.getName(), market.getLocation(), market.getDescription());
+        repository.update(market.getId(), market.getName(), market.getLocation(), market.getDescription());
         return new DataDto<>(market.getId());
     }
 
@@ -79,7 +79,7 @@ public class MarketService extends AbstractService<
     @Override
     public DataDto<MarketDto> get(Long id) {
         Market market = repository.findByIdAndDeletedFalse(id);
-        if (Objects.isNull(market)){
+        if (Objects.isNull(market)) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Market not found", "market/get"));
 
         }

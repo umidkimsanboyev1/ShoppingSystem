@@ -30,8 +30,6 @@ import java.util.List;
 public class PaymentController extends AbstractController {
 
     private final PaymentService service;
-    private final PaymentRepository repository;
-    private final PaymentMapper mapper;
     private final BetweenDatePdfService betweenDatePdfService;
 
     @PreAuthorize(value = "hasRole('ADMIN')")

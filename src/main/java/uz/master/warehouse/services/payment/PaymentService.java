@@ -14,6 +14,7 @@ import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.validator.payment.PaymentValidator;
 
+import javax.validation.Valid;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Objects;
@@ -21,8 +22,7 @@ import java.util.Objects;
 @Service
 public class PaymentService extends AbstractService<
         PaymentRepository,
-        PaymentMapper,
-        PaymentValidator> implements GenericCrudService<
+        PaymentMapper> implements GenericCrudService<
         Payment,
         PaymentDto,
         PaymentCreateDto,
@@ -31,16 +31,13 @@ public class PaymentService extends AbstractService<
 
 
     public PaymentService(PaymentRepository repository,
-                          PaymentMapper mapper,
-                          PaymentValidator validator) {
-        super(repository, mapper, validator);
+                          PaymentMapper mapper) {
+        super(repository, mapper);
     }
 
     @Override
-    public DataDto<Long> create(PaymentCreateDto createDto) {
-        if (!validator.validForCreate(createDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-        }
+    public DataDto<Long> create(@Valid PaymentCreateDto createDto) {
+
         Payment payment = mapper.fromCreateDto(createDto);
         payment.setOrganizationId(createDto.getOrganizationId());
         payment.setCompanyId(createDto.getCompanyId());
@@ -56,10 +53,10 @@ public class PaymentService extends AbstractService<
     }
 
     @Override
-    public DataDto<Long> update(PaymentUpdateDto updateDto) {
-        if (!validator.validForUpdate(updateDto)) {
-            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
-        }
+    public DataDto<Long> update(@Valid PaymentUpdateDto updateDto) {
+//        if (!validator.validForUpdate(updateDto)) {
+//            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
+//        }
         Payment payment = mapper.fromUpdateDto(updateDto);
         payment.setSum(updateDto.getSum());
         repository.updatePayment(payment.getId(), payment.getSum());

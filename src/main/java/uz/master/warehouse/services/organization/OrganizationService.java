@@ -19,6 +19,7 @@ import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.services.file.FileStorageService;
 import uz.master.warehouse.validator.organization.OrganizationValidator;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
@@ -45,7 +46,7 @@ public class OrganizationService extends AbstractService<
 
 
     @Override
-    public DataDto<Long> create(OrganizationCreateDto createDto) {
+    public DataDto<Long> create(@Valid OrganizationCreateDto createDto) {
         Optional<AuthUser> ownerById = userRepository.findById(createDto.getOwnerId());
         if (ownerById.isEmpty()) {
             return new DataDto<>(new AppErrorDto("USER_NOT_FOUND", HttpStatus.BAD_REQUEST));
@@ -64,7 +65,7 @@ public class OrganizationService extends AbstractService<
     }
 
     @Override
-    public DataDto<Long> update(OrganizationUpdateDto updateDto) {
+    public DataDto<Long> update(@Valid OrganizationUpdateDto updateDto) {
 
         Organization organization = mapper.fromUpdateDto(updateDto);
         organization.setName(updateDto.getName());
@@ -88,7 +89,7 @@ public class OrganizationService extends AbstractService<
         return new DataDto<>(mapper.toDto(organization));
     }
 
-    public  String getName(Long id) {
+    public String getName(Long id) {
         return get(id).getData().getName();
     }
 
