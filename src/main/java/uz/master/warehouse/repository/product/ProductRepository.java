@@ -34,6 +34,4 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Query(value = "select  count(*) from product where not deleted and id=?1 ",nativeQuery = true)
     int existsByProduct(Long productId);
-
-    List<Product> findAllByDeletedFalseAndFirmId(Long firmId);
 }

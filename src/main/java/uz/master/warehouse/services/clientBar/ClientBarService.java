@@ -22,9 +22,10 @@ import java.util.List;
 
 @Service
 
-public class ClientBarService extends AbstractService<ClientBarRepository, ClientBarMapper> implements GenericCrudService<ClientBar, ClientBarDto, ClientBarCreateDto, ClientBarUpdateDto,GenericCriteria, Long> {
+public class ClientBarService extends AbstractService<ClientBarRepository, ClientBarMapper> implements GenericCrudService<ClientBar, ClientBarDto, ClientBarCreateDto, ClientBarUpdateDto, GenericCriteria, Long> {
 
     public final OutComeProductsService service;
+
     public ClientBarService(ClientBarRepository repository, ClientBarMapper mapper, OutComeProductsService service) {
         super(repository, mapper);
         this.service = service;
@@ -34,16 +35,18 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
     @Transactional
     @Override
     public DataDto<Long> create(ClientBarCreateDto createDto) {
-        try{
-            return new DataDto<>(repository.save(mapper.fromDto(createDto)).getId());
-        } catch (Exception e){
+        try {
+            ClientBar clientBar = mapper.fromDto(createDto);
+            ClientBar save = repository.save(clientBar);
+            return new DataDto<>(save.getId());
+        } catch (Exception e) {
             return new DataDto<>(new AppErrorDto("NAME_ALREADY_TAKEN", HttpStatus.CONFLICT));
         }
     }
 
     @Override
     public DataDto<Void> delete(Long id) {
-        if(!repository.existsById(id)){
+        if (!repository.existsById(id)) {
             return new DataDto<>(new AppErrorDto("CLIENT_BAR_DTO", HttpStatus.NOT_FOUND));
         }
         repository.deleteClientBar(id);
@@ -53,9 +56,9 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
     @Override
     public DataDto<Long> update(ClientBarUpdateDto updateDto) {
         ClientBar clientBar = mapper.fromUpdateDto(updateDto);
-        try{
+        try {
             return new DataDto<>(repository.save(clientBar).getId());
-        } catch (Exception e){
+        } catch (Exception e) {
             return new DataDto<>(new AppErrorDto("NAME_ALREADY_TAKEN", HttpStatus.CONFLICT));
         }
     }
@@ -67,7 +70,7 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
 
     @Override
     public DataDto<ClientBarDto> get(Long id) {
-        if(!repository.existsById(id)){
+        if (!repository.existsById(id)) {
             return new DataDto<>(new AppErrorDto("CLIENT_BAR_DTO", HttpStatus.NOT_FOUND));
         }
         return new DataDto<>(mapper.toDto(repository.findByIdAndDeletedFalse(id)));

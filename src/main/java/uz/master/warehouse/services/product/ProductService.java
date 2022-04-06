@@ -24,16 +24,22 @@ import uz.master.warehouse.services.organization.FirmService;
 import uz.master.warehouse.validator.product.ProductValidator;
 
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.transaction.Transactional;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.Objects;
+
+import static org.springframework.data.jpa.domain.AbstractPersistable_.id;
 
 @Service
 public class ProductService extends AbstractService<ProductRepository, ProductMapper> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, ProductCriteria, Long> {
 
     private final FirmService firmService;
     private final EntityManager entityManager;
+    @PersistenceContext
+    public EntityManager em;
 
     public ProductService(
             ProductRepository repository,
@@ -90,27 +96,44 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
 
     @Override
     public DataDto<List<ProductDto>> getWithCriteria(ProductCriteria criteria) {
+
         List<Product> products;
-        Pageable pageable = PageRequest.of(criteria.getPage(), criteria.getSize());
+        StringBuilder builder = new StringBuilder();
+        builder.append("select * from table where ");
+
         if (Objects.nonNull(criteria.getModel())) {
-            products = repository.findAllByModelAndDeletedFalse(criteria.getModel(), pageable).stream().toList();
-//            if (Objects.nonNull(criteria.getColor())) {
-//                List<Product> products1 = products.stream().filter(product ->
-//                        product.getColor().equalsIgnoreCase(criteria.getColor())
-//                ).toList();
-//            }
-//            if (Objects.nonNull(criteria.getFirmId())) {
-//                List<Product> products1 = products.stream().filter(product ->
-//                        product.getFirmId().equalsIgnoreCase(criteria.getColor())
-//                ).toList();
-//            }
-        } else if (Objects.nonNull(criteria.getColor())) {
-            products = repository.findAllByColorAndDeletedFalse(criteria.getColor(), pageable).stream().toList();
-        } else if (Objects.nonNull(criteria.getFirmId())) {
-            products = repository.findAllByFirmIdAndDeletedFalse(criteria.getFirmId(), pageable).stream().toList();
-        } else {
-            products = repository.findAllByDeletedFalse();
+            builder.append("model = %s ".formatted(criteria.getModel()));
         }
+
+        if (Objects.nonNull(criteria.getFirmId())) {
+            builder.append("firm_id = firm_id ");
+        }
+        if (Objects.nonNull(criteria.getColor())) {
+            builder.append("AndColor");
+        }
+
+
+
+//        Pageable pageable = PageRequest.of(criteria.getPage(), criteria.getSize());
+//        if (Objects.nonNull(criteria.getModel())) {
+//            products = repository.findAllByModelAndDeletedFalse(criteria.getModel(), pageable).stream().toList();
+////            if (Objects.nonNull(criteria.getColor())) {
+////                List<Product> products1 = products.stream().filter(product ->
+////                        product.getColor().equalsIgnoreCase(criteria.getColor())
+////                ).toList();
+////            }
+////            if (Objects.nonNull(criteria.getFirmId())) {
+////                List<Product> products1 = products.stream().filter(product ->
+////                        product.getFirmId().equalsIgnoreCase(criteria.getColor())
+////                ).toList();
+////            }
+//        } else if (Objects.nonNull(criteria.getColor())) {
+//            products = repository.findAllByColorAndDeletedFalse(criteria.getColor(), pageable).stream().toList();
+//        } else if (Objects.nonNull(criteria.getFirmId())) {
+//            products = repository.findAllByFirmIdAndDeletedFalse(criteria.getFirmId(), pageable).stream().toList();
+//        } else {
+//            products = repository.findAllByDeletedFalse();
+//        }
         return new DataDto<>(mapper.toDto(products));
     }
 

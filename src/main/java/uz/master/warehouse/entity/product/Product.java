@@ -28,4 +28,6 @@ public class Product extends Auditable {
 
     private Long sectorId;
 
+    //todo booommm
+
 }
