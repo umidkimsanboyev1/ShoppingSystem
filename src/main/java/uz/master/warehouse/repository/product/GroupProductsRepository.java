@@ -8,6 +8,9 @@ import org.springframework.stereotype.Repository;
 import uz.master.warehouse.entity.product.GroupProducts;
 
 import javax.transaction.Transactional;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -27,5 +30,18 @@ public interface GroupProductsRepository extends JpaRepository<GroupProducts, Lo
 
     @Query(value = "select  count(*) from group_products where not deleted and id=?1", nativeQuery = true)
     int existsGroupProduct(Long productId);
+
+    @Query(value = "SELECT e.* FROM group_products e WHERE DATE(e.date) >=?1 and DATE(e.date) <=?2", nativeQuery = true)
+    List<GroupProducts> findAllByDateTimeDateBetween(LocalDate from, LocalDate to);
+
+
+    @Query(
+            value = "SELECT distinct cast(e.date as date) FROM group_products e " +
+            "where e.date between cast(:from as date) and cast(:to as date)",
+            nativeQuery = true)
+    List<Date> getSizeDate(@Param(value = "from") String from, @Param(value = "to") String to);
+
+//     List<LocalDate> findAllByDateTimeDateBetween1(LocalDate from, LocalDate to);
+
 
 }

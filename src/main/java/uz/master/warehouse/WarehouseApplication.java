@@ -1,5 +1,6 @@
 package uz.master.warehouse;
 
+import com.itextpdf.text.Paragraph;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -36,6 +37,7 @@ public class WarehouseApplication  {
     public RestTemplate template(){
        return new RestTemplate();
     }
+
 
 
 //    @Bean

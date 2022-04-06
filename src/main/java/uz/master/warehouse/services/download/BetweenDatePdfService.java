@@ -27,7 +27,10 @@ public class BetweenDatePdfService {
     private final CompanyService companyService;
 
 
-    public ByteArrayInputStream paymentReport(List<PaymentDto> paymentDtos, String fromDate, String toDate) {
+
+    public ByteArrayInputStream paymentReport(List<PaymentDto> paymentDtos,
+                                              String fromDate,
+                                              String toDate) {
 
         Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -59,11 +62,11 @@ public class BetweenDatePdfService {
                 PaymentDto payment = paymentDtos.get(i);
 
                 String orgName = organizationService.getName(payment.getOrganizationId());
-//                String compName = companyService.getName(payment.getCompanyId());
+                String compName = companyService.getName(payment.getCompanyId());
 
                 PdfPCell(table, i + 1 + "");
                 PdfPCell(table, orgName);
-//                PdfPCell(table, compName);
+                PdfPCell(table, compName);
                 PdfPCell(table, payment.getDateTime().toString());
                 PdfPCell(table, payment.getSum().toString());
             }
