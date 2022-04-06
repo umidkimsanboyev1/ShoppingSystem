@@ -7,7 +7,7 @@ import lombok.Setter;
 import java.util.Objects;
 
 @Setter
-public class GenericCriteria {
+public class GenericCriteria implements BaseCriteria {
     private Integer size;
     private Integer page;
 

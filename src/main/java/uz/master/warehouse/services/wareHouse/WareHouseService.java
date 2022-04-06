@@ -26,6 +26,7 @@ public class WareHouseService extends AbstractService<
         WareHouseDto,
         WareHouseCreateDto,
         WareHouseUpdateDto,
+        GenericCriteria,
         Long
         > {
     public WareHouseService(WareHouseRepository repository, @Qualifier("wareHouseMapperImpl") WareHouseMapper mapper) {
@@ -48,7 +49,7 @@ public class WareHouseService extends AbstractService<
 
     @Override
     public DataDto<Long> update(WareHouseUpdateDto updateDto) {
-        repository.update(updateDto.getName(),updateDto.getLocation(),updateDto.getId());
+        repository.update(updateDto.getName(), updateDto.getLocation(), updateDto.getId());
         return new DataDto<>(updateDto.getId());
     }
 

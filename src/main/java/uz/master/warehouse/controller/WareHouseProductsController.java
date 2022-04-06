@@ -39,15 +39,15 @@ public class WareHouseProductsController extends AbstractController {
         return new ResponseEntity<>(warehouseProductsService.get(id), HttpStatus.OK);
     }
 
-    @GetMapping(PATH + "/getByModel")
-    public ResponseEntity<DataDto<List<WareHouseProductsDto>>> getByModel(String model) {
-        return new ResponseEntity<>(warehouseProductsService.getByModel(model), HttpStatus.OK);
-    }
-
-    @GetMapping(PATH + "/getByModelAndColor")
-    public ResponseEntity<DataDto<WareHouseProductsDto>> getByModelAndColor(String color, String model) {
-        return new ResponseEntity<>(warehouseProductsService.getByModelAndColor(model, color), HttpStatus.OK);
-    }
+//    @GetMapping(PATH + "/getByModel")
+//    public ResponseEntity<DataDto<List<WareHouseProductsDto>>> getByModel(String model) {
+//        return new ResponseEntity<>(warehouseProductsService.getByModel(model), HttpStatus.OK);
+//    }
+//
+//    @GetMapping(PATH + "/getByModelAndColor")
+//    public ResponseEntity<DataDto<WareHouseProductsDto>> getByModelAndColor(String color, String model) {
+//        return new ResponseEntity<>(warehouseProductsService.getByModelAndColor(model, color), HttpStatus.OK);
+//    }
 
 
     @DeleteMapping(PATH + "/delete/{id}")

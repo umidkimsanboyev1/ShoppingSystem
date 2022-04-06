@@ -6,6 +6,10 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.tags.EditorAwareTag;
+import uz.master.warehouse.controller.base.AbstractController;
+import uz.master.warehouse.criteria.GenericCriteria;
+import uz.master.warehouse.criteria.ProductCriteria;
+import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.product.ProductCreateDto;
 import uz.master.warehouse.dto.product.ProductDto;
 import uz.master.warehouse.dto.product.ProductUpdateDto;
@@ -19,39 +23,39 @@ import java.time.Month;
 import java.util.List;
 
 @RestController
-@RequestMapping("/product/*")
+@RequestMapping("/product/")
 @RequiredArgsConstructor
-public class ProductController {
+public class ProductController extends AbstractController {
     private final ProductService service;
 
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
-    @PostMapping("/create")
+    @PostMapping(PATH + "/create")
     public ResponseEntity<DataDto<Long>> create(@Valid @RequestBody ProductCreateDto dto) {
         return new ResponseEntity<>(service.create(dto), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
-    @DeleteMapping("/delete/{id}")
+    @DeleteMapping(PATH + "/delete/{id}")
     public void delete(@PathVariable Long id) {
         service.delete(id);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
-    @PutMapping("/update")
+    @PutMapping(PATH + "/update")
     public void update(@Valid @RequestBody ProductUpdateDto dto) {
         service.update(dto);
     }
 
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
-    @GetMapping("/list")
+    @GetMapping(PATH + "/list")
     public ResponseEntity<DataDto<List<ProductDto>>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
-    @GetMapping("/get/{id}")
+    @GetMapping(PATH + "/get/{id}")
     public ResponseEntity<DataDto<ProductDto>> get(@PathVariable Long id) {
         return new ResponseEntity<>(service.get(id), HttpStatus.OK);
 
@@ -59,9 +63,15 @@ public class ProductController {
 
 
     @PreAuthorize("hasAnyRole('ADMIN')")
-    @GetMapping("/search/{model}")
-    public ResponseEntity<DataDto<List<ProductDto>>>search(@PathVariable String model){
+    @GetMapping(PATH + "/search/{model}")
+    public ResponseEntity<DataDto<List<ProductDto>>> search(@PathVariable String model) {
         DataDto<List<ProductDto>> search1 = service.search(model);
-        return new ResponseEntity<>(search1,HttpStatus.OK);
+        return new ResponseEntity<>(search1, HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('SUPER_ADMIN')")
+    @GetMapping(PATH + "/listByCriteri")
+    public ResponseEntity<DataDto<List<ProductDto>>> getWithCriteria(ProductCriteria criteria) {
+        return new ResponseEntity<>(service.getWithCriteria(criteria), HttpStatus.OK);
     }
 }

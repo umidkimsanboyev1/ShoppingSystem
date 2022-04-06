@@ -3,10 +3,13 @@ package uz.master.warehouse.services.product;
 import org.hibernate.search.engine.search.query.SearchResult;
 import org.hibernate.search.mapper.orm.Search;
 import org.hibernate.search.mapper.orm.session.SearchSession;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.criteria.GenericCriteria;
+import uz.master.warehouse.criteria.ProductCriteria;
 import uz.master.warehouse.dto.product.ProductCreateDto;
 import uz.master.warehouse.dto.product.ProductDto;
 import uz.master.warehouse.dto.product.ProductUpdateDto;
@@ -27,14 +30,14 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public class ProductService extends AbstractService<ProductRepository, ProductMapper> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, Long> {
+public class ProductService extends AbstractService<ProductRepository, ProductMapper> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, ProductCriteria, Long> {
 
     private final FirmService firmService;
     private final EntityManager entityManager;
 
     public ProductService(
             ProductRepository repository,
-                          ProductMapper mapper,FirmService firmService, EntityManager manager
+            ProductMapper mapper, FirmService firmService, EntityManager manager
     ) {
         super(repository, mapper);
         this.firmService = firmService;
@@ -42,9 +45,9 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
     }
 
     @Override
-    public DataDto<Long> create( ProductCreateDto createDto) {
+    public DataDto<Long> create(ProductCreateDto createDto) {
 
-        if (Objects.isNull(firmService.get(createDto.getFirmId()    ).getData())) {
+        if (Objects.isNull(firmService.get(createDto.getFirmId()).getData())) {
             return new DataDto<>(new AppErrorDto("Firm Not Found", HttpStatus.NOT_FOUND));
         }
         Product product = mapper.fromCreateDto(createDto);
@@ -87,26 +90,46 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
     }
 
     @Override
-    public DataDto<List<ProductDto>> getWithCriteria(GenericCriteria criteria) {
-        return null;
+    public DataDto<List<ProductDto>> getWithCriteria(ProductCriteria criteria) {
+        List<Product> products;
+        Pageable pageable = PageRequest.of(criteria.getPage(), criteria.getSize());
+        if (Objects.nonNull(criteria.getModel())) {
+            products = repository.findAllByModelAndDeletedFalse(criteria.getModel(), pageable).stream().toList();
+//            if (Objects.nonNull(criteria.getColor())) {
+//                List<Product> products1 = products.stream().filter(product ->
+//                        product.getColor().equalsIgnoreCase(criteria.getColor())
+//                ).toList();
+//            }
+//            if (Objects.nonNull(criteria.getFirmId())) {
+//                List<Product> products1 = products.stream().filter(product ->
+//                        product.getFirmId().equalsIgnoreCase(criteria.getColor())
+//                ).toList();
+//            }
+        } else if (Objects.nonNull(criteria.getColor())) {
+            products = repository.findAllByColorAndDeletedFalse(criteria.getColor(), pageable).stream().toList();
+        } else if (Objects.nonNull(criteria.getFirmId())) {
+            products = repository.findAllByFirmIdAndDeletedFalse(criteria.getFirmId(), pageable).stream().toList();
+        } else {
+            products = repository.findAllByDeletedFalse();
+        }
+        return new DataDto<>(mapper.toDto(products));
     }
 
 
     @Transactional
-    public DataDto<List<ProductDto>>search(String name){
-        SearchSession searchSession = Search.session( entityManager );
+    public DataDto<List<ProductDto>> search(String name) {
+        SearchSession searchSession = Search.session(entityManager);
 
 
-
-        SearchResult<Product> result = searchSession.search( Product.class )
-                .where( f -> f.match()
-                        .fields( "model")
-                        .matching( name ) )
-                .fetch( 20 );
+        SearchResult<Product> result = searchSession.search(Product.class)
+                .where(f -> f.match()
+                        .fields("model")
+                        .matching(name))
+                .fetch(20);
 
         long totalHitCount = result.total().hitCount();
         List<ProductDto> productDtos = mapper.toDto(result.hits());
-        return new DataDto<>(productDtos,totalHitCount);
+        return new DataDto<>(productDtos, totalHitCount);
     }
 
 }

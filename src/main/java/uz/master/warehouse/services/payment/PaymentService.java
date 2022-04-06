@@ -3,6 +3,7 @@ package uz.master.warehouse.services.payment;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.criteria.GenericCriteria;
+import uz.master.warehouse.criteria.PaymentCriteria;
 import uz.master.warehouse.dto.payment.PaymentCreateDto;
 import uz.master.warehouse.dto.payment.PaymentDto;
 import uz.master.warehouse.dto.payment.PaymentUpdateDto;
@@ -28,6 +29,7 @@ public class PaymentService extends AbstractService<
         PaymentDto,
         PaymentCreateDto,
         PaymentUpdateDto,
+        PaymentCriteria,
         Long> {
 
 
@@ -77,7 +79,7 @@ public class PaymentService extends AbstractService<
     }
 
     @Override
-    public DataDto<List<PaymentDto>> getWithCriteria(GenericCriteria criteria) {
+    public DataDto<List<PaymentDto>> getWithCriteria(PaymentCriteria criteria) {
         return null;
     }
 

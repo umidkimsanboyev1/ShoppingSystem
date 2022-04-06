@@ -22,7 +22,7 @@ import java.util.List;
 
 @Service
 public class OutComeProductsService extends AbstractService<OutComeProductsRepository, OutComeProductsMapper>
-        implements GenericCrudService<OutComeProducts, OutComeProductsDto, OutComeProductsCreateDto, OutComeProductsUpdateDto, Long> {
+        implements GenericCrudService<OutComeProducts, OutComeProductsDto, OutComeProductsCreateDto, OutComeProductsUpdateDto,GenericCriteria, Long> {
 
     private final WareHouseProductsService service;
     private final WareHouseProductsService wareHouseProductsService;
