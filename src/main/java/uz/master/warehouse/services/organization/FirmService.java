@@ -1,7 +1,9 @@
 package uz.master.warehouse.services.organization;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.BaseCriteria;
 import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.firm.FirmCreateDto;
 import uz.master.warehouse.dto.firm.FirmDto;
@@ -15,10 +17,11 @@ import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.validator.organization.FirmValidator;
 
+import java.io.Serializable;
 import java.util.List;
 
 @Service
-public class FirmService extends AbstractService<FirmRepository, FirmMapper> implements GenericCrudService<Firm, FirmDto, FirmCreateDto, FirmUpdateDto, Long> {
+public class FirmService extends AbstractService<FirmRepository, FirmMapper> implements GenericCrudService<Firm, FirmDto, FirmCreateDto, FirmUpdateDto, GenericCriteria, Long> {
     public FirmService(FirmRepository repository, FirmMapper mapper) {
         super(repository, mapper);
     }
@@ -68,7 +71,8 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
 
     @Override
     public DataDto<List<FirmDto>> getWithCriteria(GenericCriteria criteria) {
-        List<FirmDto> firmDtoS = mapper.toDto(repository.findAllByDeletedFalse(criteria));
+        PageRequest request = PageRequest.of(criteria.getPage(), criteria.getSize());
+        List<FirmDto> firmDtoS = mapper.toDto(repository.findAllByDeletedFalse(request));
         return new DataDto<>(firmDtoS);
     }
 }

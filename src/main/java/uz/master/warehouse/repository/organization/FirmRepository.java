@@ -1,5 +1,6 @@
 package uz.master.warehouse.repository.organization;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -21,7 +22,7 @@ public interface FirmRepository extends JpaRepository<Firm,Long> {
 
     List<Firm> findAllByDeletedFalse();
 
-    List<Firm> findAllByDeletedFalse(GenericCriteria criteria);
+    List<Firm> findAllByDeletedFalse(PageRequest request);
 
     Firm findByIdAndDeletedFalse(Long id);
 }
