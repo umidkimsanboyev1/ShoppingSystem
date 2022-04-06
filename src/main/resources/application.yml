@@ -11,6 +11,10 @@ spring:
     password: umidmaster98
     username: postgres
     url: jdbc:postgresql://localhost:5432/warehouse
+=======
+    password: 8888
+    username: postgres
+    url: jdbc:postgresql://localhost:5432/ware_house
   jpa:
     hibernate:
       ddl-auto: update

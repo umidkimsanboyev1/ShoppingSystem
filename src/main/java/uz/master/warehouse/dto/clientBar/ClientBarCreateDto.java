@@ -8,11 +8,16 @@ import uz.master.warehouse.dto.InComeProducts.InComeProductsCreateDto;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
 import uz.master.warehouse.dto.product.ProductCreateDto;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 
 @Getter
 @Setter
 public class ClientBarCreateDto implements BaseDto {
+
+    @NotBlank
+    @Size(min = 4, max = 12, message = "Client name should be between 4 and 12")
     private String clientName;
 }

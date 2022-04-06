@@ -1,10 +1,12 @@
 package uz.master.warehouse.services.organization;
 
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.firm.FirmCreateDto;
 import uz.master.warehouse.dto.firm.FirmDto;
 import uz.master.warehouse.dto.firm.FirmUpdateDto;
+import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.organization.Firm;
 import uz.master.warehouse.mapper.organization.FirmMapper;
@@ -25,12 +27,18 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
     @Override
     public DataDto<Long> create(FirmCreateDto createDto) {
         Firm firm = mapper.fromCreateDto(createDto);
-        Long id = repository.save(firm).getId();
-        return new DataDto<>(id);
+        try{
+            return new DataDto<>(repository.save(firm).getId());
+        }catch (Exception e){
+            return new DataDto<>(new AppErrorDto("NAME_ALREADY_TAKEN", HttpStatus.CONFLICT));
+        }
     }
 
     @Override
     public DataDto<Void> delete(Long id) {
+        if(!repository.existsById(id)){
+            return new DataDto<>(new AppErrorDto("FIRM_NOT_FOUND", HttpStatus.NOT_FOUND));
+        }
         repository.deleteFirm(id);
         return new DataDto<>();
     }
@@ -38,8 +46,11 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
     @Override
     public DataDto<Long> update(FirmUpdateDto updateDto) {
         Firm firm = mapper.fromUpdateDto(updateDto);
-        Long id = repository.save(firm).getId();
-        return new DataDto<>(id);
+        try{
+            return new DataDto<>(repository.save(firm).getId());
+        }catch (Exception e){
+            return new DataDto<>(new AppErrorDto("NAME_ALREADY_TAKEN", HttpStatus.CONFLICT));
+        }
     }
 
     @Override
@@ -49,11 +60,15 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
 
     @Override
     public DataDto<FirmDto> get(Long id) {
+        if(!repository.existsById(id)){
+            return new DataDto<>(new AppErrorDto("FIRM_NOT_FOUND", HttpStatus.NOT_FOUND));
+        }
         return new DataDto<>(mapper.toDto(repository.findByIdAndDeletedFalse(id)));
     }
 
     @Override
     public DataDto<List<FirmDto>> getWithCriteria(GenericCriteria criteria) {
-        return null;
+        List<FirmDto> firmDtoS = mapper.toDto(repository.findAllByDeletedFalse(criteria));
+        return new DataDto<>(firmDtoS);
     }
 }

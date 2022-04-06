@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import uz.master.warehouse.controller.base.AbstractController;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.clientBar.ClientBarCreateDto;
 import uz.master.warehouse.dto.clientBar.ClientBarDto;
 import uz.master.warehouse.dto.clientBar.ClientBarUpdateDto;
@@ -40,9 +41,14 @@ public class FirmController extends AbstractController {
         return new ResponseEntity<>(service.update(createDto), HttpStatus.OK);
     }
 
-    @GetMapping(value = PATH + "client/get-all")
+    @GetMapping(value = PATH + "client/getAll")
     public ResponseEntity<DataDto<List<FirmDto>>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = PATH + "client/get-all")
+    public ResponseEntity<DataDto<List<FirmDto>>> getAllWithCriteria(GenericCriteria criteria) {
+        return new ResponseEntity<>(service.getWithCriteria(criteria), HttpStatus.OK);
     }
 
     @GetMapping(value = PATH + "client/get/{id}")

@@ -1,10 +1,10 @@
 package uz.master.warehouse.repository.clientBar;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import uz.master.warehouse.dto.clientBar.ClientBarDto;
 import uz.master.warehouse.entity.clientBar.ClientBar;
 
 import javax.transaction.Transactional;
@@ -17,6 +17,7 @@ public interface ClientBarRepository extends JpaRepository<ClientBar, Long> {
     @Query(value = "update ClientBar c set c.deleted =  true where c.id =:clientBarId")
     void deleteClientBar(@Param("clientBarId") Long id);
 
+    List<ClientBar> findAllByDeletedFalse(PageRequest pageRequest);
     List<ClientBar> findAllByDeletedFalse();
 
     ClientBar findByIdAndDeletedFalse(Long id);

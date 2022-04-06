@@ -5,12 +5,21 @@ import lombok.Setter;
 import uz.master.warehouse.dto.GenericDto;
 import uz.master.warehouse.entity.product.Product;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Positive;
+import javax.validation.constraints.Size;
 import java.util.List;
 
 @Getter
 @Setter
 public class ClientBarUpdateDto extends GenericDto {
+
+    @NotBlank
+    @Size(min = 4, max = 12, message = "Client name should be between 4 and 12")
     private String clientName;
+
+    @Positive
     private Double overAllPrice;
+
     private boolean paid;
 }
