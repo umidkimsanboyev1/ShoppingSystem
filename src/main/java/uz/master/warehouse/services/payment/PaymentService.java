@@ -2,7 +2,6 @@ package uz.master.warehouse.services.payment;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.criteria.PaymentCriteria;
 import uz.master.warehouse.dto.payment.PaymentCreateDto;
 import uz.master.warehouse.dto.payment.PaymentDto;
@@ -14,7 +13,7 @@ import uz.master.warehouse.mapper.payment.PaymentMapper;
 import uz.master.warehouse.repository.payment.PaymentRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.payment.PaymentValidator;
+import uz.master.warehouse.session.SessionUser;
 
 import javax.validation.Valid;
 import java.time.LocalDate;
@@ -33,8 +32,12 @@ public class PaymentService extends AbstractService<
         Long> {
 
 
-    public PaymentService(PaymentRepository repository, PaymentMapper mapper) {
+    private final SessionUser sessionUser;
+
+
+    public PaymentService(PaymentRepository repository, PaymentMapper mapper, SessionUser sessionUser) {
         super(repository, mapper);
+        this.sessionUser = sessionUser;
     }
 
     public DataDto<Long> create(@Valid PaymentCreateDto createDto) {
@@ -48,14 +51,17 @@ public class PaymentService extends AbstractService<
 
     @Override
     public DataDto<Void> delete(Long id) {
+        DataDto<PaymentDto> paymentDtoDataDto = get(id);
+        Long organizationId = paymentDtoDataDto.getData().getOrganizationId();
+        Long orgId = sessionUser.getOrgId();
+        if (!organizationId.equals(orgId)) {
+            return new DataDto<>(new AppErrorDto(HttpStatus.FORBIDDEN, "You have no such privilege", "payment/delete"));
+        }
         repository.deletePayment(id);
         return new DataDto<>();
     }
 
     public DataDto<Long> update(@Valid PaymentUpdateDto updateDto) {
-//        if (!validator.validForUpdate(updateDto)) {
-//            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
-//        }
         Payment payment = mapper.fromUpdateDto(updateDto);
         payment.setSum(updateDto.getSum());
         repository.updatePayment(payment.getId(), payment.getSum());
@@ -72,8 +78,8 @@ public class PaymentService extends AbstractService<
     public DataDto<PaymentDto> get(Long id) {
         Payment payment = repository.findByIdAndDeletedFalse(id);
         if (Objects.isNull(payment)) {
-            return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Payment not found", "payment/get"));
-
+            return new DataDto<>(
+                    new AppErrorDto(HttpStatus.NOT_FOUND, "Payment not found", "payment/get"));
         }
         return new DataDto<>(mapper.toDto(payment));
     }

@@ -6,6 +6,7 @@ import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.market.MarketCreateDto;
 import uz.master.warehouse.dto.market.MarketDto;
 import uz.master.warehouse.dto.market.MarketUpdateDto;
+import uz.master.warehouse.dto.payment.PaymentDto;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.organization.Market;
@@ -14,7 +15,7 @@ import uz.master.warehouse.mapper.organization.MarketMapper;
 import uz.master.warehouse.repository.organization.MarketRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.organization.MarketValidator;
+import uz.master.warehouse.session.SessionUser;
 
 import javax.validation.Valid;
 import java.util.List;
@@ -33,9 +34,12 @@ public class MarketService extends AbstractService<
         Long
         > {
 
+    private final SessionUser sessionUser;
 
-    public MarketService(MarketRepository repository, MarketMapper mapper) {
+
+    public MarketService(MarketRepository repository, MarketMapper mapper, SessionUser sessionUser) {
         super(repository, mapper);
+        this.sessionUser = sessionUser;
     }
 
 
@@ -57,6 +61,12 @@ public class MarketService extends AbstractService<
 
     @Override
     public DataDto<Void> delete(Long id) {
+        DataDto<MarketDto> marketDtoDataDto = get(id);
+        Long organizationId = marketDtoDataDto.getData().getOrganizationId();
+        Long orgId = sessionUser.getOrgId();
+        if (!organizationId.equals(orgId)) {
+            return new DataDto<>(new AppErrorDto(HttpStatus.FORBIDDEN, "You have no such privilege", "market/delete"));
+        }
         repository.deleteMarket(id);
         return new DataDto<>();
     }
