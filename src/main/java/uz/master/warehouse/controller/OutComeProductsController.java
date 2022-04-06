@@ -10,7 +10,6 @@ import uz.master.warehouse.dto.outComeProducts.OutComeProductsUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.products.OutComeProductsService;
 
-import java.nio.file.Path;
 import java.util.List;
 
 @RestController

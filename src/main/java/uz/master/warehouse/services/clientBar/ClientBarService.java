@@ -1,30 +1,28 @@
 package uz.master.warehouse.services.clientBar;
 
 
+import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.dto.InComeProducts.InComeProductsCreateDto;
-import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
+import uz.master.warehouse.criteria.GenericCriteria;
+import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.products.OutComeProductsService;
-import uz.master.warehouse.validator.clientBar.ClientBarValidator;
 import uz.master.warehouse.dto.clientBar.ClientBarCreateDto;
 import uz.master.warehouse.dto.clientBar.ClientBarDto;
 import uz.master.warehouse.dto.clientBar.ClientBarUpdateDto;
-import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.clientBar.ClientBar;
 import uz.master.warehouse.mapper.clientBar.ClientBarMapper;
 import uz.master.warehouse.repository.clientBar.ClientBarRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.clientBar.ClientBarValidator;
 
 import javax.transaction.Transactional;
-import javax.xml.crypto.Data;
 import java.util.List;
 
 @Service
 
-public class ClientBarService extends AbstractService<ClientBarRepository, ClientBarMapper> implements GenericCrudService<ClientBar, ClientBarDto, ClientBarCreateDto, ClientBarUpdateDto, Long> {
+public class ClientBarService extends AbstractService<ClientBarRepository, ClientBarMapper> implements GenericCrudService<ClientBar, ClientBarDto, ClientBarCreateDto, ClientBarUpdateDto,GenericCriteria, Long> {
 
     public final OutComeProductsService service;
     public ClientBarService(ClientBarRepository repository, ClientBarMapper mapper, OutComeProductsService service) {
@@ -36,11 +34,18 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
     @Transactional
     @Override
     public DataDto<Long> create(ClientBarCreateDto createDto) {
-      return   new DataDto<>(repository.save(mapper.fromDto(createDto)).getId());
+        try{
+            return new DataDto<>(repository.save(mapper.fromDto(createDto)).getId());
+        } catch (Exception e){
+            return new DataDto<>(new AppErrorDto("NAME_ALREADY_TAKEN", HttpStatus.CONFLICT));
+        }
     }
 
     @Override
     public DataDto<Void> delete(Long id) {
+        if(!repository.existsById(id)){
+            return new DataDto<>(new AppErrorDto("CLIENT_BAR_DTO", HttpStatus.NOT_FOUND));
+        }
         repository.deleteClientBar(id);
         return new DataDto<>();
     }
@@ -48,8 +53,11 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
     @Override
     public DataDto<Long> update(ClientBarUpdateDto updateDto) {
         ClientBar clientBar = mapper.fromUpdateDto(updateDto);
-        Long id = repository.save(clientBar).getId();
-        return new DataDto<>(id);
+        try{
+            return new DataDto<>(repository.save(clientBar).getId());
+        } catch (Exception e){
+            return new DataDto<>(new AppErrorDto("NAME_ALREADY_TAKEN", HttpStatus.CONFLICT));
+        }
     }
 
     @Override
@@ -59,6 +67,15 @@ public class ClientBarService extends AbstractService<ClientBarRepository, Clien
 
     @Override
     public DataDto<ClientBarDto> get(Long id) {
+        if(!repository.existsById(id)){
+            return new DataDto<>(new AppErrorDto("CLIENT_BAR_DTO", HttpStatus.NOT_FOUND));
+        }
         return new DataDto<>(mapper.toDto(repository.findByIdAndDeletedFalse(id)));
+    }
+
+    @Override
+    public DataDto<List<ClientBarDto>> getWithCriteria(GenericCriteria criteria) {
+        PageRequest pageRequest = PageRequest.of(criteria.getPage(), criteria.getSize());
+        return new DataDto<>(mapper.toDto(repository.findAllByDeletedFalse(pageRequest).stream().toList()));
     }
 }

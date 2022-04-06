@@ -59,23 +59,19 @@ public class BetweenDatePdfService {
                 PaymentDto payment = paymentDtos.get(i);
 
                 String orgName = organizationService.getName(payment.getOrganizationId());
-                String compName = companyService.getName(payment.getCompanyId());
+//                String compName = companyService.getName(payment.getCompanyId());
 
                 PdfPCell(table, i + 1 + "");
                 PdfPCell(table, orgName);
-                PdfPCell(table, compName);
+//                PdfPCell(table, compName);
                 PdfPCell(table, payment.getDateTime().toString());
                 PdfPCell(table, payment.getSum().toString());
             }
 
-//            Document document1 = new Document();
-//            document1.open();
-//            document1.add(new Paragraph(Element.ALIGN_CENTER, fromDate + " and " + toDate));
-//            document1.close();
-
-
+//
             PdfWriter.getInstance(document, out);
             document.open();
+            document.add(new Paragraph(Element.ALIGN_JUSTIFIED_ALL, fromDate + " and " + toDate + "\n\n\n"));
             document.add(table);
             document.close();
 

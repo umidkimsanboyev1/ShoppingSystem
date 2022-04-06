@@ -4,13 +4,13 @@ logging:
 logbook:
   exclude: /api/v1/auth/**
 server:
-  port: 9090
+  port: 8080
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    password: postgres
+    password: umidmaster98
     username: postgres
-    url: jdbc:postgresql://localhost:5432/postgres
+    url: jdbc:postgresql://localhost:5432/warehouse
   jpa:
     hibernate:
       ddl-auto: update

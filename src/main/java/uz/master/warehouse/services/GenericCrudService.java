@@ -1,5 +1,6 @@
 package uz.master.warehouse.services;
 
+import uz.master.warehouse.criteria.BaseCriteria;
 import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.dto.GenericDto;
 import uz.master.warehouse.dto.responce.DataDto;
@@ -20,8 +21,9 @@ public interface GenericCrudService<
         D extends GenericDto,
         CD extends BaseDto,
         UD extends GenericDto,
+        C extends BaseCriteria,
         K extends Serializable
-        > extends GenericService<D, K> {
+        > extends GenericService<D, K, C> {
 
     DataDto<K> create(CD createDto);
 
