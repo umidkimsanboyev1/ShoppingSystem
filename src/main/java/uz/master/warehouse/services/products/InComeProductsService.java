@@ -1,11 +1,14 @@
 package uz.master.warehouse.services.products;
 
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsCreateDto;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsDto;
 import uz.master.warehouse.dto.InComeProducts.InComeProductsUpdateDto;
+import uz.master.warehouse.dto.firm.FirmDto;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.products.InComeProducts;
@@ -24,17 +27,13 @@ import java.util.Optional;
 
 @Service
 public class InComeProductsService extends AbstractService<InComeProductsRepository, InComeProductsMapper>
-        implements GenericCrudService<InComeProducts, InComeProductsDto, InComeProductsCreateDto, InComeProductsUpdateDto,GenericCriteria, Long> {
+        implements GenericCrudService<InComeProducts, InComeProductsDto, InComeProductsCreateDto, InComeProductsUpdateDto, GenericCriteria, Long> {
 
     public InComeProductsService(InComeProductsRepository repository, InComeProductsMapper mapper, ProductRepository productRepository, GroupProductsRepository groupProductsRepository, WareHouseProductsRepository wareHouseProductsRepository, WareHouseProductsService wareHouseProductsService) {
         super(repository, mapper);
-        this.productRepository = productRepository;
-        this.groupProductsRepository = groupProductsRepository;
         this.wareHouseProductsService = wareHouseProductsService;
     }
 
-    private final ProductRepository productRepository;
-    private final GroupProductsRepository groupProductsRepository;
     private final WareHouseProductsService wareHouseProductsService;
 
     @Override
@@ -93,7 +92,11 @@ public class InComeProductsService extends AbstractService<InComeProductsReposit
 
     @Override
     public DataDto<List<InComeProductsDto>> getWithCriteria(GenericCriteria criteria) {
-        return null;
+        PageRequest request = PageRequest.of(criteria.getPage(), criteria.getSize());
+        List<InComeProducts> inComeProductsList = repository.findAllByDeletedFalse(request);
+        List<InComeProductsDto> inComeProductsDtos = mapper.toDto(inComeProductsList);
+        return new DataDto<>(inComeProductsDtos);
+
     }
 
     public DataDto<List<InComeProductsDto>> getByTime(String from, String to) {

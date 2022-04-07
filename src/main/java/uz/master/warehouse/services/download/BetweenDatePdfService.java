@@ -1,10 +1,11 @@
 package uz.master.warehouse.services.download;
 
 
+
 import com.itextpdf.text.*;
+
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
-import com.itextpdf.text.pdf.PdfPTableHeader;
 import com.itextpdf.text.pdf.PdfWriter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,6 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
-import static com.itextpdf.io.font.constants.StandardFonts.COURIER;
 
 @Service
 @RequiredArgsConstructor
