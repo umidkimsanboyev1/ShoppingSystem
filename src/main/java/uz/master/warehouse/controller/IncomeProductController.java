@@ -37,7 +37,6 @@ public class IncomeProductController extends AbstractController {
 
     @GetMapping(PATH + "/listCriteria")
     public ResponseEntity<DataDto<List<InComeProductsDto>>> getWithCriteria(GenericCriteria criteria) {
-
         return new ResponseEntity<>(inComeProductsService.getWithCriteria(criteria), HttpStatus.OK);
     }
 

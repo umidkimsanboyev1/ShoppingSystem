@@ -1,6 +1,7 @@
 package uz.master.warehouse.mapper.wareHouse;
 
 import org.mapstruct.Mapper;
+import org.mapstruct.MappingTarget;
 import org.springframework.stereotype.Component;
 import uz.master.warehouse.dto.sector.SectorCreateDto;
 import uz.master.warehouse.dto.sector.SectorDto;
@@ -24,4 +25,6 @@ public interface SectorMapper extends BaseMapper<Sector, SectorDto, SectorCreate
 
     @Override
     Sector fromUpdateDto(SectorUpdateDto sectorUpdateDto);
+
+    Sector fromUpdateDto(SectorUpdateDto sectorUpdateDto, @MappingTarget Sector sector);
 }
