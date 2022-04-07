@@ -34,6 +34,7 @@ public class OrganizationController extends AbstractController {
     @PreAuthorize("hasRole('SUPER_ADMIN')")
     @DeleteMapping(PATH + "/delete/{id}")
     public ResponseEntity<DataDto> delete(@PathVariable Long id) {
+
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }

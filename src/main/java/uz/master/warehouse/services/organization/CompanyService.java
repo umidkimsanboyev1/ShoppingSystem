@@ -52,7 +52,10 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
     }
 
     @Override
-    public DataDto<Long> update(CompanyUpdateDto updateDto) {
+    public DataDto<Long> update(@Valid CompanyUpdateDto updateDto) {
+//        if (!validator.validForUpdate(updateDto)) {
+//            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
+//        }
 //        if (!validator.validForUpdate(updateDto)) {
 //            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
 //        }
@@ -81,5 +84,9 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
     @Override
     public DataDto<List<CompanyDto>> getWithCriteria(GenericCriteria criteria) {
         return null;
+    }
+
+    public String getName(Long id) {
+        return get(id).getData().getName();
     }
 }
