@@ -2,8 +2,6 @@ package uz.master.warehouse.controller;
 
 
 import lombok.RequiredArgsConstructor;
-import org.apache.tomcat.util.file.ConfigurationSource;
-import org.springframework.http.HttpRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -30,7 +28,8 @@ public class AuthController extends AbstractController {
         try {
             authUserService.savePicture(picture);
             return new ResponseEntity<>(new DataDto<>("successfully uploaded "),HttpStatus.OK);
-        }catch (Exception e){
+        }
+        catch (Exception e){
             AppErrorDto dto=new AppErrorDto();
             dto.setCode("417");
             dto.setStatus(HttpStatus.EXPECTATION_FAILED.value());

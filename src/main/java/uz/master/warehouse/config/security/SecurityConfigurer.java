@@ -24,6 +24,7 @@ import uz.master.warehouse.services.auth.AuthUserService;
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     public final static String[] WHITE_LIST = {
+            "/**",
             "/api/login",
             "/api/v1/refresh-token",
             "/api/v1/auth/token",
@@ -46,27 +47,24 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().antMatchers("/").permitAll();
 //    }
 
-        @Override
-    protected void configure(HttpSecurity httpSecurity) throws Exception {
-        httpSecurity.authorizeRequests().antMatchers("/").permitAll();
+
+
+
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.csrf().disable();
+        http.cors().disable();
+        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
+        http.authorizeRequests()
+                .antMatchers(WHITE_LIST)
+                .permitAll()
+                .anyRequest().authenticated();
+
+        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
+        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
+
     }
-
-
-
-//    @Override
-//    protected void configure(HttpSecurity http) throws Exception {
-//        http.csrf().disable();
-//        http.cors().disable();
-//        http.sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
-//        http.authorizeRequests()
-//                .antMatchers(WHITE_LIST)
-//                .permitAll()
-//                .anyRequest().authenticated();
-//
-//        http.addFilter(new CustomAuthenticationFilter(authenticationManagerBean()));
-//        http.addFilterBefore(new CustomAuthorizationFilter(), UsernamePasswordAuthenticationFilter.class);
-//
-//    }
 
     @Bean
     @Override

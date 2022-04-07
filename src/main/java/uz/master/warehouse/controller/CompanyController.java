@@ -6,6 +6,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import uz.master.warehouse.controller.base.AbstractController;
+import uz.master.warehouse.criteria.GenericCriteria;
+import uz.master.warehouse.dto.InComeProducts.InComeProductsDto;
 import uz.master.warehouse.dto.company.CompanyCreateDto;
 import uz.master.warehouse.dto.company.CompanyDto;
 import uz.master.warehouse.dto.company.CompanyUpdateDto;
@@ -44,6 +46,13 @@ public class CompanyController extends AbstractController {
     public ResponseEntity<DataDto<Long>> update(@Valid @RequestBody CompanyUpdateDto dto) {
         return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
     }
+    @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
+    @GetMapping(PATH + "/listCriteria")
+    public ResponseEntity<DataDto<List<CompanyDto>>> getWithCriteria(GenericCriteria criteria) {
+
+        return new ResponseEntity<>(service.getWithCriteria(criteria), HttpStatus.OK);
+    }
+
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @GetMapping("/list")

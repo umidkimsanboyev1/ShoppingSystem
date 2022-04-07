@@ -14,8 +14,8 @@ import java.util.Optional;
 public interface CommentRepository extends JpaRepository<Comment, Long> {
     List<Comment> findAllByDeletedFalse();
 
-
-    Optional<Comment> findByIdAndDeletedFalse(Long id);
+    @Query(value = "select count(*) from comment c where c.id=?1 and c.author_id=?2",nativeQuery = true)
+    Optional<Comment> findByIdAndDeletedFalse(Long id, Long sessionId);
 
     @Transactional
     @Modifying

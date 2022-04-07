@@ -44,7 +44,8 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
 
     @Override
     public DataDto<Void> delete(Long id) {
-        Optional<Comment> optional = repository.findByIdAndDeletedFalse(id);
+
+        Optional<Comment> optional = repository.findByIdAndDeletedFalse(id,sessionUser.getOrgId());
         if (optional.isEmpty()) {
             return new DataDto<>(new AppErrorDto("Comment not found", HttpStatus.NOT_FOUND));
         }
@@ -80,7 +81,7 @@ public class CommentService extends AbstractService<CommentRepository, CommentMa
 
     @Override
     public DataDto<CommentDto> get(Long id) {
-        Optional<Comment> optional = repository.findByIdAndDeletedFalse(id);
+        Optional<Comment> optional = repository.findByIdAndDeletedFalse(id, id);
         if (optional.isEmpty()) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Comment not found", "product"));
         }
