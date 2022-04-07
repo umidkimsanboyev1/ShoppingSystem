@@ -4,6 +4,7 @@ package uz.master.warehouse.services.organization;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.organization.OrganizationCreateDto;
 import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.organization.OrganizationUpdateDto;
@@ -32,6 +33,7 @@ public class OrganizationService extends AbstractService<
         OrganizationDto,
         OrganizationCreateDto,
         OrganizationUpdateDto,
+        GenericCriteria,
         Long> {
 
     private final FileStorageService fileService;
@@ -47,7 +49,7 @@ public class OrganizationService extends AbstractService<
     @Override
     public DataDto<Long> create(OrganizationCreateDto createDto) {
         Optional<AuthUser> ownerById = userRepository.findById(createDto.getOwnerId());
-        if (ownerById.isEmpty()){
+        if (ownerById.isEmpty()) {
             return new DataDto<>(new AppErrorDto("USER_NOT_FOUND", HttpStatus.BAD_REQUEST));
         }
         Organization organization = mapper.fromCreateDto(createDto);
@@ -86,6 +88,15 @@ public class OrganizationService extends AbstractService<
 
         }
         return new DataDto<>(mapper.toDto(organization));
+    }
+
+    @Override
+    public DataDto<List<OrganizationDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
+    }
+
+    public String getName(Long id) {
+        return get(id).getData().getName();
     }
 
     public boolean loadLogo(Long id, MultipartFile file) {

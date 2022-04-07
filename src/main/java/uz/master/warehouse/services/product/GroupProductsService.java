@@ -1,24 +1,23 @@
 package uz.master.warehouse.services.product;
 
-import org.springframework.http.HttpStatus;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GroupProductsCriteria;
 import uz.master.warehouse.dto.groupProducts.GroupProductsCreateDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsUpdateDto;
-import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.product.GroupProducts;
-import uz.master.warehouse.entity.products.InComeProducts;
 import uz.master.warehouse.mapper.groupProducts.GroupProductsMapper;
 import uz.master.warehouse.repository.product.GroupProductsRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.services.products.InComeProductsService;
 import uz.master.warehouse.services.products.WareHouseProductsService;
-import uz.master.warehouse.validator.product.GroupProductsValidator;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -28,6 +27,7 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
         GroupProductsDto,
         GroupProductsCreateDto,
         GroupProductsUpdateDto,
+        GroupProductsCriteria,
         Long> {
 
     private final InComeProductsService inComeProductsService;
@@ -48,8 +48,8 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
         groupProducts.setDate(createDto.getDate());
         GroupProducts save = repository.save(groupProducts);
 
-        List<InComeProducts> byGroupProductsId = inComeProductsService.getByGroupProductsId(save.getId());
-        wareHouseProductsService.incomeProducts(byGroupProductsId);
+//        List<InComeProducts> byGroupProductsId = inComeProductsService.getByGroupProductsId(save.getId());
+//        wareHouseProductsService.incomeProducts(byGroupProductsId);
 
         return new DataDto<>(save.getId());
     }
@@ -83,5 +83,23 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
             throw new UsernameNotFoundException("Not found");
         });
         return new DataDto<>(mapper.toDto(groupProducts));
+    }
+
+    @Override
+    public DataDto<List<GroupProductsDto>> getWithCriteria(GroupProductsCriteria criteria) {
+        return null;
+    }
+
+    public List<GroupProductsDto> getByTimeBetween(String fromDate, String toDate) {
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        List<GroupProducts> allByDateTimeDateBetween = repository.findAllByDateTimeDateBetween(from, to);
+        return mapper.toDto(allByDateTimeDateBetween);
+    }
+
+
+    public List<Date> getDate(String fromDate, String toDate) {;
+        return repository.getSizeDate(fromDate, toDate);
+
     }
 }

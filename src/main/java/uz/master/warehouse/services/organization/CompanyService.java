@@ -2,6 +2,7 @@ package uz.master.warehouse.services.organization;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.company.CompanyCreateDto;
 import uz.master.warehouse.dto.company.CompanyDto;
 import uz.master.warehouse.dto.company.CompanyUpdateDto;
@@ -24,16 +25,14 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
         CompanyDto,
         CompanyCreateDto,
         CompanyUpdateDto,
+        GenericCriteria,
         Long> {
-
     public CompanyService(CompanyRepository repository, CompanyMapper mapper) {
         super(repository, mapper);
     }
 
     @Override
     public DataDto<Long> create(@Valid CompanyCreateDto createDto) {
-
-
         Company company = mapper.fromCreateDto(createDto);
         company.setName(createDto.getName());
         company.setRegistrationNumber(createDto.getRegisterNumber());
@@ -49,7 +48,7 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
     }
 
     @Override
-    public DataDto<Long> update(CompanyUpdateDto updateDto) {
+    public DataDto<Long> update(@Valid CompanyUpdateDto updateDto) {
 
         Company company = mapper.fromUpdateDto(updateDto);
         company.setName(updateDto.getName());
@@ -70,5 +69,14 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Company not found", "company/get"));
         }
         return new DataDto<>(mapper.toDto(company));
+    }
+
+    @Override
+    public DataDto<List<CompanyDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
+    }
+
+    public String getName(Long id) {
+        return get(id).getData().getName();
     }
 }

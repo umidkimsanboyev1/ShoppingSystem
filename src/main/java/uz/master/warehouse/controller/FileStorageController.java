@@ -1,6 +1,5 @@
 package uz.master.warehouse.controller;
 
-import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -24,7 +23,8 @@ public class FileStorageController {
     }
 
     @GetMapping("{filename:.+}")
-    public ResponseEntity<Resource> download(@PathVariable(name = "filename") String fileName) throws NoSuchFileException {
+    public ResponseEntity<?> download(@PathVariable(name = "filename") String fileName)
+            throws NoSuchFileException {
         UploadsDto loadedResource = fileStorageService.loadResource(fileName);
 
         return ResponseEntity.ok()

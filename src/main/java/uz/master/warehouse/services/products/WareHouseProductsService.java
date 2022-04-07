@@ -2,6 +2,7 @@ package uz.master.warehouse.services.products;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsCreateDto;
@@ -25,7 +26,7 @@ import java.util.Optional;
 
 @Service
 public class WareHouseProductsService extends AbstractService<WareHouseProductsRepository, WareHouseProductsMapper>
-        implements GenericCrudService<WareHouseProducts, WareHouseProductsDto, WareHouseProductsCreateDto, WareHouseProductsUpdateDto, Long> {
+        implements GenericCrudService<WareHouseProducts, WareHouseProductsDto, WareHouseProductsCreateDto, WareHouseProductsUpdateDto, GenericCriteria, Long> {
 
     private final ProductRepository productRepository;
 
@@ -87,28 +88,33 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
         return new DataDto<>(warehouseProductsDto);
     }
 
+    @Override
+    public DataDto<List<WareHouseProductsDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
+    }
+
     public WareHouseProducts getByProductId(Long id) {
         return repository.findByProductIdAndDeletedFalse(id);
     }
 
-    public DataDto<List<WareHouseProductsDto>> getByModel(String model) {
-        List<Product> products = productRepository.findAllByModelAndDeletedFalse(model);
-        if (products.isEmpty()) {
-            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
-        }
-        List<Long> productIds = products.stream().map(Auditable::getId).toList();
-        List<WareHouseProducts> allByProductIdIsIn = repository.findByProductIdIn(productIds);
-        return new DataDto<>(mapper.toDto(allByProductIdIsIn));
-    }
-
-    public DataDto<WareHouseProductsDto> getByModelAndColor(String model, String color) {
-        Product product = productRepository.findByModelAndColorAndDeletedFalse(model, color);
-        if (Objects.isNull(product)) {
-            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
-        }
-        WareHouseProducts wareHouseProduct = this.getByProductId(product.getId());
-        return new DataDto<>(mapper.toDto(wareHouseProduct));
-    }
+//    public DataDto<List<WareHouseProductsDto>> getByModel(String model) {
+//        List<Product> products = productRepository.findAllByModelAndDeletedFalse(model);
+//        if (products.isEmpty()) {
+//            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
+//        }
+//        List<Long> productIds = products.stream().map(Auditable::getId).toList();
+//        List<WareHouseProducts> allByProductIdIsIn = repository.findByProductIdIn(productIds);
+//        return new DataDto<>(mapper.toDto(allByProductIdIsIn));
+//    }
+//
+//    public DataDto<WareHouseProductsDto> getByModelAndColor(String model, String color) {
+//        Product product = productRepository.findByModelAndColorAndDeletedFalse(model, color);
+//        if (Objects.isNull(product)) {
+//            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
+//        }
+//        WareHouseProducts wareHouseProduct = this.getByProductId(product.getId());
+//        return new DataDto<>(mapper.toDto(wareHouseProduct));
+//    }
 
 
     public void checkCount(Long productId, int count) {
@@ -117,15 +123,12 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
         });
     }
 
-    public void incomeProducts(List<InComeProducts> list) {
-        for (InComeProducts inComeProducts : list) {
-            WareHouseProducts wareHouseProducts = this.getByProductId(inComeProducts.getProductId());
-            if (Objects.isNull(wareHouseProducts)) {
-                this.create(new WareHouseProductsCreateDto(inComeProducts.getCount(), inComeProducts.getProductId()));
-            } else
-                this.update(new WareHouseProductsUpdateDto(wareHouseProducts.getCount() + inComeProducts.getCount(), inComeProducts.getProductId()));
-        }
-
+    public void incomeProducts(InComeProducts list) {
+        WareHouseProducts wareHouseProducts = this.getByProductId(list.getProductId());
+        if (Objects.isNull(wareHouseProducts)) {
+            this.create(new WareHouseProductsCreateDto(list.getCount(), list.getProductId()));
+        } else
+            this.update(new WareHouseProductsUpdateDto(wareHouseProducts.getCount() + list.getCount(), list.getProductId()));
     }
 
     public boolean outcomeProducts(OutComeProducts outComeProducts) {
@@ -136,6 +139,7 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
                 return true;
             } else if (wareHouseProducts.getCount() == outComeProducts.getCount()) {
                 this.delete(wareHouseProducts.getId());
+                productRepository.deleteProduct(wareHouseProducts.getProductId());
                 return true;
             } else
                 return false;

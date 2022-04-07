@@ -1,19 +1,24 @@
 package uz.master.warehouse.validator.warehouse;
 
 import org.springframework.stereotype.Component;
-import uz.master.warehouse.dto.sector.SectorCreateDto;
-import uz.master.warehouse.dto.sector.SectorUpdateDto;
-import uz.master.warehouse.validator.GenericValidator;
+import uz.master.warehouse.annotations.HaveSector;
+import uz.master.warehouse.services.wareHouse.SectorService;
+import uz.master.warehouse.validator.BaseValidator;
+
+import javax.validation.ConstraintValidator;
+import javax.validation.ConstraintValidatorContext;
 
 @Component
-public class SectorValidator implements GenericValidator<SectorCreateDto, SectorUpdateDto> {
-    @Override
-    public boolean validForCreate(SectorCreateDto createDto) {
-        return false;
+public class SectorValidator implements BaseValidator, ConstraintValidator<HaveSector,Long> {
+
+    private final SectorService service;
+
+    public SectorValidator(SectorService service) {
+        this.service = service;
     }
 
     @Override
-    public boolean validForUpdate(SectorUpdateDto updateDto) {
-        return false;
+    public boolean isValid(Long aLong, ConstraintValidatorContext constraintValidatorContext) {
+        return service.get(aLong).isSuccess();
     }
 }

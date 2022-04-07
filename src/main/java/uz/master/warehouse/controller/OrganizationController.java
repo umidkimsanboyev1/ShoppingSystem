@@ -1,13 +1,13 @@
 package uz.master.warehouse.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springdoc.core.converters.models.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import uz.master.warehouse.controller.base.AbstractController;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.organization.OrganizationCreateDto;
 import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.organization.OrganizationUpdateDto;
@@ -34,6 +34,7 @@ public class OrganizationController extends AbstractController {
     @PreAuthorize("hasRole('SUPER_ADMIN')")
     @DeleteMapping(PATH + "/delete/{id}")
     public ResponseEntity<DataDto> delete(@PathVariable Long id) {
+
         service.delete(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
@@ -46,9 +47,15 @@ public class OrganizationController extends AbstractController {
 
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    @GetMapping(PATH + "/list")
+    @GetMapping(PATH + "/listAll")
     public ResponseEntity<DataDto<List<OrganizationDto>>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
+    }
+
+    @PreAuthorize("hasRole('SUPER_ADMIN')")
+    @GetMapping(PATH + "/list")
+    public ResponseEntity<DataDto<List<OrganizationDto>>> getWithCriteria(GenericCriteria criteria) {
+        return new ResponseEntity<>(service.getWithCriteria(criteria), HttpStatus.OK);
     }
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
@@ -59,13 +66,12 @@ public class OrganizationController extends AbstractController {
 
     @PreAuthorize("hasRole('ADMIN')")
     @PostMapping(PATH + "/updateLogo/{id}")
-    public ResponseEntity<DataDto<Void>> loadLogo(@PathVariable("id") Long id,@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<DataDto<Void>> loadLogo(@PathVariable("id") Long id, @RequestParam("file") MultipartFile file) {
         boolean result = service.loadLogo(id, file);
         if (result) {
             return new ResponseEntity<>(new DataDto<>(true), HttpStatus.OK);
         } else return new ResponseEntity<>(new DataDto<>(false), HttpStatus.BAD_REQUEST);
     }
-
 
 
 }

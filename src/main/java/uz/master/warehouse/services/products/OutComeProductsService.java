@@ -3,6 +3,7 @@ package uz.master.warehouse.services.products;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsCreateDto;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsDto;
 import uz.master.warehouse.dto.outComeProducts.OutComeProductsUpdateDto;
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Service
 public class OutComeProductsService extends AbstractService<OutComeProductsRepository, OutComeProductsMapper>
-        implements GenericCrudService<OutComeProducts, OutComeProductsDto, OutComeProductsCreateDto, OutComeProductsUpdateDto, Long> {
+        implements GenericCrudService<OutComeProducts, OutComeProductsDto, OutComeProductsCreateDto, OutComeProductsUpdateDto,GenericCriteria, Long> {
 
     private final WareHouseProductsService service;
     private final WareHouseProductsService wareHouseProductsService;
@@ -70,6 +71,11 @@ public class OutComeProductsService extends AbstractService<OutComeProductsRepos
         return new DataDto<>(mapper.toDto(repository.findById(id).orElseThrow(() -> {
             throw new RuntimeException("Not found");
         })));
+    }
+
+    @Override
+    public DataDto<List<OutComeProductsDto>> getWithCriteria(GenericCriteria criteria) {
+        return null;
     }
 
 

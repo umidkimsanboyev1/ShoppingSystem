@@ -24,6 +24,7 @@ import uz.master.warehouse.services.auth.AuthUserService;
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     public final static String[] WHITE_LIST = {
+            "/**",
             "/api/login",
             "/api/v1/refresh-token",
             "/api/v1/auth/token",
@@ -46,7 +47,11 @@ public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 //        http.authorizeRequests().antMatchers("/").permitAll();
 //    }
 
-        @Override
+
+
+
+
+    @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.csrf().disable();
         http.cors().disable();
