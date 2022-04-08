@@ -1,12 +1,9 @@
 package uz.master.warehouse.repository.product;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import uz.master.warehouse.entity.product.Product;
 import uz.master.warehouse.entity.product.Product;
 
 import javax.transaction.Transactional;
@@ -17,21 +14,14 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "update Product o set o.deleted = true,o.model = (o.model+''+CURRENT_TIMESTAMP) where o.id = :orgId")
-    void deleteProduct(@Param("orgId") Long id);
+    @Query(value = "update Product o set o.deleted = true where o.id = :id and o.orgId =:orgId")
+    void deleteProduct(@Param("id") Long id, @Param("orgId") Long orgId);
 
     Optional<Product> findByIdAndDeletedFalse(Long id);
 
-    List<Product> findAllByDeletedFalse();
+    List<Product> findAllByOrgIdAndDeletedFalse(Long orgId);
 
-    Page<Product> findAllByModelAndDeletedFalse(String model,Pageable pageable);
+    List<Product> findAllByOrgIdAndFirmId(Long id, Long orgId);
 
-    Page<Product> findAllByColorAndDeletedFalse(String color, Pageable pageable);
-
-    Page<Product> findAllByFirmIdAndDeletedFalse(Long firmId,Pageable pageable);
-
-    Product findByModelAndColorAndDeletedFalse(String model, String color);
-
-    @Query(value = "select  count(*) from product where not deleted and id=?1 ",nativeQuery = true)
-    int existsByProduct(Long productId);
+    Optional<Product> findByIdAndOrgIdAndDeletedFalse(Long id, Long orgId);
 }

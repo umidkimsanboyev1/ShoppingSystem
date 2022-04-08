@@ -7,6 +7,7 @@ import uz.master.warehouse.dto.GenericDto;
 import uz.master.warehouse.dto.responce.DataDto;
 
 import java.io.Serializable;
+import java.sql.SQLException;
 import java.util.List;
 
 
@@ -25,5 +26,5 @@ public interface GenericService<
 
     DataDto<D> get(K id);
 
-    DataDto<List<D>> getWithCriteria(C criteria);
+    DataDto<List<D>> getWithCriteria(C criteria) throws SQLException;
 }

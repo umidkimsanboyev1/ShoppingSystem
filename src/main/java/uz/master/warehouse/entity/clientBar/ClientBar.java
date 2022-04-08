@@ -21,7 +21,6 @@ public class ClientBar extends Auditable {
 
     private Double overAllPrice;
 
-
     private boolean paid;
 
     private boolean taken;
