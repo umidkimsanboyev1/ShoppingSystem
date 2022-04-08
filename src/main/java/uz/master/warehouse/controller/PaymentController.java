@@ -65,9 +65,10 @@ public class PaymentController extends AbstractController {
         return new ResponseEntity<>(service.getByTime(fromDate, toDate), HttpStatus.OK);
     }
 
-    @RequestMapping(value = "/betweenTimeDownload", method = RequestMethod.GET,
+    @RequestMapping(value = "/betweenTimeDownload/{from}/{to}", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> paymentReport(String fromDate, String toDate) {
+    public ResponseEntity<InputStreamResource> paymentReport(@PathVariable(value = "from") String fromDate,
+                                                             @PathVariable(value = "to") String toDate) {
         ///for test
 //        String fromDate="2022-03-10";
 //        String toDate="2022-10-10";
