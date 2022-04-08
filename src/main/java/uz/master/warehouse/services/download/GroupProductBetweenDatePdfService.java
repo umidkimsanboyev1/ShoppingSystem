@@ -23,11 +23,24 @@ import java.util.List;
 import java.util.Objects;
 
 @Service
-public record GroupProductBetweenDatePdfService(CompanyService companyService,
-                                                ProductService productService,
-                                                GroupProductsService groupProductsService,
-                                                InComeProductsService inComeProductsService,
-                                                FirmService firmService) {
+public final class GroupProductBetweenDatePdfService {
+    private final CompanyService companyService;
+    private final ProductService productService;
+    private final GroupProductsService groupProductsService;
+    private final InComeProductsService inComeProductsService;
+    private final FirmService firmService;
+
+    public GroupProductBetweenDatePdfService(CompanyService companyService,
+                                             ProductService productService,
+                                             GroupProductsService groupProductsService,
+                                             InComeProductsService inComeProductsService,
+                                             FirmService firmService) {
+        this.companyService = companyService;
+        this.productService = productService;
+        this.groupProductsService = groupProductsService;
+        this.inComeProductsService = inComeProductsService;
+        this.firmService = firmService;
+    }
 
     public ByteArrayInputStream groupProductReport(
             List<GroupProductsDto> groupProductsDtoList,
@@ -136,5 +149,38 @@ public record GroupProductBetweenDatePdfService(CompanyService companyService,
                 "groupProductsService=" + groupProductsService + ", " +
                 "firmService=" + firmService + ']';
     }
+
+    public CompanyService companyService() {
+        return companyService;
+    }
+
+    public ProductService productService() {
+        return productService;
+    }
+
+    public GroupProductsService groupProductsService() {
+        return groupProductsService;
+    }
+
+    public InComeProductsService inComeProductsService() {
+        return inComeProductsService;
+    }
+
+    public FirmService firmService() {
+        return firmService;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (GroupProductBetweenDatePdfService) obj;
+        return Objects.equals(this.companyService, that.companyService) &&
+                Objects.equals(this.productService, that.productService) &&
+                Objects.equals(this.groupProductsService, that.groupProductsService) &&
+                Objects.equals(this.inComeProductsService, that.inComeProductsService) &&
+                Objects.equals(this.firmService, that.firmService);
+    }
+
 
 }

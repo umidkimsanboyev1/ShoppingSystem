@@ -13,10 +13,18 @@ import uz.master.warehouse.services.organization.OrganizationService;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
+import java.util.Objects;
 
 @Service
-public record BetweenDatePdfService(OrganizationService organizationService,
-                                    CompanyService companyService) {
+public final class BetweenDatePdfService {
+    private final OrganizationService organizationService;
+    private final CompanyService companyService;
+
+    public BetweenDatePdfService(OrganizationService organizationService,
+                                 CompanyService companyService) {
+        this.organizationService = organizationService;
+        this.companyService = companyService;
+    }
 
 
     public ByteArrayInputStream paymentReport(List<PaymentDto> paymentDtos,
@@ -96,6 +104,35 @@ public record BetweenDatePdfService(OrganizationService organizationService,
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setPaddingRight(10);
         table.addCell(cell);
+    }
+
+    public OrganizationService organizationService() {
+        return organizationService;
+    }
+
+    public CompanyService companyService() {
+        return companyService;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (BetweenDatePdfService) obj;
+        return Objects.equals(this.organizationService, that.organizationService) &&
+                Objects.equals(this.companyService, that.companyService);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(organizationService, companyService);
+    }
+
+    @Override
+    public String toString() {
+        return "BetweenDatePdfService[" +
+                "organizationService=" + organizationService + ", " +
+                "companyService=" + companyService + ']';
     }
 
 
