@@ -2,6 +2,7 @@ package uz.master.warehouse.dto.groupProducts;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 import uz.master.warehouse.dto.GenericDto;
 
 import java.time.LocalDateTime;
@@ -11,6 +12,7 @@ import java.time.LocalDateTime;
  */
 @Getter
 @Setter
+@ToString
 public class GroupProductsDto extends GenericDto {
     private Long companyId;
 

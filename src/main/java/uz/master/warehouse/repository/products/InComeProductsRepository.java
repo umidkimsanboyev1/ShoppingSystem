@@ -29,6 +29,8 @@ public interface InComeProductsRepository extends JpaRepository<InComeProducts, 
 
     List<InComeProducts> findAllByGroupProductsId(Long groupProductsId);
 
+    InComeProducts findByGroupProductsId(Long groupProductsId);
+
     @Transactional
     @Modifying
     @Query(value = "update InComeProducts c set c.deleted =  true  where c.id = ?1 ")

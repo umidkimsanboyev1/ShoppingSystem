@@ -1,13 +1,10 @@
 package uz.master.warehouse.services.download;
 
 
-
 import com.itextpdf.text.*;
-
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.payment.PaymentDto;
 import uz.master.warehouse.services.organization.CompanyService;
@@ -17,15 +14,9 @@ import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
 
-
 @Service
-@RequiredArgsConstructor
-public class BetweenDatePdfService {
-
-
-    private final OrganizationService organizationService;
-    private final CompanyService companyService;
-
+public record BetweenDatePdfService(OrganizationService organizationService,
+                                    CompanyService companyService) {
 
 
     public ByteArrayInputStream paymentReport(List<PaymentDto> paymentDtos,
@@ -63,18 +54,22 @@ public class BetweenDatePdfService {
 
                 String orgName = organizationService.getName(payment.getOrganizationId());
                 String compName = companyService.getName(payment.getCompanyId());
+                int year = payment.getDateTime().getYear();
+                int month = payment.getDateTime().getMonthValue();
+                int day = payment.getDateTime().getDayOfMonth();
+                String date = year + "-" + month + "-" + day;
 
                 PdfPCell(table, i + 1 + "");
                 PdfPCell(table, orgName);
                 PdfPCell(table, compName);
-                PdfPCell(table, payment.getDateTime().toString());
+                PdfPCell(table, date);
                 PdfPCell(table, payment.getSum().toString());
             }
 
 //
             PdfWriter.getInstance(document, out);
             document.open();
-            document.add(new Paragraph(Element.ALIGN_JUSTIFIED_ALL, fromDate + " and " + toDate + "\n\n\n"));
+            document.add(new Paragraph(Element.ALIGN_JUSTIFIED_ALL, "Payment list between date " + fromDate + " and " + toDate + "\n\n\n"));
             document.add(table);
             document.close();
 
@@ -90,6 +85,7 @@ public class BetweenDatePdfService {
         PdfPCell hcell;
         hcell = new PdfPCell(new Phrase(name, headFont));
         hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        hcell.setBackgroundColor(BaseColor.CYAN);
         return hcell;
     }
 

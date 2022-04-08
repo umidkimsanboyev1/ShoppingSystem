@@ -13,10 +13,7 @@ import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.products.InComeProducts;
 import uz.master.warehouse.mapper.products.InComeProductsMapper;
-import uz.master.warehouse.repository.product.GroupProductsRepository;
-import uz.master.warehouse.repository.product.ProductRepository;
 import uz.master.warehouse.repository.products.InComeProductsRepository;
-import uz.master.warehouse.repository.products.WareHouseProductsRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 
@@ -29,7 +26,7 @@ import java.util.Optional;
 public class InComeProductsService extends AbstractService<InComeProductsRepository, InComeProductsMapper>
         implements GenericCrudService<InComeProducts, InComeProductsDto, InComeProductsCreateDto, InComeProductsUpdateDto, GenericCriteria, Long> {
 
-    public InComeProductsService(InComeProductsRepository repository, InComeProductsMapper mapper, ProductRepository productRepository, GroupProductsRepository groupProductsRepository, WareHouseProductsRepository wareHouseProductsRepository, WareHouseProductsService wareHouseProductsService) {
+    public InComeProductsService(InComeProductsRepository repository, InComeProductsMapper mapper,  WareHouseProductsService wareHouseProductsService) {
         super(repository, mapper);
         this.wareHouseProductsService = wareHouseProductsService;
     }
@@ -112,5 +109,9 @@ public class InComeProductsService extends AbstractService<InComeProductsReposit
 
     public List<InComeProducts> getByGroupProductsId(Long id) {
         return repository.findAllByGroupProductsId(id);
+    }
+
+    public InComeProducts getByGroupProducts(Long id) {
+        return repository.findByGroupProductsId(id);
     }
 }

@@ -27,5 +27,8 @@ public interface FirmRepository extends JpaRepository<Firm,Long> {
     Firm findByIdAndDeletedFalse(Long id);
 
 
-    List<Firm> findAllByDeletedFalseAndCompanyId(Long companyId);
+    @Transactional
+    @Modifying
+    @Query(value = "select f from Firm  f where  f.deleted = false and f.companyId =:companyId")
+    List<Firm> findAllByDeletedFalseAndCompanyId(@Param(value = "companyId") Long companyId);
 }

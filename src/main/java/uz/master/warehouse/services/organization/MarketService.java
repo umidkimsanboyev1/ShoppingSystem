@@ -37,6 +37,8 @@ public class MarketService extends AbstractService<
     private final SessionUser sessionUser;
 
 
+
+
     public MarketService(MarketRepository repository, MarketMapper mapper, SessionUser sessionUser) {
         super(repository, mapper);
         this.sessionUser = sessionUser;
@@ -45,8 +47,9 @@ public class MarketService extends AbstractService<
 
     @Override
     public DataDto<Long> create(@Valid MarketCreateDto createDto) {
+        Long orgId = sessionUser.getOrgId();
         Market market = mapper.fromCreateDto(createDto);
-        Organization organization = repository.findByOrgId(createDto.getOrganizationId());
+        Organization organization = repository.findByOrgId(orgId);
         if (Objects.isNull(organization)) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Organization not found", "organization/get"));
         }
