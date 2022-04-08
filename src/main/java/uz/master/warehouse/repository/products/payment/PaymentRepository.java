@@ -1,4 +1,4 @@
-package uz.master.warehouse.repository.payment;
+package uz.master.warehouse.repository.products.payment;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;

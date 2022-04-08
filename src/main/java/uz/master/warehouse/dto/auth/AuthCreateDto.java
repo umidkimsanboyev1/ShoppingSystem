@@ -37,4 +37,8 @@ public class AuthCreateDto implements BaseDto {
     @NotBlank
     private String role;
 
+
+    // todo O'ylab qoshish kerak
+    private Long marketId;
+
 }

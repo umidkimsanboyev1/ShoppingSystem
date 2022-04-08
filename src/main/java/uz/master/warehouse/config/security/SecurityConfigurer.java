@@ -5,6 +5,8 @@ package uz.master.warehouse.config.security;
  * @since 2/24/2022
  */
 
+
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -24,7 +26,7 @@ import uz.master.warehouse.services.auth.AuthUserService;
 public class SecurityConfigurer extends WebSecurityConfigurerAdapter {
 
     public final static String[] WHITE_LIST = {
-            "/**",
+//            "/**",
             "/api/login",
             "/api/v1/refresh-token",
             "/api/v1/auth/token",
