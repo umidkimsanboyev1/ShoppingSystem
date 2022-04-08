@@ -21,7 +21,7 @@ import java.util.Date;
 import java.util.List;
 
 @Service
-public  class GroupProductsService extends AbstractService<GroupProductsRepository, GroupProductsMapper>
+public class GroupProductsService extends AbstractService<GroupProductsRepository, GroupProductsMapper>
         implements GenericCrudService<
         GroupProducts,
         GroupProductsDto,
@@ -98,8 +98,10 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
     }
 
 
-    public List<Date> getDate(String fromDate, String toDate) {;
-        return repository.getSizeDate(fromDate, toDate);
 
-    }
+    public List<GroupProductsDto> getByCompany(String fromDate, String toDate,Long companyId) {
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        List<GroupProducts> allByDateTimeDateBetweenAndCompanyName = repository.findAllByDateTimeDateBetweenAndCompanyName(from, to, companyId);
+        return mapper.toDto(allByDateTimeDateBetweenAndCompanyName);    }
 }

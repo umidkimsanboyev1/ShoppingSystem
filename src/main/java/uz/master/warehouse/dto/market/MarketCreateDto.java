@@ -23,9 +23,6 @@ public class MarketCreateDto implements BaseDto {
     private Long ownerId;
 
 
-    @NotBlank
-    private Long organizationId;
-
     private String location;
     private String description;
 

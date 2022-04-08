@@ -34,14 +34,18 @@ public interface GroupProductsRepository extends JpaRepository<GroupProducts, Lo
     @Query(value = "SELECT e.* FROM group_products e WHERE DATE(e.date) >=?1 and DATE(e.date) <=?2", nativeQuery = true)
     List<GroupProducts> findAllByDateTimeDateBetween(LocalDate from, LocalDate to);
 
+    @Query(value = "SELECT e.* FROM group_products e WHERE DATE(e.date) >=?1 and DATE(e.date) <=?2 and e.company_id=?3", nativeQuery = true)
+    List<GroupProducts> findAllByDateTimeDateBetweenAndCompanyName(LocalDate from, LocalDate to, Long companyId);
 
-    @Query(
-            value = "SELECT distinct cast(e.date as date) FROM group_products e " +
-            "where e.date between cast(:from as date) and cast(:to as date)",
-            nativeQuery = true)
-    List<Date> getSizeDate(@Param(value = "from") String from, @Param(value = "to") String to);
 
-//     List<LocalDate> findAllByDateTimeDateBetween1(LocalDate from, LocalDate to);
+
+//    @Query(
+//            value = "SELECT e.date FROM group_products e " +
+//            "where e.date between cast(:from as date) and cast(:to as date)",
+//            nativeQuery = true)
+//    List<Date> getSizeDate(@Param(value = "from") String from, @Param(value = "to") String to);
+
+
 
 
 }

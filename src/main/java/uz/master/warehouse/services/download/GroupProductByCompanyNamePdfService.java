@@ -4,35 +4,35 @@ import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.groupProducts.GroupProductsDto;
 import uz.master.warehouse.dto.product.ProductDto;
+import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.products.InComeProducts;
-import uz.master.warehouse.services.organization.CompanyService;
-import uz.master.warehouse.services.organization.FirmService;
-import uz.master.warehouse.services.product.GroupProductsService;
 import uz.master.warehouse.services.product.ProductService;
 import uz.master.warehouse.services.products.InComeProductsService;
 
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.time.LocalDateTime;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
 @Service
-public record GroupProductBetweenDatePdfService(CompanyService companyService,
-                                                ProductService productService,
-                                                GroupProductsService groupProductsService,
-                                                InComeProductsService inComeProductsService,
-                                                FirmService firmService) {
+@RequiredArgsConstructor
+public final class GroupProductByCompanyNamePdfService {
 
-    public ByteArrayInputStream groupProductReport(
+
+    private final ProductService productService;
+    private final InComeProductsService inComeProductsService;
+
+
+    public ByteArrayInputStream groupProductReportByCompanyName(
             List<GroupProductsDto> groupProductsDtoList,
             String fromDate,
-            String toDate) {
+            String toDate,
+            String companyName) {
 
         Document document = new Document();
         ByteArrayOutputStream out = new ByteArrayOutputStream();
@@ -40,15 +40,15 @@ public record GroupProductBetweenDatePdfService(CompanyService companyService,
         try {
             PdfPTable table = new PdfPTable(7);
             table.setWidthPercentage(100);
-            table.setWidths(new int[]{2, 3, 3, 4, 3, 3, 3});
+            table.setWidths(new int[]{3, 2, 3, 4, 3, 3, 3});
 
             Font headFont = FontFactory.getFont(FontFactory.HELVETICA_BOLD);
 
-            PdfPCell cell1 = PdfPCell("T/R", headFont);
-            table.addCell(cell1);
-
             PdfPCell cell2 = PdfPCell("Company name", headFont);
             table.addCell(cell2);
+
+            PdfPCell cell1 = PdfPCell("T/R", headFont);
+            table.addCell(cell1);
 
             PdfPCell cell4 = PdfPCell("Product model", headFont);
             table.addCell(cell4);
@@ -66,20 +66,14 @@ public record GroupProductBetweenDatePdfService(CompanyService companyService,
             table.addCell(cell);
 
             int l = 0;
+            PdfPCell(companyName, groupProductsDtoList.size(), table);
             for (GroupProductsDto groupProducts : groupProductsDtoList) {
                 LocalDateTime date = groupProducts.getDate();
-                int year = date.getYear();
-                int month = date.getMonthValue();
-                int day = date.getDayOfMonth();
-                int hour = date.getHour();
-                int minute = date.getMinute();
-                String dateFull = year + "-" + month + "-" + day + "\n " + hour + ":" + minute;
-                String companyName = companyService.getName(groupProducts.getCompanyId());
+                String dateFull = getDate(date);
                 InComeProducts inComeProducts = inComeProductsService.getByGroupProducts(groupProducts.getId());
                 ProductDto product = productService.get(inComeProducts.getProductId()).getData();
 
                 PdfPCell(table, l + 1 + "");
-                PdfPCell(table, companyName);
                 PdfPCell(table, product.getModel());
                 PdfPCell(table, product.getColor());
                 PdfPCell(table, inComeProducts.getItemPrice().toString());
@@ -92,7 +86,8 @@ public record GroupProductBetweenDatePdfService(CompanyService companyService,
             PdfWriter.getInstance(document, out);
             document.open();
             document.add(new Paragraph(Element.ALIGN_JUSTIFIED_ALL,
-                    "  Group products between date " + fromDate + " and " + toDate + "\n\n\n"));
+                    "A list of group products with the company name "+companyName+
+                    " between " + fromDate + " and " + toDate + "\n\n\n"));
             document.add(table);
             document.close();
 
@@ -101,6 +96,15 @@ public record GroupProductBetweenDatePdfService(CompanyService companyService,
         }
 
         return new ByteArrayInputStream(out.toByteArray());
+    }
+
+    private String getDate(LocalDateTime date) {
+        int year = date.getYear();
+        int month = date.getMonthValue();
+        int day = date.getDayOfMonth();
+        int hour = date.getHour();
+        int minute = date.getMinute();
+        return year + "-" + month + "-" + day + "\n " + hour + ":" + minute;
     }
 
 
@@ -122,19 +126,14 @@ public record GroupProductBetweenDatePdfService(CompanyService companyService,
         table.addCell(cell);
     }
 
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(companyService, productService, groupProductsService, firmService);
+    private static void PdfPCell(String date, int size, PdfPTable table) {
+        PdfPCell cell;
+        cell = new PdfPCell(new Phrase(date, new Font(Font.FontFamily.TIMES_ROMAN, 14)));
+        cell.setRowspan(size);
+        cell.setVerticalAlignment(Element.ALIGN_CENTER);
+        cell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        table.addCell(cell);
     }
 
-    @Override
-    public String toString() {
-        return "GroupProductBetweenDatePdfService[" +
-                "companyService=" + companyService + ", " +
-                "productService=" + productService + ", " +
-                "groupProductsService=" + groupProductsService + ", " +
-                "firmService=" + firmService + ']';
-    }
 
 }
