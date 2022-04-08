@@ -23,6 +23,7 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Service
 public class ProductService extends AbstractService<ProductRepository, ProductMapper> implements GenericCrudService<Product, ProductDto, ProductCreateDto, ProductUpdateDto, ProductCriteria, Long> {
@@ -56,7 +57,7 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
     @Override
     public DataDto<Void> delete(Long id) {
         try {
-            repository.deleteProduct(id, session.getOrgId());
+            repository.deleteProduct(id, session.getOrgId(), "#" + UUID.randomUUID());
             return new DataDto<>();
         } catch (Exception e) {
             throw new RuntimeException("Product Not Found");
@@ -95,16 +96,16 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
             Connection connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/ware_house", "postgres", "Shoxruh0912");
             Statement statement = connection.createStatement();
             builder = new StringBuilder();
-            builder.append("select * from product p where p.org_id = %s".formatted(session.getOrgId()));
+            builder.append("select * from product p where p.org_id = ").append(session.getOrgId());
 
             if (Objects.nonNull(criteria.getModel())) {
-                builder.append("and p.model = '%s' ".formatted(criteria.getModel()));
+                builder.append("and p.model = ' ").append(criteria.getModel()).append("'");
             }
             if (Objects.nonNull(criteria.getFirmId())) {
-                builder.append("and p.firm_id = %s ".formatted(criteria.getFirmId()));
+                builder.append("and p.firm_id = %s ").append(criteria.getFirmId());
             }
             if (Objects.nonNull(criteria.getColor())) {
-                builder.append(" and p.color  =  %s ".formatted(criteria.getColor()));
+                builder.append(" and p.color  =  %s ").append(criteria.getColor());
             }
             ResultSet resultSet = statement.executeQuery(builder.toString());
             while (resultSet.next()) {

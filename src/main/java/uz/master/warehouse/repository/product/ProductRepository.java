@@ -14,8 +14,9 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "update Product o set o.deleted = true where o.id = :id and o.orgId =:orgId")
-    void deleteProduct(@Param("id") Long id, @Param("orgId") Long orgId);
+//    @Query(value = "update auth_user  set deleted=true , username = (username || ?2 )  where id = ?1 " ,nativeQuery = true)
+    @Query(value = "update product o set o.deleted = true, o.model  = (o.model || ?3 ) where o.id = ?1 and o.org_id =?2", nativeQuery = true)
+    void deleteProduct(@Param("id") Long id, @Param("orgId") Long orgId, @Param("str") String string);
 
     Optional<Product> findByIdAndDeletedFalse(Long id);
 
