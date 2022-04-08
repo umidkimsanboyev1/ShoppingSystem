@@ -49,7 +49,7 @@ class AuthControllerTest {
     }
     @Test
     void create() {
-        AuthCreateDto dto=new AuthCreateDto(1L,"jafar","1","+998936432434","123","ADMIN");
+        AuthCreateDto dto=new AuthCreateDto(1L,"jafar","1","+998936432434","123","ADMIN",1L);
 
         DataDto<Long> user = service.createUser(dto);
         System.out.println("user.getData() = " + user.getData());

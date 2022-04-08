@@ -32,6 +32,7 @@ import uz.master.warehouse.mapper.auth.AuthUserMapper;
 import uz.master.warehouse.properties.ServerProperties;
 import uz.master.warehouse.repository.auth.AuthUserRepository;
 import uz.master.warehouse.services.file.FileStorageService;
+import uz.master.warehouse.services.organization.MarketService;
 import uz.master.warehouse.services.organization.OrganizationService;
 import uz.master.warehouse.utils.JwtUtils;
 
@@ -48,24 +49,22 @@ import java.util.stream.Collectors;
 public class AuthUserService implements UserDetailsService {
 
 
+    private final AuthUserMapper mapper;
+    private final AuthUserRepository repository;
+    private final ObjectMapper objectMapper;
+    private final ServerProperties serverProperties;
+    private final PasswordEncoder passwordEncoder;
+    private final OrganizationService service;
+    private final FileStorageService fileStorageService;
+    private final MarketService marketService;
 
 
-    private final   AuthUserMapper mapper;
-    private final   AuthUserRepository repository;
-    private final   ObjectMapper objectMapper;
-    private final   ServerProperties serverProperties;
-   private final   PasswordEncoder passwordEncoder;
-   private final   OrganizationService service;
-   private final   FileStorageService fileStorageService;
-
-
-
-   public DataDto<AuthDto>get(){
-       String principal = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-       AuthUser authUser = repository.findByUsernameAndDeletedFalse(principal).get();
-       AuthDto authDto = mapper.toDto(authUser);
-       return new DataDto<>(authDto);
-   }
+    public DataDto<AuthDto> get() {
+        String principal = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        AuthUser authUser = repository.findByUsernameAndDeletedFalse(principal).get();
+        AuthDto authDto = mapper.toDto(authUser);
+        return new DataDto<>(authDto);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -75,11 +74,11 @@ public class AuthUserService implements UserDetailsService {
         return User.builder().username(user.getUsername()).password(user.getPassword()).authorities(new SimpleGrantedAuthority(user.getRole().name())).build();
     }
 
-    private User loadUser(String username){
+    private User loadUser(String username) {
         AuthUser user = repository.findByUsernameAndDeletedFalse(username).orElseThrow(() -> {
             throw new RuntimeException("user not found");
         });
-        return new User(user.getUsername(),user.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole().name())));
+        return new User(user.getUsername(), user.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole().name())));
 
     }
 
@@ -116,6 +115,10 @@ public class AuthUserService implements UserDetailsService {
         authUser.setBlocked(false);
         authUser.setDeleted(false);
         authUser.setRole(role);
+        if (!(role.equals(Role.ADMIN) || role.equals(Role.SUPER_ADMIN))) {
+            marketService.get(dto.getMarketId());
+            authUser.setMarketId(dto.getMarketId());
+        }
         authUser.setPassword(passwordEncoder.encode(dto.getPassword()));
 
         try {
@@ -129,7 +132,7 @@ public class AuthUserService implements UserDetailsService {
     }
 
     public void delete(Long id, Long adminId) {
-        if(repository.findById(adminId).orElseThrow().getRole().equals(Role.ADMIN)){
+        if (repository.findById(adminId).orElseThrow().getRole().equals(Role.ADMIN)) {
             repository.delete(id, UUID.randomUUID().toString());
         }
     }
@@ -149,40 +152,29 @@ public class AuthUserService implements UserDetailsService {
     }
 
 
-    private User read(String token){
+    private User read(String token) {
         DecodedJWT decodedJWT = JwtUtils.verifier().verify(token);
         String username = decodedJWT.getSubject();
         return loadUser(username);
     }
 
-
     public DataDto<SessionDto> refreshToken(String token, HttpServletRequest request) {
         User user = read(token);
         Date expiryForAccessToken = JwtUtils.getExpireDate();
         Date expiryForRefreshToken = JwtUtils.getExpireDateForRefreshToken();
-        String accessToken = JWT.create()
-                .withSubject(user.getUsername())
-                .withExpiresAt(expiryForAccessToken)
-                .withIssuer(request.getRequestURL().toString())
-                .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-                .sign(JwtUtils.getAlgorithm());
+        String accessToken = JWT.create().withSubject(user.getUsername()).withExpiresAt(expiryForAccessToken).withIssuer(request.getRequestURL().toString()).withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList())).sign(JwtUtils.getAlgorithm());
 
-        return new DataDto<>(SessionDto.builder().accessToken(accessToken)
-                .expiresIn(expiryForAccessToken.getTime())
-                .refreshToken(token)
-                .refreshTokenExpire(expiryForRefreshToken.getTime())
-                .issuedAt(System.currentTimeMillis())
-                .build());
+        return new DataDto<>(SessionDto.builder().accessToken(accessToken).expiresIn(expiryForAccessToken.getTime()).refreshToken(token).refreshTokenExpire(expiryForRefreshToken.getTime()).issuedAt(System.currentTimeMillis()).build());
     }
 
 
     public void savePicture(MultipartFile picture) throws IOException {
         String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
         String contentType = com.google.common.io.Files.getFileExtension(picture.getOriginalFilename());
-        if("jpg".equals(contentType)||"png".equals(contentType)){
+        if ("jpg".equals(contentType) || "png".equals(contentType)) {
             String store = fileStorageService.store(picture);
-            repository.updatePicture(store,username);
-        }else {
+            repository.updatePicture(store, username);
+        } else {
             throw new RuntimeException("picture content type error");
         }
     }

@@ -23,9 +23,8 @@ import uz.master.warehouse.services.auth.AuthUserService;
         ServerProperties.class,
         OpenApiProperties.class}
 )
-public class WarehouseApplication  {
-
-    private  final PasswordEncoder encoder;
+public class WarehouseApplication {
+    private final PasswordEncoder passwordEncoder;
     private final AuthUserService service;
 
     public static void main(String[] args) {
@@ -33,18 +32,18 @@ public class WarehouseApplication  {
     }
 
     @Bean
-    public RestTemplate template(){
-       return new RestTemplate();
+    public RestTemplate template() {
+        return new RestTemplate();
     }
-
 
 
     @Bean
     public void run() throws Exception {
-        CommandLineRunner runner=(a)->{
-            service.createUser(new AuthCreateDto(-1L,"Komilov","user","+998942790117",encoder.encode("123"), Role.ADMIN.name()));
+        CommandLineRunner runner = (a) -> {
+            service.createUser(new AuthCreateDto
+                    (1L, "jasur", "L", "+998941453337", "123", Role.ADMIN.name(),1L));
         };
-        runner.run("s","b");
+        runner.run("s", "b");
     }
 
 
