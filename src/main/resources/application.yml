@@ -48,5 +48,5 @@ service:
   prop:
     protocol: http
     ip: localhost
-    port: 9090
+    port: 8080
     url: boom.uz
