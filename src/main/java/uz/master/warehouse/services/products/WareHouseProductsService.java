@@ -8,7 +8,6 @@ import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsCreateDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsUpdateDto;
-import uz.master.warehouse.entity.base.Auditable;
 import uz.master.warehouse.entity.product.Product;
 import uz.master.warehouse.entity.products.InComeProducts;
 import uz.master.warehouse.entity.products.OutComeProducts;
@@ -18,7 +17,7 @@ import uz.master.warehouse.repository.product.ProductRepository;
 import uz.master.warehouse.repository.products.WareHouseProductsRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.products.WareHouseProductsValidator;
+import uz.master.warehouse.session.SessionUser;
 
 import java.util.List;
 import java.util.Objects;
@@ -29,10 +28,12 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
         implements GenericCrudService<WareHouseProducts, WareHouseProductsDto, WareHouseProductsCreateDto, WareHouseProductsUpdateDto, GenericCriteria, Long> {
 
     private final ProductRepository productRepository;
+    private final SessionUser session;
 
-    public WareHouseProductsService(WareHouseProductsRepository repository, WareHouseProductsMapper mapper, ProductRepository productRepository) {
+    public WareHouseProductsService(WareHouseProductsRepository repository, WareHouseProductsMapper mapper, ProductRepository productRepository, SessionUser session) {
         super(repository, mapper);
         this.productRepository = productRepository;
+        this.session = session;
     }
 
 
@@ -139,7 +140,7 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
                 return true;
             } else if (wareHouseProducts.getCount() == outComeProducts.getCount()) {
                 this.delete(wareHouseProducts.getId());
-                productRepository.deleteProduct(wareHouseProducts.getProductId());
+                productRepository.deleteProduct(wareHouseProducts.getProductId(), session.getOrgId());
                 return true;
             } else
                 return false;

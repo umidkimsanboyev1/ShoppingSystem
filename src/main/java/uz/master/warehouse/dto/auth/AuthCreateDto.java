@@ -37,4 +37,7 @@ public class AuthCreateDto implements BaseDto {
     @NotBlank
     private String role;
 
+
+    private Long marketId;
+
 }

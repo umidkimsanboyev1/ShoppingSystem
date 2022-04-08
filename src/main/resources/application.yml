@@ -8,9 +8,9 @@ server:
 spring:
   datasource:
     driver-class-name: org.postgresql.Driver
-    password: umidmaster98
+    password: Shoxruh0912
     username: postgres
-    url: jdbc:postgresql://localhost:5432/warehouse
+    url: jdbc:postgresql://localhost:5432/ware_house
   jpa:
     hibernate:
       ddl-auto: update
@@ -48,5 +48,5 @@ service:
   prop:
     protocol: http
     ip: localhost
-    port: 9090
+    port: 8080
     url: boom.uz

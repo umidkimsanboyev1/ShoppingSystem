@@ -27,6 +27,7 @@ public record BetweenDatePdfService(OrganizationService organizationService,
         ByteArrayOutputStream out = new ByteArrayOutputStream();
 
         try {
+//
             PdfPTable table = new PdfPTable(5);
             table.setWidthPercentage(100);
             table.setWidths(new int[]{1, 3, 3, 5, 3});

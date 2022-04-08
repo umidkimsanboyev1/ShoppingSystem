@@ -58,6 +58,14 @@ public class GroupProductsController extends AbstractController {
         return new ResponseEntity<>(service.update(dto), HttpStatus.OK);
     }
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
+    @GetMapping(PATH + "/listCriteria")
+    public ResponseEntity<DataDto<List<GroupProductsDto>>> getWithCriteria(GroupProductsCriteria criteria) {
+        return new ResponseEntity<>(service.getWithCriteria(criteria), HttpStatus.OK);
+    }
+
+
+
+    @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @GetMapping("/list")
     public ResponseEntity<DataDto<List<GroupProductsDto>>> getAll() {
         return new ResponseEntity<>(service.getAll(), HttpStatus.OK);
@@ -117,7 +125,6 @@ public class GroupProductsController extends AbstractController {
                 .contentType(MediaType.APPLICATION_PDF)
                 .body(new InputStreamResource(bis));
     }
-
 
 
 }

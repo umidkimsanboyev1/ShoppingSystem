@@ -11,6 +11,7 @@ public class GenericCriteria implements BaseCriteria {
     private Integer size;
     private Integer page;
 
+
     public Integer getPage() {
         if (Objects.isNull(page))
             page = 0;

@@ -1,6 +1,5 @@
 package uz.master.warehouse;
 
-import com.itextpdf.text.Paragraph;
 import io.swagger.v3.oas.annotations.OpenAPIDefinition;
 import lombok.RequiredArgsConstructor;
 import org.springframework.boot.CommandLineRunner;
@@ -40,10 +39,10 @@ public class WarehouseApplication  {
 
 
 
-//    @Bean
+    @Bean
     public void run() throws Exception {
         CommandLineRunner runner=(a)->{
-            service.createUser(new AuthCreateDto(-1L,"Azizbek Bahodirov","admin","+998942790117",encoder.encode("123"), Role.ADMIN.name()));
+            service.createUser(new AuthCreateDto(-1L,"Komilov","usr","+998942790217","123", Role.ADMIN.name(),1L));
         };
         runner.run("s","b");
     }
