@@ -84,11 +84,10 @@ public class GroupProductsController extends AbstractController {
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @RequestMapping(value = "/betweenTimeDownload", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> groupProductReport() {
+    public ResponseEntity<InputStreamResource> groupProductReport(String fromDate, String toDate) {
         ///for test
-//        String fromDate, String toDate
-        String fromDate="2022-03-10";
-        String toDate="2022-10-11";
+//        String fromDate="2022-03-10";
+//        String toDate="2022-10-11";
         List<GroupProductsDto> byTimeBetween = service.getByTimeBetween(fromDate, toDate);
         ByteArrayInputStream bis = groupProductBetweenDatePdfService.groupProductReport(byTimeBetween, fromDate, toDate);
         HttpHeaders headers = new HttpHeaders();
@@ -106,10 +105,10 @@ public class GroupProductsController extends AbstractController {
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @RequestMapping(value = "/byCompanyDownload", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> groupProductByCompanyReport() {
+    public ResponseEntity<InputStreamResource> groupProductByCompanyReport(String fromDate, String toDate) {
         ///for test
-        String fromDate="2022-03-10";
-        String toDate="2022-10-11";
+//        String fromDate="2022-03-10";
+//        String toDate="2022-10-11";
         Long companyId=1L;
         String companyName = companyService.getName(companyId);
         List<GroupProductsDto> companies = service.getByCompany(fromDate,toDate,companyId);

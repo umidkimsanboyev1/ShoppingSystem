@@ -67,10 +67,10 @@ public class PaymentController extends AbstractController {
 
     @RequestMapping(value = "/betweenTimeDownload", method = RequestMethod.GET,
             produces = MediaType.APPLICATION_PDF_VALUE)
-    public ResponseEntity<InputStreamResource> paymentReport() {
+    public ResponseEntity<InputStreamResource> paymentReport(String fromDate, String toDate) {
         ///for test
-        String fromDate="2022-03-10";
-        String toDate="2022-10-10";
+//        String fromDate="2022-03-10";
+//        String toDate="2022-10-10";
         List<PaymentDto> byTimeBetween = service.getByTimeBetween(fromDate, toDate);
         ByteArrayInputStream bis = betweenDatePdfService.paymentReport(byTimeBetween, fromDate, toDate);
         var headers = new HttpHeaders();
