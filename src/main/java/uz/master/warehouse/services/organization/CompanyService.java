@@ -59,7 +59,7 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
     @Override
     public DataDto<List<CompanyDto>> getAll() {
         List<Company> list = repository.findAllByDeletedFalse();
-        return new DataDto<>(mapper.toDto(list));
+              return new DataDto<>(mapper.toDto(list));
     }
 
     @Override
