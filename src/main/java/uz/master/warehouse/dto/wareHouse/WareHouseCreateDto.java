@@ -7,13 +7,12 @@ import javax.persistence.Column;
 import java.util.Date;
 
 public class WareHouseCreateDto implements BaseDto {
-    private Long marketId;
 
     private String name;
 
     private String location;
 
-    private Date paidDate;
+    private Date paidDate;// yoqotish
 
     private Long organizationId;
 }

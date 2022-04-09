@@ -30,4 +30,6 @@ public class AuthUser extends Auditable {
 
     @Enumerated(EnumType.STRING)
     private Role role;
+
+    private Long marketId;
 }

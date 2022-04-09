@@ -8,7 +8,6 @@ import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsCreateDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsDto;
 import uz.master.warehouse.dto.wareHouseProducts.WareHouseProductsUpdateDto;
-import uz.master.warehouse.entity.base.Auditable;
 import uz.master.warehouse.entity.product.Product;
 import uz.master.warehouse.entity.products.InComeProducts;
 import uz.master.warehouse.entity.products.OutComeProducts;
@@ -18,21 +17,24 @@ import uz.master.warehouse.repository.product.ProductRepository;
 import uz.master.warehouse.repository.products.WareHouseProductsRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.products.WareHouseProductsValidator;
+import uz.master.warehouse.session.SessionUser;
 
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.UUID;
 
 @Service
 public class WareHouseProductsService extends AbstractService<WareHouseProductsRepository, WareHouseProductsMapper>
         implements GenericCrudService<WareHouseProducts, WareHouseProductsDto, WareHouseProductsCreateDto, WareHouseProductsUpdateDto, GenericCriteria, Long> {
 
     private final ProductRepository productRepository;
+    private final SessionUser session;
 
-    public WareHouseProductsService(WareHouseProductsRepository repository, WareHouseProductsMapper mapper, ProductRepository productRepository) {
+    public WareHouseProductsService(WareHouseProductsRepository repository, WareHouseProductsMapper mapper, ProductRepository productRepository, SessionUser session) {
         super(repository, mapper);
         this.productRepository = productRepository;
+        this.session = session;
     }
 
 
@@ -40,7 +42,7 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
     public DataDto<Long> create(WareHouseProductsCreateDto createDto) {
 
         Optional<Product> product = productRepository.findByIdAndDeletedFalse(createDto.getProductId());
-        if (product.isEmpty()) {
+        if (!product.isPresent()) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Product not found", "product"));
         }
         WareHouseProducts warehouseProducts = mapper.fromCreateDto(createDto);
@@ -58,7 +60,7 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
     public DataDto<Long> update(WareHouseProductsUpdateDto updateDto) {
 
         Optional<WareHouseProducts> optional = repository.findById(updateDto.getId());
-        if (optional.isEmpty()) {
+        if (!optional.isPresent()) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Income Product not found", "product"));
         }
         WareHouseProducts income = mapper.fromUpdateDto(updateDto, optional.get());
@@ -81,7 +83,7 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
     @Override
     public DataDto<WareHouseProductsDto> get(Long id) {
         Optional<WareHouseProducts> optional = repository.findByIdAndDeletedFalse(id);
-        if (optional.isEmpty()) {
+        if (!optional.isPresent()) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "WareHouse Product not found", "product"));
         }
         WareHouseProductsDto warehouseProductsDto = mapper.toDto(optional.get());
@@ -96,25 +98,6 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
     public WareHouseProducts getByProductId(Long id) {
         return repository.findByProductIdAndDeletedFalse(id);
     }
-
-//    public DataDto<List<WareHouseProductsDto>> getByModel(String model) {
-//        List<Product> products = productRepository.findAllByModelAndDeletedFalse(model);
-//        if (products.isEmpty()) {
-//            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
-//        }
-//        List<Long> productIds = products.stream().map(Auditable::getId).toList();
-//        List<WareHouseProducts> allByProductIdIsIn = repository.findByProductIdIn(productIds);
-//        return new DataDto<>(mapper.toDto(allByProductIdIsIn));
-//    }
-//
-//    public DataDto<WareHouseProductsDto> getByModelAndColor(String model, String color) {
-//        Product product = productRepository.findByModelAndColorAndDeletedFalse(model, color);
-//        if (Objects.isNull(product)) {
-//            return new DataDto<>(new AppErrorDto("Model Not Found", HttpStatus.NOT_FOUND));
-//        }
-//        WareHouseProducts wareHouseProduct = this.getByProductId(product.getId());
-//        return new DataDto<>(mapper.toDto(wareHouseProduct));
-//    }
 
 
     public void checkCount(Long productId, int count) {
@@ -139,7 +122,7 @@ public class WareHouseProductsService extends AbstractService<WareHouseProductsR
                 return true;
             } else if (wareHouseProducts.getCount() == outComeProducts.getCount()) {
                 this.delete(wareHouseProducts.getId());
-                productRepository.deleteProduct(wareHouseProducts.getProductId());
+                productRepository.deleteProduct(wareHouseProducts.getProductId(), session.getOrgId(), "#" + UUID.randomUUID());
                 return true;
             } else
                 return false;

@@ -13,6 +13,7 @@ import uz.master.warehouse.dto.organization.OrganizationDto;
 import uz.master.warehouse.dto.product.ProductCreateDto;
 import uz.master.warehouse.dto.product.ProductDto;
 import uz.master.warehouse.dto.product.ProductUpdateDto;
+import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.services.product.ProductService;
 
@@ -37,14 +38,16 @@ public class ProductController extends AbstractController {
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @DeleteMapping(PATH + "/delete/{id}")
-    public void delete(@PathVariable Long id) {
+    public ResponseEntity<?> delete(@PathVariable Long id) {
         service.delete(id);
+        return ResponseEntity.noContent().build();
     }
 
     @PreAuthorize("hasAnyRole('ADMIN','WAREHOUSEMAN')")
     @PutMapping(PATH + "/update")
-    public void update(@Valid @RequestBody ProductUpdateDto dto) {
+    public ResponseEntity<?> update(@Valid @RequestBody ProductUpdateDto dto) {
         service.update(dto);
+        return ResponseEntity.noContent().build();
     }
 
 
@@ -70,7 +73,7 @@ public class ProductController extends AbstractController {
     }
 
     @PreAuthorize("hasRole('SUPER_ADMIN')")
-    @GetMapping(PATH + "/listByCriteri")
+    @GetMapping(PATH + "/listByCriteria")
     public ResponseEntity<DataDto<List<ProductDto>>> getWithCriteria(ProductCriteria criteria) {
         return new ResponseEntity<>(service.getWithCriteria(criteria), HttpStatus.OK);
     }

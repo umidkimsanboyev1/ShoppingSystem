@@ -11,6 +11,7 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.entity.InputStreamEntity;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.util.EntityUtils;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -36,11 +37,7 @@ import uz.master.warehouse.session.SessionUser;
 import uz.master.warehouse.utils.JwtUtils;
 
 import javax.servlet.http.HttpServletRequest;
-import java.io.ByteArrayInputStream;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.io.*;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -168,24 +165,13 @@ public class AuthUserService implements UserDetailsService {
         return loadUser(username);
     }
 
-
     public DataDto<SessionDto> refreshToken(String token, HttpServletRequest request) {
         User user = read(token);
         Date expiryForAccessToken = JwtUtils.getExpireDate();
         Date expiryForRefreshToken = JwtUtils.getExpireDateForRefreshToken();
-        String accessToken = JWT.create()
-                .withSubject(user.getUsername())
-                .withExpiresAt(expiryForAccessToken)
-                .withIssuer(request.getRequestURL().toString())
-                .withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList()))
-                .sign(JwtUtils.getAlgorithm());
+        String accessToken = JWT.create().withSubject(user.getUsername()).withExpiresAt(expiryForAccessToken).withIssuer(request.getRequestURL().toString()).withClaim("roles", user.getAuthorities().stream().map(GrantedAuthority::getAuthority).collect(Collectors.toList())).sign(JwtUtils.getAlgorithm());
 
-        return new DataDto<>(SessionDto.builder().accessToken(accessToken)
-                .expiresIn(expiryForAccessToken.getTime())
-                .refreshToken(token)
-                .refreshTokenExpire(expiryForRefreshToken.getTime())
-                .issuedAt(System.currentTimeMillis())
-                .build());
+        return new DataDto<>(SessionDto.builder().accessToken(accessToken).expiresIn(expiryForAccessToken.getTime()).refreshToken(token).refreshTokenExpire(expiryForRefreshToken.getTime()).issuedAt(System.currentTimeMillis()).build());
     }
 
 

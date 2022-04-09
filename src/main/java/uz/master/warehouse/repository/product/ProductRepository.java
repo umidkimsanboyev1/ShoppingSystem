@@ -1,12 +1,9 @@
 package uz.master.warehouse.repository.product;
 
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
-import uz.master.warehouse.entity.product.Product;
 import uz.master.warehouse.entity.product.Product;
 
 import javax.transaction.Transactional;
@@ -17,23 +14,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
 
     @Transactional
     @Modifying
-    @Query(value = "update Product o set o.deleted = true,o.model = (o.model+''+CURRENT_TIMESTAMP) where o.id = :orgId")
-    void deleteProduct(@Param("orgId") Long id);
+//    @Query(value = "update auth_user  set deleted=true , username = (username || ?2 )  where id = ?1 " ,nativeQuery = true)
+    @Query(value = "update product o set o.deleted = true, o.model  = (o.model || ?3 ) where o.id = ?1 and o.org_id =?2", nativeQuery = true)
+    void deleteProduct(@Param("id") Long id, @Param("orgId") Long orgId, @Param("str") String string);
 
     Optional<Product> findByIdAndDeletedFalse(Long id);
 
-    List<Product> findAllByDeletedFalse();
+    List<Product> findAllByOrgIdAndDeletedFalse(Long orgId);
 
-    Page<Product> findAllByModelAndDeletedFalse(String model,Pageable pageable);
+    List<Product> findAllByOrgIdAndFirmId(Long id, Long orgId);
 
-    Page<Product> findAllByColorAndDeletedFalse(String color, Pageable pageable);
-
-    Page<Product> findAllByFirmIdAndDeletedFalse(Long firmId,Pageable pageable);
-
-    Product findByModelAndColorAndDeletedFalse(String model, String color);
-
-    @Query(value = "select  count(*) from product where not deleted and id=?1 ",nativeQuery = true)
-    int existsByProduct(Long productId);
-
-    List<Product> findAllByDeletedFalseAndFirmId(Long firmId);
+    Optional<Product> findByIdAndOrgIdAndDeletedFalse(Long id, Long orgId);
 }

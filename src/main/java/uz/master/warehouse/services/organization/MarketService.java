@@ -2,7 +2,6 @@ package uz.master.warehouse.services.organization;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.market.MarketCreateDto;
 import uz.master.warehouse.dto.market.MarketDto;
@@ -49,8 +48,9 @@ public class MarketService extends AbstractService<
 
     @Override
     public DataDto<Long> create(@Valid MarketCreateDto createDto) {
+        Long orgId = sessionUser.getOrgId();
         Market market = mapper.fromCreateDto(createDto);
-        Organization organization = repository.findByOrgId(createDto.getOrganizationId());
+        Organization organization = repository.findByOrgId(orgId);
         if (Objects.isNull(organization)) {
             return new DataDto<>(new AppErrorDto(HttpStatus.NOT_FOUND, "Organization not found", "organization/get"));
         }
@@ -82,25 +82,8 @@ public class MarketService extends AbstractService<
         market.setName(updateDto.getName());
         market.setDescription(updateDto.getDescription());
         market.setLocation(updateDto.getLocation());
-
-
         repository.update(market.getId(), market.getName(), market.getLocation(), market.getDescription());
         return new DataDto<>(market.getId());
-    }
-
-    public void savePicture(MultipartFile[] file,Long marketId) {
-
-        for (MultipartFile multipartFile : file) {
-
-            String contentType = com.google.common.io.Files.getFileExtension(multipartFile.getOriginalFilename());
-            if ("jpg".equalsIgnoreCase(contentType) || "png".equalsIgnoreCase(contentType)) {
-                String store = fileStorageService.store(multipartFile);
-                repository.savePicture(store,marketId);
-            }
-            else {
-                throw new RuntimeException("picture content type error");
-            }
-        }
     }
 
     @Override
@@ -123,7 +106,4 @@ public class MarketService extends AbstractService<
     public DataDto<List<MarketDto>> getWithCriteria(GenericCriteria criteria) {
         return null;
     }
-
-
-
 }

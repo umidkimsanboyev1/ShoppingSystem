@@ -1,6 +1,5 @@
 package uz.master.warehouse.controller;
 
-import lombok.Data;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -52,5 +51,17 @@ public class ClientBarController extends AbstractController {
     public ResponseEntity<DataDto<ClientBarDto>> get(@PathVariable Long id){
         return new ResponseEntity<>(service.get(id), HttpStatus.OK);
     }
+
+    @GetMapping(value = PATH + "/get-active")
+    public ResponseEntity<DataDto<List<ClientBarDto>>> getActive(){
+        return new ResponseEntity<>(service.getByOrgId(), HttpStatus.OK);
+    }
+
+    @GetMapping(value = PATH + "/get-today")
+    public ResponseEntity<DataDto<List<ClientBarDto>>> getToday(){
+        return new ResponseEntity<>(service.getThisDay(), HttpStatus.OK);
+    }
+
+
 
 }

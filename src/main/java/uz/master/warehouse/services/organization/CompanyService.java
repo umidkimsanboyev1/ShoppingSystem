@@ -33,10 +33,6 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
 
     @Override
     public DataDto<Long> create(@Valid CompanyCreateDto createDto) {
-//        if (!validator.validForCreate(createDto)) {
-//            return new DataDto<>(new AppErrorDto("Not Valid On Create", HttpStatus.CONFLICT));
-//        }
-
         Company company = mapper.fromCreateDto(createDto);
         company.setName(createDto.getName());
         company.setRegistrationNumber(createDto.getRegisterNumber());
@@ -53,12 +49,6 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
 
     @Override
     public DataDto<Long> update(@Valid CompanyUpdateDto updateDto) {
-//        if (!validator.validForUpdate(updateDto)) {
-//            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
-//        }
-//        if (!validator.validForUpdate(updateDto)) {
-//            return new DataDto<>(new AppErrorDto("Not Valid On Update", HttpStatus.CONFLICT));
-//        }
 
         Company company = mapper.fromUpdateDto(updateDto);
         company.setName(updateDto.getName());
@@ -69,7 +59,7 @@ public class CompanyService extends AbstractService<CompanyRepository, CompanyMa
     @Override
     public DataDto<List<CompanyDto>> getAll() {
         List<Company> list = repository.findAllByDeletedFalse();
-        return new DataDto<>(mapper.toDto(list));
+              return new DataDto<>(mapper.toDto(list));
     }
 
     @Override

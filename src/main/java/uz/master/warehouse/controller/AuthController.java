@@ -48,7 +48,9 @@ public class AuthController extends AbstractController {
 
     @PostMapping(PATH + "/auth/login")
     public ResponseEntity<DataDto<SessionDto>> login(@RequestBody AuthUserDto loginDto) {
-        return new ResponseEntity<>(authUserService.login(loginDto),HttpStatus.OK);
+        AuthUserDto loginDto1 = loginDto;
+        DataDto<SessionDto> login = authUserService.login(loginDto);
+        return new ResponseEntity<>(login,HttpStatus.OK);
     }
 
     @Secured(value = "ADMIN")

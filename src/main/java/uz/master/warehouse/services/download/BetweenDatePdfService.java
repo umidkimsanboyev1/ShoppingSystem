@@ -1,13 +1,10 @@
 package uz.master.warehouse.services.download;
 
 
-
 import com.itextpdf.text.*;
-
 import com.itextpdf.text.pdf.PdfPCell;
 import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import uz.master.warehouse.dto.payment.PaymentDto;
 import uz.master.warehouse.services.organization.CompanyService;
@@ -16,16 +13,18 @@ import uz.master.warehouse.services.organization.OrganizationService;
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.util.List;
-
+import java.util.Objects;
 
 @Service
-@RequiredArgsConstructor
-public class BetweenDatePdfService {
-
-
+public final class BetweenDatePdfService {
     private final OrganizationService organizationService;
     private final CompanyService companyService;
 
+    public BetweenDatePdfService(OrganizationService organizationService,
+                                 CompanyService companyService) {
+        this.organizationService = organizationService;
+        this.companyService = companyService;
+    }
 
 
     public ByteArrayInputStream paymentReport(List<PaymentDto> paymentDtos,
@@ -63,18 +62,22 @@ public class BetweenDatePdfService {
 
                 String orgName = organizationService.getName(payment.getOrganizationId());
                 String compName = companyService.getName(payment.getCompanyId());
+                int year = payment.getDateTime().getYear();
+                int month = payment.getDateTime().getMonthValue();
+                int day = payment.getDateTime().getDayOfMonth();
+                String date = year + "-" + month + "-" + day;
 
                 PdfPCell(table, i + 1 + "");
                 PdfPCell(table, orgName);
                 PdfPCell(table, compName);
-                PdfPCell(table, payment.getDateTime().toString());
+                PdfPCell(table, date);
                 PdfPCell(table, payment.getSum().toString());
             }
 
 //
             PdfWriter.getInstance(document, out);
             document.open();
-            document.add(new Paragraph(Element.ALIGN_JUSTIFIED_ALL, fromDate + " and " + toDate + "\n\n\n"));
+            document.add(new Paragraph(Element.ALIGN_JUSTIFIED_ALL, "Payment list between date " + fromDate + " and " + toDate + "\n\n\n"));
             document.add(table);
             document.close();
 
@@ -90,6 +93,7 @@ public class BetweenDatePdfService {
         PdfPCell hcell;
         hcell = new PdfPCell(new Phrase(name, headFont));
         hcell.setHorizontalAlignment(Element.ALIGN_CENTER);
+        hcell.setBackgroundColor(BaseColor.CYAN);
         return hcell;
     }
 
@@ -100,6 +104,35 @@ public class BetweenDatePdfService {
         cell.setHorizontalAlignment(Element.ALIGN_CENTER);
         cell.setPaddingRight(10);
         table.addCell(cell);
+    }
+
+    public OrganizationService organizationService() {
+        return organizationService;
+    }
+
+    public CompanyService companyService() {
+        return companyService;
+    }
+
+    @Override
+    public boolean equals(Object obj) {
+        if (obj == this) return true;
+        if (obj == null || obj.getClass() != this.getClass()) return false;
+        var that = (BetweenDatePdfService) obj;
+        return Objects.equals(this.organizationService, that.organizationService) &&
+                Objects.equals(this.companyService, that.companyService);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(organizationService, companyService);
+    }
+
+    @Override
+    public String toString() {
+        return "BetweenDatePdfService[" +
+                "organizationService=" + organizationService + ", " +
+                "companyService=" + companyService + ']';
     }
 
 
