@@ -2,9 +2,11 @@ package uz.master.warehouse.entity.organization;
 
 import lombok.Getter;
 import lombok.Setter;
+import org.mapstruct.Mapper;
 import uz.master.warehouse.entity.base.Auditable;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Getter
 @Setter
@@ -17,5 +19,5 @@ public class Market extends Auditable {
     private Long organizationId;
     private String location;
     private String description;
-    private String logoPath;
+
 }

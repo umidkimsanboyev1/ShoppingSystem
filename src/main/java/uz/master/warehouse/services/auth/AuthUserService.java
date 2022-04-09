@@ -32,6 +32,7 @@ import uz.master.warehouse.properties.ServerProperties;
 import uz.master.warehouse.repository.auth.AuthUserRepository;
 import uz.master.warehouse.services.file.FileStorageService;
 import uz.master.warehouse.services.organization.OrganizationService;
+import uz.master.warehouse.session.SessionUser;
 import uz.master.warehouse.utils.JwtUtils;
 
 import javax.servlet.http.HttpServletRequest;
@@ -54,12 +55,14 @@ public class AuthUserService implements UserDetailsService {
     private final AuthUserRepository repository;
     private final ObjectMapper objectMapper;
     private final ServerProperties serverProperties;
-   private final PasswordEncoder passwordEncoder;
-   private final OrganizationService service;
-   private final FileStorageService fileStorageService;
+    private final PasswordEncoder passwordEncoder;
+    private final OrganizationService service;
+    private final FileStorageService fileStorageService;
+    private final SessionUser sessionUser;
 
-    private  Path root = Paths.get("D:/uploads");
-//    @PostConstruct
+    private Path root = Paths.get("D:/uploads");
+
+    //    @PostConstruct
     public void init() {
         try {
             Files.createDirectory(root);
@@ -69,12 +72,12 @@ public class AuthUserService implements UserDetailsService {
     }
 
 
-   public DataDto<AuthDto>get(){
-       String principal = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
-       AuthUser authUser = repository.findByUsernameAndDeletedFalse(principal).get();
-       AuthDto authDto = mapper.toDto(authUser);
-       return new DataDto<>(authDto);
-   }
+    public DataDto<AuthDto> get() {
+        String principal = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        AuthUser authUser = repository.findByUsernameAndDeletedFalse(principal).get();
+        AuthDto authDto = mapper.toDto(authUser);
+        return new DataDto<>(authDto);
+    }
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -84,11 +87,11 @@ public class AuthUserService implements UserDetailsService {
         return User.builder().username(user.getUsername()).password(user.getPassword()).authorities(new SimpleGrantedAuthority(user.getRole().name())).build();
     }
 
-    private User loadUser(String username){
+    private User loadUser(String username) {
         AuthUser user = repository.findByUsernameAndDeletedFalse(username).orElseThrow(() -> {
             throw new RuntimeException("user not found");
         });
-        return new User(user.getUsername(),user.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole().name())));
+        return new User(user.getUsername(), user.getPassword(), List.of(new SimpleGrantedAuthority(user.getRole().name())));
 
     }
 
@@ -116,6 +119,7 @@ public class AuthUserService implements UserDetailsService {
         } catch (IOException e) {
             return new DataDto<>(new AppErrorDto("bad request", "", HttpStatus.INTERNAL_SERVER_ERROR));
         }
+
     }
 
     public DataDto<Long> createUser(AuthCreateDto dto) {
@@ -138,7 +142,7 @@ public class AuthUserService implements UserDetailsService {
     }
 
     public void delete(Long id, Long adminId) {
-        if(repository.findById(adminId).orElseThrow().getRole().equals(Role.ADMIN)){
+        if (repository.findById(adminId).orElseThrow().getRole().equals(Role.ADMIN)) {
             repository.delete(id, UUID.randomUUID().toString());
         }
     }
@@ -158,7 +162,7 @@ public class AuthUserService implements UserDetailsService {
     }
 
 
-    private User read(String token){
+    private User read(String token) {
         DecodedJWT decodedJWT = JwtUtils.verifier().verify(token);
         String username = decodedJWT.getSubject();
         return loadUser(username);
@@ -186,12 +190,14 @@ public class AuthUserService implements UserDetailsService {
 
 
     public void savePicture(MultipartFile picture) throws IOException {
-        String username = (String) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+        String username = sessionUser.getUsername();
+
         String contentType = com.google.common.io.Files.getFileExtension(picture.getOriginalFilename());
-        if("jpg".equals(contentType)||"png".equals(contentType)){
+        if ("jpg".equalsIgnoreCase(contentType) || "png".equalsIgnoreCase(contentType)) {
             String store = fileStorageService.store(picture);
-            repository.updatePicture(store,username);
-        }else {
+            repository.updatePicture(store, username);
+        }
+        else {
             throw new RuntimeException("picture content type error");
         }
     }

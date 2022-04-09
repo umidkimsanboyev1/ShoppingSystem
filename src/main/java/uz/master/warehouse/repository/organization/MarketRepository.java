@@ -28,4 +28,9 @@ public interface MarketRepository extends JpaRepository<Market, Long> {
     @Modifying
     @Query(value = "update Market set name=:name, location=:location, description=:description where id=:id")
     void update(@Param(value = "id") Long id, @Param(value = "name")String name, @Param(value = "location")String location,@Param(value = "description") String description);
+
+    @Transactional
+    @Modifying
+    @Query(value ="insert into market_picture(market_id, picture_path) values (?2,?1)" ,nativeQuery = true)
+    void savePicture( String store,  Long marketId);
 }

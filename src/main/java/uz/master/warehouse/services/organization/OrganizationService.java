@@ -1,6 +1,7 @@
 package uz.master.warehouse.services.organization;
 
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
@@ -93,6 +94,7 @@ public class OrganizationService extends AbstractService<
     @Override
     public DataDto<List<OrganizationDto>> getWithCriteria(GenericCriteria criteria) {
         return null;
+
     }
 
     public String getName(Long id) {

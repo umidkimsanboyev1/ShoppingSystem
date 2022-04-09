@@ -2,11 +2,12 @@ package uz.master.warehouse.services.organization;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.market.MarketCreateDto;
 import uz.master.warehouse.dto.market.MarketDto;
 import uz.master.warehouse.dto.market.MarketUpdateDto;
-import uz.master.warehouse.dto.payment.PaymentDto;
+import uz.master.warehouse.dto.market.MarketUploadDTO;
 import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.organization.Market;
@@ -15,6 +16,7 @@ import uz.master.warehouse.mapper.organization.MarketMapper;
 import uz.master.warehouse.repository.organization.MarketRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
+import uz.master.warehouse.services.file.FileStorageService;
 import uz.master.warehouse.session.SessionUser;
 
 import javax.validation.Valid;
@@ -35,11 +37,13 @@ public class MarketService extends AbstractService<
         > {
 
     private final SessionUser sessionUser;
+    private final FileStorageService fileStorageService;
 
 
-    public MarketService(MarketRepository repository, MarketMapper mapper, SessionUser sessionUser) {
+    public MarketService(MarketRepository repository, MarketMapper mapper, SessionUser sessionUser, FileStorageService fileStorageService) {
         super(repository, mapper);
         this.sessionUser = sessionUser;
+        this.fileStorageService = fileStorageService;
     }
 
 
@@ -78,8 +82,25 @@ public class MarketService extends AbstractService<
         market.setName(updateDto.getName());
         market.setDescription(updateDto.getDescription());
         market.setLocation(updateDto.getLocation());
+
+
         repository.update(market.getId(), market.getName(), market.getLocation(), market.getDescription());
         return new DataDto<>(market.getId());
+    }
+
+    public void savePicture(MultipartFile[] file,Long marketId) {
+
+        for (MultipartFile multipartFile : file) {
+
+            String contentType = com.google.common.io.Files.getFileExtension(multipartFile.getOriginalFilename());
+            if ("jpg".equalsIgnoreCase(contentType) || "png".equalsIgnoreCase(contentType)) {
+                String store = fileStorageService.store(multipartFile);
+                repository.savePicture(store,marketId);
+            }
+            else {
+                throw new RuntimeException("picture content type error");
+            }
+        }
     }
 
     @Override
@@ -102,4 +123,7 @@ public class MarketService extends AbstractService<
     public DataDto<List<MarketDto>> getWithCriteria(GenericCriteria criteria) {
         return null;
     }
+
+
+
 }
