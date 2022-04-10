@@ -13,9 +13,6 @@ import uz.master.warehouse.dto.payment.PaymentCreateDto;
 import uz.master.warehouse.dto.payment.PaymentDto;
 import uz.master.warehouse.dto.payment.PaymentUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
-import uz.master.warehouse.entity.payment.Payment;
-import uz.master.warehouse.mapper.payment.PaymentMapper;
-import uz.master.warehouse.repository.payment.PaymentRepository;
 import uz.master.warehouse.services.download.BetweenDatePdfService;
 import uz.master.warehouse.services.payment.PaymentService;
 

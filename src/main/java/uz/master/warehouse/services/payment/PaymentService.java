@@ -10,7 +10,7 @@ import uz.master.warehouse.dto.responce.AppErrorDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.payment.Payment;
 import uz.master.warehouse.mapper.payment.PaymentMapper;
-import uz.master.warehouse.repository.payment.PaymentRepository;
+import uz.master.warehouse.repository.products.payment.PaymentRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
 import uz.master.warehouse.session.SessionUser;
