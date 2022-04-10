@@ -77,8 +77,7 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
 
     @Override
     public DataDto<List<ProductDto>> getAll() {
-        List<Product> list = repository.findAllByDeletedFalse();
-        return new DataDto<>(mapper.toDto(list));
+        return new DataDto<>(mapper.toDto(repository.findAllByDeletedFalse()));
     }
 
     @Override
@@ -119,8 +118,6 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
     @Transactional
     public DataDto<List<ProductDto>> search(String name) {
         SearchSession searchSession = Search.session(entityManager);
-
-
         SearchResult<Product> result = searchSession.search(Product.class)
                 .where(f -> f.match()
                         .fields("model")
@@ -132,4 +129,9 @@ public class ProductService extends AbstractService<ProductRepository, ProductMa
         return new DataDto<>(productDtos, totalHitCount);
     }
 
+    public DataDto<List<ProductDto>> getByFirmId(Long id) {
+        return new DataDto<>(mapper.toDto(repository.findAllByDeletedFalseAndFirmId(id)));
+
+
+    }
 }

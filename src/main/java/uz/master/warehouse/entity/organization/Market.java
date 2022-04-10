@@ -9,12 +9,13 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table( name = "market",
-        uniqueConstraints = { @UniqueConstraint( columnNames = { "name", "location" } ) } )
+@Table(name = "market",
+        uniqueConstraints = {@UniqueConstraint(columnNames = {"name", "location"})})
 public class Market extends Auditable {
     private String name;
     private Long ownerId;
     private Long organizationId;
     private String location;
     private String description;
+    private String logoPath;
 }

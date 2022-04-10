@@ -3,7 +3,6 @@ package uz.master.warehouse.services.organization;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.criteria.BaseCriteria;
 import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.dto.firm.FirmCreateDto;
 import uz.master.warehouse.dto.firm.FirmDto;
@@ -15,9 +14,7 @@ import uz.master.warehouse.mapper.organization.FirmMapper;
 import uz.master.warehouse.repository.organization.FirmRepository;
 import uz.master.warehouse.services.AbstractService;
 import uz.master.warehouse.services.GenericCrudService;
-import uz.master.warehouse.validator.organization.FirmValidator;
 
-import java.io.Serializable;
 import java.util.List;
 
 @Service
@@ -30,16 +27,16 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
     @Override
     public DataDto<Long> create(FirmCreateDto createDto) {
         Firm firm = mapper.fromCreateDto(createDto);
-        try{
+        try {
             return new DataDto<>(repository.save(firm).getId());
-        }catch (Exception e){
+        } catch (Exception e) {
             return new DataDto<>(new AppErrorDto("NAME_ALREADY_TAKEN", HttpStatus.CONFLICT));
         }
     }
 
     @Override
     public DataDto<Void> delete(Long id) {
-        if(!repository.existsById(id)){
+        if (!repository.existsById(id)) {
             return new DataDto<>(new AppErrorDto("FIRM_NOT_FOUND", HttpStatus.NOT_FOUND));
         }
         repository.deleteFirm(id);
@@ -49,9 +46,9 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
     @Override
     public DataDto<Long> update(FirmUpdateDto updateDto) {
         Firm firm = mapper.fromUpdateDto(updateDto);
-        try{
+        try {
             return new DataDto<>(repository.save(firm).getId());
-        }catch (Exception e){
+        } catch (Exception e) {
             return new DataDto<>(new AppErrorDto("NAME_ALREADY_TAKEN", HttpStatus.CONFLICT));
         }
     }
@@ -63,7 +60,7 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
 
     @Override
     public DataDto<FirmDto> get(Long id) {
-        if(!repository.existsById(id)){
+        if (!repository.existsById(id)) {
             return new DataDto<>(new AppErrorDto("FIRM_NOT_FOUND", HttpStatus.NOT_FOUND));
         }
         return new DataDto<>(mapper.toDto(repository.findByIdAndDeletedFalse(id)));
@@ -75,4 +72,11 @@ public class FirmService extends AbstractService<FirmRepository, FirmMapper> imp
         List<FirmDto> firmDtoS = mapper.toDto(repository.findAllByDeletedFalse(request));
         return new DataDto<>(firmDtoS);
     }
+
+    public DataDto<List<FirmDto>> getCompany(Long companyId) {
+        return new DataDto<>(mapper.toDto(repository.findAllByDeletedFalseAndCompanyId(companyId)));
+
+    }
+
+
 }

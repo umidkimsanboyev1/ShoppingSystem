@@ -3,7 +3,6 @@ package uz.master.warehouse.dto.InComeProducts;
 
 import lombok.Getter;
 import lombok.Setter;
-import org.jboss.logging.annotations.Pos;
 import uz.master.warehouse.annotations.HaveGroupProducts;
 import uz.master.warehouse.annotations.HaveProduct;
 import uz.master.warehouse.dto.BaseDto;

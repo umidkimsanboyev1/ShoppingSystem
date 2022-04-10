@@ -6,6 +6,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 import uz.master.warehouse.entity.payment.Payment;
+import uz.master.warehouse.session.SessionUser;
 
 import javax.transaction.Transactional;
 import java.time.LocalDate;

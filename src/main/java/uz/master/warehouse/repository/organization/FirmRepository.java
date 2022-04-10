@@ -25,4 +25,7 @@ public interface FirmRepository extends JpaRepository<Firm,Long> {
     List<Firm> findAllByDeletedFalse(PageRequest request);
 
     Firm findByIdAndDeletedFalse(Long id);
+
+
+    List<Firm> findAllByDeletedFalseAndCompanyId(Long companyId);
 }

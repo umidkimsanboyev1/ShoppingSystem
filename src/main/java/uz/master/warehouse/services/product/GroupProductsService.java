@@ -2,14 +2,12 @@ package uz.master.warehouse.services.product;
 
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
-import uz.master.warehouse.criteria.GenericCriteria;
 import uz.master.warehouse.criteria.GroupProductsCriteria;
 import uz.master.warehouse.dto.groupProducts.GroupProductsCreateDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsDto;
 import uz.master.warehouse.dto.groupProducts.GroupProductsUpdateDto;
 import uz.master.warehouse.dto.responce.DataDto;
 import uz.master.warehouse.entity.product.GroupProducts;
-import uz.master.warehouse.entity.products.InComeProducts;
 import uz.master.warehouse.mapper.groupProducts.GroupProductsMapper;
 import uz.master.warehouse.repository.product.GroupProductsRepository;
 import uz.master.warehouse.services.AbstractService;
@@ -18,6 +16,8 @@ import uz.master.warehouse.services.products.InComeProductsService;
 import uz.master.warehouse.services.products.WareHouseProductsService;
 
 import javax.validation.Valid;
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -88,5 +88,18 @@ public  class GroupProductsService extends AbstractService<GroupProductsReposito
     @Override
     public DataDto<List<GroupProductsDto>> getWithCriteria(GroupProductsCriteria criteria) {
         return null;
+    }
+
+    public List<GroupProductsDto> getByTimeBetween(String fromDate, String toDate) {
+        LocalDate from = LocalDate.parse(fromDate);
+        LocalDate to = LocalDate.parse(toDate);
+        List<GroupProducts> allByDateTimeDateBetween = repository.findAllByDateTimeDateBetween(from, to);
+        return mapper.toDto(allByDateTimeDateBetween);
+    }
+
+
+    public List<Date> getDate(String fromDate, String toDate) {;
+        return repository.getSizeDate(fromDate, toDate);
+
     }
 }
