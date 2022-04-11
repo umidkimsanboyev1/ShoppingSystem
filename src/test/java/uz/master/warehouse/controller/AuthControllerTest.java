@@ -39,7 +39,6 @@ class AuthControllerTest {
     private AuthUserService service;
     @Autowired
     private PasswordEncoder passwordEncoder;
-    @Qualifier("authUserMapperImpl")
     @Autowired
     private AuthUserMapper mapper;
 
@@ -47,13 +46,13 @@ class AuthControllerTest {
     public void init(){
 //        service=new AuthUserService(repository,organizationService,mapper,passwordEncoder);
     }
-    @Test
-    void create() {
-        AuthCreateDto dto=new AuthCreateDto(1L,"jafar","1","+998936432434","123","ADMIN");
-
-        DataDto<Long> user = service.createUser(dto);
-        System.out.println("user.getData() = " + user.getData());
-    }
+//    @Test
+//    void create() {
+////        AuthCreateDto dto=new AuthCreateDto(1L,"jafar","1","+998936432434","123","ADMIN");
+//
+//        DataDto<Long> user = service.createUser(dto);
+//        System.out.println("user.getData() = " + user.getData());
+//    }
 
     @Test
     void profile() {

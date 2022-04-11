@@ -2,6 +2,7 @@ package uz.master.warehouse.dto.clientBar;
 
 import lombok.Getter;
 import lombok.Setter;
+import uz.master.warehouse.annotations.HaveMarket;
 import uz.master.warehouse.annotations.HaveOrg;
 import uz.master.warehouse.dto.BaseDto;
 import uz.master.warehouse.dto.GenericDto;
@@ -24,8 +25,9 @@ public class ClientBarCreateDto implements BaseDto {
     @Size(min = 4, max = 12, message = "Client name should be between 4 and 12")
     private String clientName;
 
-    @NotNull
-    @Positive
     @HaveOrg
     private Long orgId;
+
+    @HaveMarket
+    private Long marketId;
 }

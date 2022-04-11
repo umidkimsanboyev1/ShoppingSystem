@@ -28,9 +28,9 @@ public interface ClientBarRepository extends JpaRepository<ClientBar, Long> {
 
     @Query(value = "SELECT e.* FROM client_bar e WHERE e.org_id = ?1 and e.taken = true and e.deleted = false and DATE(e.created_at) =?2", nativeQuery = true)
     List<ClientBar> findAllByOrgIdAndTakenTrueAndCreatedAtAndDeletedFalse(Long orgId);
-
-    @Query(value = "from ClientBar c where c.deleted = false and c.taken = true and c.orgId = ?1 and c.createdAt::date = current_date")
-    List<ClientBar> findAllByOrgIdAndTakenTrueAndCreatedAtAndDeletedFalse2(Long orgId);
+//
+//    @Query(value = "from ClientBar c where c.deleted = false and c.taken = true and c.orgId = ?1 and c.createdAt::date = current_date")
+//    List<ClientBar> findAllByOrgIdAndTakenTrueAndCreatedAtAndDeletedFalse2(Long orgId);
 
 
     boolean existsByIdAndDeletedFalse(Long clientBarId);
